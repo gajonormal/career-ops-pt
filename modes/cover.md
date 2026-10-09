@@ -358,3 +358,5 @@ When invoked as `/career-ops cover {slug}`:
 3. Run all steps as normal (research, keywords, prompts, gaps) — the draft is a starting point, not the final output
 4. When presenting the draft in Step 8, show what was auto-generated and what was changed based on the user's answers
 5. After PDF generation, update the report's `## Cover Letter Draft` section with a note: `PDF generated: output/{path} on {date}`
+
+**IDIOMA E TOM:** Todo o texto gerado DEVE ser em Português de Portugal (pt-PT). Elimina o entusiasmo corporativo americano (nada de 'thrilled', 'excited', 'passionate'). O tom deve ser sóbrio, profissional, educado e direto. As mensagens devem ser curtas e respeitosas.

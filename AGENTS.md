@@ -6,6 +6,11 @@ Built and used by [santifer](https://santifer.io) to evaluate 740+ offers, gener
 
 **It works out of the box, but it's designed to be made yours.** You (AI Agent) can edit the user's files: they say "change the archetypes to data engineering roles" and you do it. That's the whole point.
 
+## Mercado de Trabalho Portugal (PT-PT)
+
+Considera sempre que a avaliação, os cálculos salariais e as recomendações devem focar no mercado português: salário anual a 14 meses, ajudas de custo, subsídio de alimentação, e tipos de contrato (Sem Termo, Termo Certo, B2B).
+Gera todas as respostas, relatórios, e-mails, e cobertura em Português de Portugal (PT-PT), com um tom direto, educado, profissional e sóbrio.
+
 ## Data Contract (CRITICAL)
 
 Two layers — full list in `DATA_CONTRACT.md`:

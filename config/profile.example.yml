@@ -73,10 +73,14 @@ narrative:
   #   password: "demo-2026"
 
 compensation:
-  target_range: "$150K-200K"     # Your target total comp
-  currency: "USD"
-  minimum: "$120K"               # Walk-away number
-  location_flexibility: "Remote preferred, 1 week/month on-site possible"
+  target_range: "€40K-50K"
+  salario_bruto_anual_minimo: "€35K"
+  regime_preferencial: "Híbrido (Lisboa/Porto)"
+  tipo_contrato: "Sem Termo"
+  autorizacao_trabalho_pt: true     # Your target total comp
+  currency: "EUR"
+  minimum: "€35K"               # Walk-away number
+  location_flexibility: "Remoto preferencial, 2 dias/semana no escritório possível"
 
 location:
   country: "United States"

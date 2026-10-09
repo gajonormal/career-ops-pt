@@ -79,7 +79,7 @@ func TestStatusTargetUsesReaderPath(t *testing.T) {
 			if layout != "missing-override" {
 				writeStatusTarget(t, selected, before)
 			}
-			app := model.CareerApplication{Number: 42, ReportNumber: "7", Status: "Applied"}
+			app := model.CareerApplication{Number: 42, ReportNumber: "7", Status: "Candidatura Enviada"}
 			if layout != "missing-override" {
 				apps := ParseApplications(root)
 				if len(apps) != 1 || apps[0].Number != 42 {
@@ -87,7 +87,7 @@ func TestStatusTargetUsesReaderPath(t *testing.T) {
 				}
 				app = apps[0]
 			}
-			err := UpdateApplicationStatusAndNotes(root, app, "Interview", "follow-up")
+			err := UpdateApplicationStatusAndNotes(root, app, "Entrevista", "follow-up")
 			if layout == "missing-override" {
 				if err == nil {
 					t.Fatal("missing override must fail without fallback")
@@ -127,7 +127,7 @@ func TestStatusTargetUsesOnlyReportColumn(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
-			err = UpdateApplicationStatus(root, model.CareerApplication{Number: 42, ReportNumber: tc.id, Status: "Applied"}, "Interview")
+			err = UpdateApplicationStatus(root, model.CareerApplication{Number: 42, ReportNumber: tc.id, Status: "Candidatura Enviada"}, "Entrevista")
 			if tc.fail {
 				if err == nil {
 					t.Fatal("ambiguous/missing identity must fail")
@@ -156,19 +156,19 @@ func TestStatusTargetStaleStatusNeverMatchesAnotherCell(t *testing.T) {
 				row = strings.ReplaceAll(row, " | ", "\t")
 			}
 			root, path := writeTracker(t, header+row)
-			err := UpdateApplicationStatusAndNotes(root, model.CareerApplication{ReportNumber: "7", Status: "Applied"}, "Interview", "follow-up")
+			err := UpdateApplicationStatusAndNotes(root, model.CareerApplication{ReportNumber: "7", Status: "Candidatura Enviada"}, "Entrevista", "follow-up")
 			if err != nil {
 				t.Fatal(err)
 			}
 			apps := ParseApplications(root)
-			if len(apps) != 1 || apps[0].Status != "Interview" || apps[0].Company != "Applied" || apps[0].Notes != "Applied; follow-up" {
+			if len(apps) != 1 || apps[0].Status != "Entrevista" || apps[0].Company != "Candidatura Enviada" || apps[0].Notes != "Applied; follow-up" {
 				t.Fatalf("wrong fields: %+v", apps)
 			}
 			out, err := os.ReadFile(path)
 			if err != nil {
 				t.Fatal(err)
 			}
-			want := strings.Replace(row, "Responded", "Interview", 1)
+			want := strings.Replace(row, "Responded", "Entrevista", 1)
 			if format == "pipe" {
 				want = strings.Replace(want, "| Applied |\n", "| Applied; follow-up |\n", 1)
 			} else if format == "tabs-status-last" {
@@ -186,17 +186,17 @@ func TestStatusTargetRejectsMalformedStatusAndUnsafeNotes(t *testing.T) {
 	for _, tc := range []struct{ name, status, notes string }{
 		{"unknown-current-status", "???", ""},
 		{"empty-current-status", "", ""},
-		{"carriage-return-note", "Applied", "line1\rline2"},
-		{"pipe-note", "Applied", "DISCARD: salary | location"},
-		{"newline-note", "Applied", "line1\nline2"},
-		{"tab-note", "Applied", "line1\tline2"},
+		{"carriage-return-note", "Candidatura Enviada", "line1\rline2"},
+		{"pipe-note", "Candidatura Enviada", "DISCARD: salary | location"},
+		{"newline-note", "Candidatura Enviada", "line1\nline2"},
+		{"tab-note", "Candidatura Enviada", "line1\tline2"},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
 			t.Setenv("CAREER_OPS_TRACKER", "")
 			row := strings.Replace(statusTargetRow, "| Applied |", "| "+tc.status+" |", 1)
 			row = strings.Replace(row, "| original |", "| Applied |", 1)
 			root, path := writeTracker(t, statusTargetHeader+row)
-			err := UpdateApplicationStatusAndNotes(root, model.CareerApplication{ReportNumber: "7", Status: "Applied"}, "Interview", tc.notes)
+			err := UpdateApplicationStatusAndNotes(root, model.CareerApplication{ReportNumber: "7", Status: "Candidatura Enviada"}, "Entrevista", tc.notes)
 			if err == nil {
 				t.Fatal("invalid update must fail")
 			}
@@ -211,7 +211,7 @@ func TestStatusTargetRejectsInvalidNewStatus(t *testing.T) {
 			t.Setenv("CAREER_OPS_TRACKER", "")
 			before := statusTargetHeader + statusTargetRow
 			root, path := writeTracker(t, before)
-			if err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7", Status: "Applied"}, status); err == nil {
+			if err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7", Status: "Candidatura Enviada"}, status); err == nil {
 				t.Fatal("invalid status must fail")
 			}
 			assertStatusTargetBytes(t, path, before)
@@ -224,7 +224,7 @@ func TestStatusTargetRejectsMissingNotesCell(t *testing.T) {
 	row := strings.Replace(statusTargetRow, " original |", "", 1)
 	before := statusTargetHeader + row
 	root, path := writeTracker(t, before)
-	err := UpdateApplicationStatusAndNotes(root, model.CareerApplication{ReportNumber: "7", Status: "Applied"}, "Interview", "follow-up")
+	err := UpdateApplicationStatusAndNotes(root, model.CareerApplication{ReportNumber: "7", Status: "Candidatura Enviada"}, "Entrevista", "follow-up")
 	if err == nil {
 		t.Fatal("missing Notes cell must fail without appending outside the table")
 	}
@@ -235,7 +235,7 @@ func TestStatusTargetAppendsToCompactEmptyNotes(t *testing.T) {
 	t.Setenv("CAREER_OPS_TRACKER", "")
 	row := strings.Replace(statusTargetRow, "| original |", "||", 1)
 	root, path := writeTracker(t, statusTargetHeader+row)
-	err := UpdateApplicationStatusAndNotes(root, model.CareerApplication{ReportNumber: "7", Status: "Applied"}, "Interview", "follow-up")
+	err := UpdateApplicationStatusAndNotes(root, model.CareerApplication{ReportNumber: "7", Status: "Candidatura Enviada"}, "Entrevista", "follow-up")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -257,7 +257,7 @@ func TestStatusTargetRejectsMalformedReportCell(t *testing.T) {
 			row := strings.Replace(statusTargetRow, "[7](reports/007.md)", report, 1)
 			before := statusTargetHeader + row
 			root, path := writeTracker(t, before)
-			err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7", Status: "Applied"}, "Interview")
+			err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7", Status: "Candidatura Enviada"}, "Entrevista")
 			if err == nil {
 				t.Fatal("malformed Report must fail without choosing a link")
 			}
@@ -265,7 +265,7 @@ func TestStatusTargetRejectsMalformedReportCell(t *testing.T) {
 			// Do not skip the malformed candidate and silently target a different row.
 			before += strings.Replace(statusTargetRow, "| 42 |", "| 99 |", 1)
 			writeStatusTarget(t, path, before)
-			if err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7", Status: "Applied"}, "Interview"); err == nil {
+			if err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7", Status: "Candidatura Enviada"}, "Entrevista"); err == nil {
 				t.Fatal("malformed candidate must not redirect the update")
 			}
 			assertStatusTargetBytes(t, path, before)
@@ -274,12 +274,12 @@ func TestStatusTargetRejectsMalformedReportCell(t *testing.T) {
 }
 
 func TestStatusTargetAcceptsCanonicalNames(t *testing.T) {
-	for _, status := range []string{"Evaluated", "Applied", "Responded", "Interview", "Offer", "Hired", "Rejected", "Discarded", "SKIP", "Skip", "skip"} {
+	for _, status := range []string{"Evaluated", "Candidatura Enviada", "Responded", "Entrevista", "Oferta", "Hired", "Rejeitado", "Discarded", "SKIP", "Skip", "skip"} {
 		t.Run(status, func(t *testing.T) {
 			t.Setenv("CAREER_OPS_TRACKER", "")
 			before := statusTargetHeader + statusTargetRow
 			root, path := writeTracker(t, before)
-			if err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7", Status: "Applied"}, status); err != nil {
+			if err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7", Status: "Candidatura Enviada"}, status); err != nil {
 				t.Fatal(err)
 			}
 			assertStatusTargetBytes(t, path, strings.Replace(before, "| Applied |", "| "+mapCanonicalStatus(status)+" |", 1))
@@ -291,7 +291,7 @@ func TestStatusTargetStillReadsLegacyDiskStatus(t *testing.T) {
 	t.Setenv("CAREER_OPS_TRACKER", "")
 	before := statusTargetHeader + strings.Replace(statusTargetRow, "| Applied |", "| **Applied** |", 1)
 	root, path := writeTracker(t, before)
-	if err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7", Status: "Applied"}, "Interview"); err != nil {
+	if err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7", Status: "Candidatura Enviada"}, "Entrevista"); err != nil {
 		t.Fatal(err)
 	}
 	assertStatusTargetBytes(t, path, strings.Replace(before, "| **Applied** |", "| Interview |", 1))

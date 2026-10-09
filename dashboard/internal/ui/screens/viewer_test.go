@@ -11,10 +11,10 @@ import (
 )
 
 func TestViewerCurrentStatusPairsLeadsWithRowStatus(t *testing.T) {
-	m := ViewerModel{app: model.CareerApplication{Status: "Interview"}}
+	m := ViewerModel{app: model.CareerApplication{Status: "Entrevista"}}
 
 	pairs := m.currentStatusPairs()
-	if len(pairs) == 0 || pairs[0].Canonical != "Interview" {
+	if len(pairs) == 0 || pairs[0].Canonical != "Entrevista" {
 		t.Fatalf("currentStatusPairs()[0] = %+v, want Interview leading", pairs[0])
 	}
 }

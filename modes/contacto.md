@@ -217,3 +217,5 @@ that there is **no contact discovery**.
   from `cv.md`, never invent a skill, metric, or claim.
 - NO corporate-speak, NO "I'm passionate about...", NEVER share a phone number.
 - Persona changes the EMPHASIS, not the structure.
+
+**IDIOMA E TOM:** Todo o texto gerado DEVE ser em Português de Portugal (pt-PT). Elimina o entusiasmo corporativo americano (nada de 'thrilled', 'excited', 'passionate'). O tom deve ser sóbrio, profissional, educado e direto. As mensagens devem ser curtas e respeitosas.

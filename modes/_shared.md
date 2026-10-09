@@ -155,6 +155,19 @@ The same holds for Block B's **requirement Importance column**: it does NOT affe
 
 ## Company Type and Compensation Reliability
 
+**Regras Salariais Portugal (PT-PT):**
+- O salário anual bruto (SBA) é pago a 14 meses (12 meses de vencimento + subsídio de Férias + subsídio de Natal).
+- A IA deve detetar, extrair e valorizar ativamente os seguintes benefícios típicos em Portugal:
+  * "Subsídio de Alimentação" (frequentemente pago em cartão/ticket refeição, isento de impostos até certo limite).
+  * "Ajudas de Custo" (verbas pagas isentas de imposto, muitas vezes usadas para compor o salário líquido - atenção ao risco em caso de baixa ou desemprego).
+  * "Seguro de Saúde".
+  * "Prémio de Assinatura" (Sign-on bonus).
+- Distinção de Contratos e Risco:
+  * **Contrato Sem Termo:** Preferencial, oferece estabilidade ao abrigo do Código do Trabalho (com indemnização, aviso prévio legal e todos os direitos).
+  * **Contrato a Termo Certo:** Duração definida, risco moderado de não renovação.
+  * **B2B / Recibos Verdes (Trabalhador Independente):** Risco elevado. Exige um valor diário/horário substancialmente superior para compensar a carga fiscal (IVA, IRS, Segurança Social), ausência de subsídios de Férias/Natal, e falta de dias pagos (férias, baixas).
+
+
 Public salary data is a signal, not a promise. Before interpreting compensation, classify the employer / hiring entity first, then decide how much to trust the published range.
 
 **Company type taxonomy:**
@@ -255,7 +268,7 @@ After detecting archetype, read `modes/_profile.md` for the user's specific fram
 3. Cite exact lines from CV when matching
 4. Use WebSearch for comp and company data
 5. Register in tracker after evaluating
-6. Generate content in the language of the JD (EN default)
+6. Gera todo o conteúdo em Português de Portugal (pt-PT) com tom sóbrio e profissional, sem entusiasmo corporativo excessivo.
 7. Be direct and actionable -- no fluff
 8. Native tech English for generated text. Short sentences, action verbs, no passive voice.
 8b. Case study URLs in PDF Professional Summary (recruiter may only read this).

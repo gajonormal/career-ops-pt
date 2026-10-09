@@ -36,7 +36,7 @@ func TestWithReloadedDataPreservesStateAndSelection(t *testing.T) {
 		{
 			Company:    "Beta",
 			Role:       "Platform Engineer",
-			Status:     "Applied",
+			Status:     "Candidatura Enviada",
 			Score:      4.6,
 			HasScore:   true,
 			ReportPath: "reports/002-beta.md",
@@ -64,7 +64,7 @@ func TestWithReloadedDataPreservesStateAndSelection(t *testing.T) {
 		{
 			Company:    "Gamma",
 			Role:       "AI Engineer",
-			Status:     "Interview",
+			Status:     "Entrevista",
 			Score:      4.8,
 			HasScore:   true,
 			ReportPath: "reports/003-gamma.md",
@@ -105,7 +105,7 @@ func TestRenderAppLineIncludesDateColumn(t *testing.T) {
 		Date:     "2026-04-13",
 		Company:  "Anthropic",
 		Role:     "Forward Deployed Engineer",
-		Status:   "Applied",
+		Status:   "Candidatura Enviada",
 		Score:    4.5,
 		HasScore: true,
 	}, false)
@@ -125,7 +125,7 @@ func TestRenderAppLineIncludesDateColumn(t *testing.T) {
 		StatusDate: "2026-05-20",
 		Company:    "Anthropic",
 		Role:       "Forward Deployed Engineer",
-		Status:     "Interview",
+		Status:     "Entrevista",
 		Score:      4.5,
 		HasScore:   true,
 	}, false)
@@ -145,9 +145,9 @@ func TestColumnHeaderReadsDate(t *testing.T) {
 func TestSearchFiltersByCompanyRoleAndNotes(t *testing.T) {
 	apps := []model.CareerApplication{
 		{Company: "Stripe", Role: "Backend Engineer", Status: "Evaluated", Score: 4.6, HasScore: true, Notes: "payments infra"},
-		{Company: "Anthropic", Role: "AI Safety Engineer", Status: "Applied", Score: 4.8, HasScore: true, Notes: "policy work"},
+		{Company: "Anthropic", Role: "AI Safety Engineer", Status: "Candidatura Enviada", Score: 4.8, HasScore: true, Notes: "policy work"},
 		{Company: "Acme Corp", Role: "Senior PM, Voice AI", Status: "Evaluated", Score: 4.2, HasScore: true, Notes: "Series B in Madrid"},
-		{Company: "Globex", Role: "Platform Engineer", Status: "Applied", Score: 3.9, HasScore: true, Notes: "remote-first"},
+		{Company: "Globex", Role: "Platform Engineer", Status: "Candidatura Enviada", Score: 3.9, HasScore: true, Notes: "remote-first"},
 	}
 
 	pm := NewPipelineModel(theme.NewTheme("catppuccin-mocha"), apps, model.PipelineMetrics{Total: len(apps)}, "..", 120, 40)
@@ -185,8 +185,8 @@ func TestSearchFiltersByCompanyRoleAndNotes(t *testing.T) {
 func TestSearchComposesWithActiveTab(t *testing.T) {
 	apps := []model.CareerApplication{
 		{Company: "Stripe", Role: "Backend Engineer", Status: "Evaluated", Score: 4.6, HasScore: true},
-		{Company: "Stripe", Role: "Frontend Engineer", Status: "Applied", Score: 4.5, HasScore: true},
-		{Company: "Anthropic", Role: "AI Engineer", Status: "Applied", Score: 4.8, HasScore: true},
+		{Company: "Stripe", Role: "Frontend Engineer", Status: "Candidatura Enviada", Score: 4.5, HasScore: true},
+		{Company: "Anthropic", Role: "AI Engineer", Status: "Candidatura Enviada", Score: 4.8, HasScore: true},
 	}
 
 	pm := NewPipelineModel(theme.NewTheme("catppuccin-mocha"), apps, model.PipelineMetrics{Total: len(apps)}, "..", 120, 40)
@@ -357,7 +357,7 @@ func TestSearchStatePreservedAcrossReload(t *testing.T) {
 	pm.applyFilterAndSort()
 
 	refreshed := append([]model.CareerApplication{}, initial...)
-	refreshed = append(refreshed, model.CareerApplication{Company: "Globex", Role: "Platform", Status: "Applied", Score: 4.3, HasScore: true})
+	refreshed = append(refreshed, model.CareerApplication{Company: "Globex", Role: "Platform", Status: "Candidatura Enviada", Score: 4.3, HasScore: true})
 
 	reloaded := pm.WithReloadedData(refreshed, model.PipelineMetrics{Total: len(refreshed)})
 
@@ -374,7 +374,7 @@ func TestRejectedAndDiscardedTabsFilterCorrectly(t *testing.T) {
 		{
 			Company:    "Acme",
 			Role:       "Backend Engineer",
-			Status:     "Rejected",
+			Status:     "Rejeitado",
 			Score:      3.4,
 			HasScore:   true,
 			ReportPath: "reports/001-acme.md",
@@ -390,7 +390,7 @@ func TestRejectedAndDiscardedTabsFilterCorrectly(t *testing.T) {
 		{
 			Company:    "Gamma",
 			Role:       "AI Engineer",
-			Status:     "Applied",
+			Status:     "Candidatura Enviada",
 			Score:      4.6,
 			HasScore:   true,
 			ReportPath: "reports/003-gamma.md",
@@ -408,7 +408,7 @@ func TestRejectedAndDiscardedTabsFilterCorrectly(t *testing.T) {
 
 	pm.activeTab = tabIndexForFilter(t, filterRejected)
 	pm.applyFilterAndSort()
-	if len(pm.filtered) != 1 || pm.filtered[0].Status != "Rejected" {
+	if len(pm.filtered) != 1 || pm.filtered[0].Status != "Rejeitado" {
 		t.Fatalf("expected rejected tab to isolate rejected rows, got %+v", pm.filtered)
 	}
 
@@ -432,7 +432,7 @@ func TestRespondedTabFiltersCorrectly(t *testing.T) {
 		{
 			Company:    "Beta",
 			Role:       "Platform Engineer",
-			Status:     "Applied",
+			Status:     "Candidatura Enviada",
 			Score:      3.8,
 			HasScore:   true,
 			ReportPath: "reports/002-beta.md",
@@ -440,7 +440,7 @@ func TestRespondedTabFiltersCorrectly(t *testing.T) {
 		{
 			Company:    "Gamma",
 			Role:       "AI Engineer",
-			Status:     "Interview",
+			Status:     "Entrevista",
 			Score:      4.6,
 			HasScore:   true,
 			ReportPath: "reports/003-gamma.md",
@@ -656,7 +656,7 @@ func TestWithReloadedDataPreservesCursorWhenAppRemoved(t *testing.T) {
 		{
 			Company:    "Acme",
 			Role:       "Backend Engineer",
-			Status:     "Applied",
+			Status:     "Candidatura Enviada",
 			Score:      4.2,
 			HasScore:   true,
 			ReportPath: "reports/001-acme.md",
@@ -664,7 +664,7 @@ func TestWithReloadedDataPreservesCursorWhenAppRemoved(t *testing.T) {
 		{
 			Company:    "Beta",
 			Role:       "Platform Engineer",
-			Status:     "Applied",
+			Status:     "Candidatura Enviada",
 			Score:      4.6,
 			HasScore:   true,
 			ReportPath: "reports/002-beta.md",
@@ -672,7 +672,7 @@ func TestWithReloadedDataPreservesCursorWhenAppRemoved(t *testing.T) {
 		{
 			Company:    "Gamma",
 			Role:       "AI Engineer",
-			Status:     "Applied",
+			Status:     "Candidatura Enviada",
 			Score:      4.8,
 			HasScore:   true,
 			ReportPath: "reports/003-gamma.md",
@@ -696,7 +696,7 @@ func TestWithReloadedDataPreservesCursorWhenAppRemoved(t *testing.T) {
 		{
 			Company:    "Beta",
 			Role:       "Platform Engineer",
-			Status:     "Rejected", // Changed!
+			Status:     "Rejeitado", // Changed!
 			Score:      4.6,
 			HasScore:   true,
 			ReportPath: "reports/002-beta.md",
@@ -772,7 +772,7 @@ func TestGetStatusPairsPinsCurrentStatusToFront(t *testing.T) {
 	base := getStatusPairs("")
 
 	ordered := getStatusPairs("applied")
-	if ordered[0].Canonical != "Applied" {
+	if ordered[0].Canonical != "Candidatura Enviada" {
 		t.Fatalf("ordered[0].Canonical = %q, want Applied", ordered[0].Canonical)
 	}
 	if len(ordered) != len(base) {
@@ -786,7 +786,7 @@ func TestGetStatusPairsPinsCurrentStatusToFront(t *testing.T) {
 	}
 	var restWant []string
 	for _, pair := range base {
-		if pair.Canonical != "Applied" {
+		if pair.Canonical != "Candidatura Enviada" {
 			restWant = append(restWant, pair.Canonical)
 		}
 	}

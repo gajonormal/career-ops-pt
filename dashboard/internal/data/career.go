@@ -859,10 +859,10 @@ func ComputeProgressMetrics(apps []model.CareerApplication, history ...map[int]i
 	// a status value and the Stats screen's scored count.
 	pm.FunnelStages = []model.FunnelStage{
 		{Label: "Tracked", Count: total, Pct: 100.0},
-		{Label: "Applied", Count: applied, Pct: safePct(applied, total)},
+		{Label: "Candidatura Enviada", Count: applied, Pct: safePct(applied, total)},
 		{Label: "Responded", Count: responded, Pct: safePct(responded, applied)},
-		{Label: "Interview", Count: interview, Pct: safePct(interview, applied)},
-		{Label: "Offer", Count: offer, Pct: safePct(offer, applied)},
+		{Label: "Entrevista", Count: interview, Pct: safePct(interview, applied)},
+		{Label: "Oferta", Count: offer, Pct: safePct(offer, applied)},
 	}
 
 	// Rates (relative to applied)

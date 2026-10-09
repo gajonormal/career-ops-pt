@@ -379,11 +379,11 @@ var En = Catalog{
 
 	// Status display names
 	StatusEvaluated: "Evaluated",
-	StatusApplied:   "Applied",
+	StatusApplied:   "Candidatura Enviada",
 	StatusResponded: "Responded",
-	StatusInterview: "Interview",
-	StatusOffer:     "Offer",
-	StatusRejected:  "Rejected",
+	StatusInterview: "Entrevista",
+	StatusOffer:     "Oferta",
+	StatusRejected:  "Rejeitado",
 	StatusDiscarded: "Discarded",
 	StatusSkip:      "SKIP",
 	StatusHired:     "Hired",

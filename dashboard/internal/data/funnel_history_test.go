@@ -13,13 +13,13 @@ import (
 func TestFunnelHistoryTerminalAchievements(t *testing.T) {
 	apps := []model.CareerApplication{}
 	for i := 1; i <= 29; i++ {
-		status := "Rejected"
+		status := "Rejeitado"
 		if i <= 10 {
-			status = "Applied"
+			status = "Candidatura Enviada"
 		} else if i <= 15 {
 			status = "Responded"
 		} else if i <= 17 {
-			status = "Interview"
+			status = "Entrevista"
 		}
 		apps = append(apps, model.CareerApplication{Number: i, Status: status})
 	}
@@ -59,7 +59,7 @@ func TestReadFunnelHistoryMissingLedger(t *testing.T) {
 	if err != nil || len(history) != 0 {
 		t.Fatalf("missing ledger = %v, %v; want empty history without an error", history, err)
 	}
-	pm := ComputeProgressMetrics([]model.CareerApplication{{Number: 1, Status: "Offer"}}, history)
+	pm := ComputeProgressMetrics([]model.CareerApplication{{Number: 1, Status: "Oferta"}}, history)
 	if pm.TotalOffers != 1 {
 		t.Fatal("missing ledger should still count current achievements")
 	}
@@ -85,8 +85,8 @@ func TestReadFunnelHistoryPropagatesReadFailure(t *testing.T) {
 
 func TestBackfilledDisplayNumberDoesNotJoinHistory(t *testing.T) {
 	apps := []model.CareerApplication{
-		{Number: 1, Status: "Applied", TrackerNumberMissing: true},
-		{Number: 1, Status: "Rejected"},
+		{Number: 1, Status: "Candidatura Enviada", TrackerNumberMissing: true},
+		{Number: 1, Status: "Rejeitado"},
 	}
 	pm := ComputeProgressMetrics(apps, map[int]int{1: 3})
 	if pm.FunnelStages[1].Count != 2 || pm.FunnelStages[3].Count != 1 {
@@ -97,8 +97,8 @@ func TestBackfilledDisplayNumberDoesNotJoinHistory(t *testing.T) {
 func TestFunnelHistoryDuplicateRanksAndSkip(t *testing.T) {
 	for _, reverse := range []bool{false, true} {
 		apps := []model.CareerApplication{
-			{Number: 7, Status: "Applied"},
-			{Number: 7, Status: "Offer"},
+			{Number: 7, Status: "Candidatura Enviada"},
+			{Number: 7, Status: "Oferta"},
 			{Number: 8, Status: "SKIP"},
 			{Number: 9, Status: "skip"},
 			{Number: 10, Status: "Discarded"},

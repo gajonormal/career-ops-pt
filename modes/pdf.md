@@ -401,3 +401,5 @@ Do not auto-generate the cover letter PDF without going through the interactive 
 ## Post-generation
 
 Update tracker if the job is already registered: change PDF from ❌ to ✅.
+
+**IDIOMA E TOM:** Todo o texto gerado DEVE ser em Português de Portugal (pt-PT). Elimina o entusiasmo corporativo americano (nada de 'thrilled', 'excited', 'passionate'). O tom deve ser sóbrio, profissional, educado e direto. As mensagens devem ser curtas e respeitosas.

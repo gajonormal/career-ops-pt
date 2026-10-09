@@ -31,3 +31,5 @@ These skills assume the following files exist (career-ops defaults):
 | `interview-prep/interview-prep-guide.md` | General interview principles (optional) |
 | `interview-prep/{company}-{role}.md` | Role-specific prep file |
 | `interview-prep/retracted-claims.md` | Claims the candidate has rejected as indefensible — hard gate in practice and debrief (format: `**"[claim]"** ([context]). Reason: [one-line reason + correct framing if applicable].`) |
+
+**IDIOMA E TOM:** Todo o texto gerado DEVE ser em Português de Portugal (pt-PT). Elimina o entusiasmo corporativo americano (nada de 'thrilled', 'excited', 'passionate'). O tom deve ser sóbrio, profissional, educado e direto. As mensagens devem ser curtas e respeitosas.

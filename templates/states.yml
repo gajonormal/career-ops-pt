@@ -17,11 +17,11 @@ states:
   - id: evaluated
     label: Evaluated
     aliases: [evaluada, condicional, hold, evaluar, verificar, değerlendirildi, degerlendirildi]
-    description: Offer evaluated with report, pending decision
+    description: Oferta evaluated with report, pending decision
     dashboard_group: evaluated
 
   - id: applied
-    label: Applied
+    label: Candidatura Enviada
     aliases: [aplicado, enviada, aplicada, sent, başvuruldu, basvuruldu]
     description: Application submitted
     dashboard_group: applied
@@ -33,22 +33,22 @@ states:
     dashboard_group: responded
 
   - id: interview
-    label: Interview
+    label: Entrevista
     aliases: [entrevista, mülakat, mulakat]
     description: Active interview process
     dashboard_group: interview
 
   - id: offer
-    label: Offer
+    label: Oferta
     aliases: [oferta, teklif]
-    description: Offer received
+    description: Oferta received
     dashboard_group: offer
     terminal: true
 
   - id: rejected
-    label: Rejected
+    label: Rejeitado
     aliases: [rechazado, rechazada, reddedildi]
-    description: Rejected by company
+    description: Rejeitado by company
     dashboard_group: rejected
     terminal: true
 
@@ -69,6 +69,6 @@ states:
   - id: hired
     label: Hired
     aliases: [contratado, contratada, hired, accepted, accept, "kabul edildi", kabul_edildi, "işe alındı", "ise alindi", "işe alindi"]
-    description: Offer accepted, job landed!
+    description: Oferta accepted, job landed!
     dashboard_group: hired
     terminal: true

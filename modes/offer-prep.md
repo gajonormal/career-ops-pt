@@ -1,4 +1,7 @@
-# Mode: offer-prep — Contract Reading Companion (Offer Stage)
+# Mode: offer-prep
+
+## Lei Laboral PT
+Alerta ativamente para aspetos da lei portuguesa no contrato: "Período à Experiência" (duração legal vs contrato), "Aviso Prévio" legal para rescisão de contrato, e cláusulas de "Isenção de Horário de Trabalho (IHT)". — Contract Reading Companion (Offer Stage)
 
 Prepare the candidate to make their own decision about a received offer letter
 or employment contract: understand every clause, spot deltas against what was

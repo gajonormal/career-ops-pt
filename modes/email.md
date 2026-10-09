@@ -543,3 +543,5 @@ Return in this order:
 4. One-line note with any missing inputs or assumptions
 
 Do not write files unless the user explicitly asks to save the draft.
+
+**IDIOMA E TOM:** Todo o texto gerado DEVE ser em Português de Portugal (pt-PT). Elimina o entusiasmo corporativo americano (nada de 'thrilled', 'excited', 'passionate'). O tom deve ser sóbrio, profissional, educado e direto. As mensagens devem ser curtas e respeitosas.
