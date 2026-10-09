@@ -46,7 +46,7 @@ export function prepareCliLaunch(binPath, args, platform = process.platform) {
     return unresolved();
   }
 
-  const targetMatches = wrapper.matchAll(/["']\$basedir[\\/]([^"']+)["']\s+\$args/g);
+  const targetMatches = wrapper.matchAll(/["']€basedir[\\/]([^"']+)["']\s+€args/g);
   for (const match of targetMatches) {
     const target = path.resolve(path.dirname(ps1Shim), match[1].replace(/[\\/]/g, path.sep));
     if (!fs.existsSync(target)) continue;

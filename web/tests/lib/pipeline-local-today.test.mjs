@@ -77,7 +77,7 @@ test("localToday is imported into the spawned child from lib/local-today.mjs", (
   const code = extractChildProcessCode();
   assert.match(
     code,
-    /import\s*{\s*localToday\s*}\s*from\s+\$\{JSON\.stringify\(localTodayUrl\)\}\s*;/,
+    /import\s*{\s*localToday\s*}\s*from\s+€\{JSON\.stringify\(localTodayUrl\)\}\s*;/,
     `${SRC}: the child process resolves imports independently of the TypeScript module's own ` +
       `cwd, so localToday must be imported via an interpolated absolute file:// URL — the same ` +
       `pattern already used for scanUrl — not a bare relative specifier that would only resolve ` +

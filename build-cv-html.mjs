@@ -53,15 +53,15 @@ const PHOTO_STYLES = new Set(['rounded', 'circle', 'square']);
 const IMAGE_DATA_URL_RE = /^data:image\/(?:png|jpeg|webp|gif);base64,[a-z0-9+/=\s]+$/i;
 
 const DEFAULT_SECTION_TITLES = {
-  summary: 'Professional Summary',
-  competencies: 'Core Competencies',
-  experience: 'Work Experience',
-  projects: 'Projects',
-  education: 'Education',
-  certifications: 'Certifications',
-  awards: 'Awards & Honors',
-  interests: 'Interests',
-  skills: 'Skills',
+  summary: 'Resumo Profissional',
+  competencies: 'Competências Principais',
+  experience: 'Experiência Profissional',
+  projects: 'Projetos',
+  education: 'Educação',
+  certifications: 'Certificações',
+  awards: 'Prémios e Distinções',
+  interests: 'Interesses',
+  skills: 'Competências',
 };
 
 // Escape user text for HTML text/attribute context. Covers the five characters

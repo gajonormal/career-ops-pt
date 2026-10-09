@@ -48,7 +48,7 @@ test("multiple paid workers wait for confirmation and show estimated spend", () 
   assert.equal(started.length, 0, "no paid worker starts before confirmation");
   assert.match(result.summary, /3 workers/);
   assert.match(result.summary, /≈ 36k tokens/);
-  assert.match(result.summary, /≈ \$0\.36/);
+  assert.match(result.summary, /≈ €0\.36/);
 
   const confirmed = result.run();
   assert.equal(started.length, 3);

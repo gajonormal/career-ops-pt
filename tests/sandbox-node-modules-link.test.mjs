@@ -282,7 +282,7 @@ try {
       // The name comes out of a file this check reads, so every regex
       // metacharacter gets escaped. A partial escape is the incomplete-escaping
       // defect itself.
-      const name = bound && bound[1].replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const name = bound && bound[1].replace(/[.*+?^${}()|[\]\\]/g, '\€&');
       const guard = bound && new RegExp(`\\bif\\s*\\(\\s*${name}\\b`);
       const guardAt = bound ? callSite.search(guard) : -1;
       // Branching is only half of the contract. The branch also has to LEAVE

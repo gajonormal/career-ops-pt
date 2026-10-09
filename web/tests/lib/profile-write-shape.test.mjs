@@ -33,7 +33,7 @@ const routes = [
   { name: "profile", post: updateProfile, patch: { name: "Updated Fixture Candidate" } },
   { name: "followups/cadence", post: updateCadence, patch: { applied_first_days: 9 } },
 ];
-const template = "candidate:\n  full_name: Template Candidate\n  location: Template City\ncompensation:\n  currency: USD\n";
+const template = "candidate:\n  full_name: Template Candidate\n  location: Template City\ncompensation:\n  currency: EUR\n";
 
 async function withFixture(source, fn) {
   const root = mkdtempSync(path.join(tmpdir(), "career-ops-profile-shape-"));

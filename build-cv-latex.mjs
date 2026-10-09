@@ -43,7 +43,7 @@ const MARKDOWN_BOLD_RE = /\*\*([^*]+?)\*\*/g;
  * @returns {string} LaTeX-safe text with `**…**` spans rendered as \textbf{…}
  */
 function escapeLatexBullet(text) {
-  // Replacer FUNCTION, not a string: escaped text is full of `\$` and `\&`, and a
+  // Replacer FUNCTION, not a string: escaped text is full of `€` and `\&`, and a
   // string replacement would reinterpret `$&` and friends as match references
   // (same trap the render path documents below).
   return escapeLatex(text).replace(MARKDOWN_BOLD_RE, (_, inner) => `\\textbf{${inner}}`);
@@ -236,7 +236,7 @@ async function main() {
     SKILLS: buildSkills(payload.skills),
   };
 
-  // Replacer FUNCTION, not a string: escapeLatex turns `$` into `\$` but leaves
+  // Replacer FUNCTION, not a string: escapeLatex turns `$` into `€` but leaves
   // the next character alone, so a bullet containing `$'` survives as the JS
   // replacement pattern meaning "everything after the match" and splices the
   // rest of the template into the document — silently, with a valid-looking

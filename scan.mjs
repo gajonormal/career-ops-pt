@@ -410,7 +410,7 @@ function normalizeKeywordList(value) {
 const LOCATION_WORD_CP = /^[\p{L}\p{M}\p{N}]$/u;
 
 function compileLocationKeyword(keyword) {
-  const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\€&');
   const codePoints = [...keyword];
   const startsWord = LOCATION_WORD_CP.test(codePoints[0] ?? '');
   const endsWord = LOCATION_WORD_CP.test(codePoints.at(-1) ?? '');
@@ -487,7 +487,7 @@ const USPS_STATES = Object.freeze([
 // Indiana/Oregon/Maine. State *names* still use compileLocationKeyword.
 // Unicode letters and marks are part of the token: "Montréal" is not "AL".
 function compileUsStateAbbrev(abbr) {
-  const escaped = abbr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const escaped = abbr.replace(/[.*+?^${}()|[\]\\]/g, '\€&');
   const re = new RegExp(`(?:,\\s*${escaped}(?![\\p{L}\\p{M}\\p{N}])|(?:^|[^\\p{L}\\p{M}\\p{N}])${escaped}[^\\p{L}\\p{M}\\p{N}]*$)`, 'u');
   return (lower) => re.test(lower);
 }
@@ -1033,7 +1033,7 @@ export function buildVisaFilter(visaFilter) {
 //   - min/max are annual compensation filters (use annualized values)
 //   - max: 0 means "no upper limit"
 //   - If no salary data exists on a job, it passes (conservative behavior)
-//   - If both currencies are known and mismatch (e.g., USD filter, EUR job), it fails
+//   - If both currencies are known and mismatch (e.g., EUR filter, EUR job), it fails
 //   - Partial ranges (min only or max only) work correctly via overlap logic
 // Uses null-safe checks (!= null, ??) to preserve 0 values correctly.
 
@@ -1234,7 +1234,7 @@ export function companyMatch(jobCompany, windowCompany) {
   // operands are already normalizeTextKey output — letters, marks, digits and
   // spaces only — so the escape is defensive, not load-bearing.
   const bounded = (name) => new RegExp(
-    `(?<![\\p{L}\\p{M}\\p{N}])${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\p{L}\\p{M}\\p{N}])`,
+    `(?<![\\p{L}\\p{M}\\p{N}])${name.replace(/[.*+?^${}()|[\]\\]/g, '\€&')}(?![\\p{L}\\p{M}\\p{N}])`,
     'u',
   );
   return bounded(c2WithSpaces).test(c1WithSpaces) || bounded(c1WithSpaces).test(c2WithSpaces);
@@ -2809,7 +2809,7 @@ export function sanitizeTsvField(value) {
 
 // Format an offer's parsed compensation (the annualized {min,max,currency} that
 // providers like Ashby attach as `offer.salary`) into a compact, sanitized cell
-// such as `120000-160000 USD`. Returns '' when there is no usable salary data.
+// such as `120000-160000 EUR`. Returns '' when there is no usable salary data.
 // Non-positive bounds are dropped (a 0 min/max is meaningless comp data, not "$0").
 export function formatCompensation(salary) {
   if (!salary || typeof salary !== 'object') return '';

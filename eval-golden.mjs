@@ -15,7 +15,7 @@
  * tune, with safe v1 defaults:
  *   - SCORE agreement     → SCORE_TOLERANCE (±band; distance-to-reference)
  *   - CI gate threshold   → MIN_ARCHETYPE_AGREEMENT
- *   - per-model $/run      → COST_PER_RUN_USD (empty until routing rates agreed)
+ *   - per-model $/run      → COST_PER_RUN_EUR (empty until routing rates agreed)
  *
  * Usage:
  *   node eval-golden.mjs --replay --model cheap-stub     # offline, deterministic ($0)
@@ -47,7 +47,7 @@ const MIN_ARCHETYPE_AGREEMENT = 0.8;
 
 /** Rough $/run per model id, for the cost column. Empty until the routing
  *  provider rates are agreed (#1354). */
-const COST_PER_RUN_USD = {};
+const COST_PER_RUN_EUR = {};
 
 // ---------------------------------------------------------------------------
 // CLI args
@@ -251,7 +251,7 @@ const meanDelta = finiteDeltas.length ? finiteDeltas.reduce((a, b) => a + b, 0) 
 // Cases whose SCORE was missing/malformed produce a NaN delta and drop out of
 // the mean — surface that count so a model can't hide failures behind a low mean.
 const unscored = cases.length - finiteDeltas.length;
-const cost = COST_PER_RUN_USD[model];
+const cost = COST_PER_RUN_EUR[model];
 
 console.log('\n  ── summary ──');
 console.log(`  archetype agreement : ${(agreement * 100).toFixed(0)}%  (gate ≥ ${(MIN_ARCHETYPE_AGREEMENT * 100).toFixed(0)}%)`);

@@ -95,7 +95,7 @@ endobj
 << /Type /Pages /Count 2 /Kids [3 0 R 4 0 R] >>
 endobj
 3 0 obj
-<< /Type /Page /Parent 2 0 R /Marker (\${marker}) >>
+<< /Type /Page /Parent 2 0 R /Marker (€{marker}) >>
 endobj
 4 0 obj
 << /Type /Page /Parent 2 0 R >>

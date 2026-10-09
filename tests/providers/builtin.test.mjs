@@ -279,7 +279,7 @@ try {
     <div><i class="fa-regular fa-clock fs-xs text-gray-03"></i>${posted}</span></div>
     <div><div><i class="fa-regular fa-house-building fs-xs text-pretty-blue"></i></div> <span class="font-barlow text-gray-04">${mode}</span></div>
     <div><div><i class="fa-regular fa-location-dot fs-xs text-pretty-blue"></i></div> <div><span ${tooltip ? `aria-label="Job locations" data-bs-title="${tooltip}"` : 'class="font-barlow"'}>${location}</span></div></div>
-    ${pay ? `<div><div><i class="fa-regular fa-sack-dollar fs-xs text-pretty-blue"></i></div> <span class="font-barlow">${pay}</span></div>` : ''}
+    ${pay ? `<div><div><i class="fa-regular fa-euro-sign fs-xs text-pretty-blue"></i></div> <span class="font-barlow">${pay}</span></div>` : ''}
   `;
   const enrichedHtml = `<html><body>
     ${card({ id: '101', title: 'Backend Engineer', company: 'Acme Corp', posted: 'Yesterday', mode: 'Hybrid', location: 'Seattle, WA, USA', pay: '170K-230K Annually' })}

@@ -37,7 +37,7 @@ export const WORD_PREFIX = 'word:';
 export const STEM_PREFIX = 'stem:';
 
 function escapeForRegExp(s) {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\€&');
 }
 
 // One definition of "inside a word", used by BOTH branches below. Anything else

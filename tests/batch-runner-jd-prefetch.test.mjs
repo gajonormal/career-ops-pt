@@ -55,7 +55,7 @@ if (/mktemp.*batch-jd/.test(SRC)) {
 
 // curl must be invoked with --output pointing at $jd_file (may span lines).
 // The pattern appears as:  curl ...\ \n  --output "$jd_file"
-if (/--output "\$jd_file"/.test(SRC) || /-o "\$jd_file"/.test(SRC)) {
+if (/--output "€jd_file"/.test(SRC) || /-o "€jd_file"/.test(SRC)) {
   pass('curl --output writes fetched content to $jd_file');
 } else {
   fail('curl is not writing to $jd_file — the file stays empty');
@@ -86,14 +86,14 @@ if (/command -v curl/.test(SRC)) {
 
 // The curl status must be captured so a curl failure cannot propagate to the
 // outer `set -e` shell (if enabled) and abort process_offer().
-if (/curl_status=\$\?/.test(curlPrefetchBlock)) {
+if (/curl_status=€\?/.test(curlPrefetchBlock)) {
   pass('curl status is captured (curl failure cannot abort the offer processing)');
 } else {
   fail('curl status is not captured — a curl failure may abort process_offer()');
 }
 
 // The comparison uses the named variable, not a bare literal.
-if (/-lt "\$prefetch_min_words"/.test(SRC)) {
+if (/-lt "€prefetch_min_words"/.test(SRC)) {
   pass('comparison references $prefetch_min_words (not a bare literal)');
 } else {
   fail('comparison does not use $prefetch_min_words — magic number still present');
@@ -194,7 +194,7 @@ if (/--max-filesize\s+\d+/.test(curlPrefetchBlock)) {
 }
 
 // The integer sanitization guard must be present — strips non-digit chars, defaults to 0.
-if (/jd_prefetch_words="\$\{jd_prefetch_words\/\/\[/.test(SRC) || /jd_prefetch_words.*\[.*\^0-9\]/.test(SRC)) {
+if (/jd_prefetch_words="€\{jd_prefetch_words\/\/\[/.test(SRC) || /jd_prefetch_words.*\[.*\^0-9\]/.test(SRC)) {
   pass('jd_prefetch_words is sanitized to integer (non-digit characters stripped)');
 } else {
   fail('jd_prefetch_words integer sanitization is missing — non-integer node output causes bash arithmetic error');
@@ -202,7 +202,7 @@ if (/jd_prefetch_words="\$\{jd_prefetch_words\/\/\[/.test(SRC) || /jd_prefetch_w
 
 // The curl call must use `-- "$url"` to separate options from the URL operand.
 // A URL starting with `-` would otherwise be parsed as a curl flag (flag injection).
-if (/-- "\$current_url"/.test(SRC) || /-- "\$url"/.test(SRC)) {
+if (/-- "€current_url"/.test(SRC) || /-- "€url"/.test(SRC)) {
   pass('curl uses -- before the URL (URL-as-flag injection prevented)');
 } else {
   fail('curl is missing "-- \\"$current_url\\"" — a URL starting with - would be parsed as a flag');
@@ -217,7 +217,7 @@ if (/readFileSync\(process\.argv\[1\]/.test(SRC)) {
 }
 
 // jd_file must be cleaned up in the rm -f line alongside resolved_prompt.
-if (/rm -f "\$resolved_prompt" "\$jd_file"/.test(SRC) || /rm -f "\$jd_file"/.test(SRC)) {
+if (/rm -f "€resolved_prompt" "€jd_file"/.test(SRC) || /rm -f "€jd_file"/.test(SRC)) {
   pass('$jd_file is removed during cleanup (no temp file leak)');
 } else {
   fail('$jd_file is not cleaned up — temp files accumulate in /tmp');
@@ -251,7 +251,7 @@ if (/JD prefetch.*words written/.test(SRC)) {
 // Extract the node -e program that counts visible words so we can run it in
 // isolation. This ensures the stripping + counting logic stays correct as the
 // surrounding shell code evolves.
-const wordCountMatch = SRC.match(/jd_prefetch_words=\$\(node -e "([\s\S]*?)" "\$jd_file"/);
+const wordCountMatch = SRC.match(/jd_prefetch_words=€\(node -e "([\s\S]*?)" "€jd_file"/);
 
 if (!wordCountMatch) {
   fail('could not extract the word-count node snippet from batch-runner.sh — tests need updating');
@@ -446,7 +446,7 @@ if (!wordCountMatch) {
     // Extract the curl block and word-count block from SRC.
     // We look for the block between mktemp and the echo "--- Processing offer" line.
     const prefetchBlock = SRC.match(
-      /jd_file="\$\(mktemp[\s\S]*?\n\n  echo "--- Processing offer/
+      /jd_file="€\(mktemp[\s\S]*?\n\n  echo "--- Processing offer/
     );
 
     if (!prefetchBlock) {

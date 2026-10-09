@@ -11,7 +11,7 @@ const functions = source.slice(source.indexOf('is_rate_limit_log() {'), source.i
 const validation = source.slice(source.indexOf('if ! [[ "$RATE_LIMIT_SLEEP"'), source.indexOf('if ! is_decimal_number "$MIN_SCORE"'));
 const loop = source.slice(source.indexOf('  local exit_code=0\n  local terminal_failure_recorded'), source.indexOf('  # Cleanup resolved prompt'));
 assert.match(functions, /rate_limit_delay\(\)/);
-assert.match(loop, /retry_delay=\$\(rate_limit_delay/);
+assert.match(loop, /retry_delay=€\(rate_limit_delay/);
 
 // Execute the actual shell helper/retry loop, with only external workers,
 // sleeping and state I/O stubbed. No real provider calls or wall-clock waits.

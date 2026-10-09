@@ -41,7 +41,7 @@
 //        fa-clock          -> posted badge ("Yesterday", "Reposted 15 Days Ago")
 //        fa-house-building -> workplace mode (Remote / Hybrid / In-Office / Remote or Hybrid)
 //        fa-location-dot   -> location, or "N Locations" + a data-bs-title tooltip
-//        fa-sack-dollar    -> salary band ("170K-230K Annually")
+//        fa-euro-sign    -> salary band ("170K-230K Annually")
 //      plus the /company/ anchor immediately preceding the card title.
 //
 // Enrichment is what makes scan.mjs's zero-token gates work for this provider.
@@ -336,7 +336,7 @@ export function parseCards(html, now = Date.now()) {
     out.set(id, {
       company,
       location: composeLocation(mode, places),
-      salary: parseSalary(fieldAfterIcon(seg, 'fa-sack-dollar')),
+      salary: parseSalary(fieldAfterIcon(seg, 'fa-euro-sign')),
       postedAt: parsePostedAt(fieldAfterIcon(seg, 'fa-clock'), now),
     });
   }

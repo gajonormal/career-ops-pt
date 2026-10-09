@@ -274,7 +274,7 @@ export function cookieHeader(jar) {
 // ── id-anchored HTML extraction (no DOM parser in this codebase) ───────────
 
 function escapeRegExp(s) {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\€&');
 }
 
 /**
@@ -450,7 +450,7 @@ export function parseSearchPage(html, config) {
   const reportedTotal = parseReportedTotal(extractTextById(str, 'win0divHRS_AGNT_RSLT_Irowcnt$0'));
 
   const rowIndices = [];
-  const rowRe = /\bid=(?:["']HRS_AGNT_RSLT_I\$0_row_(\d+)["']|HRS_AGNT_RSLT_I\$0_row_(\d+)(?=[\s>]))/g;
+  const rowRe = /\bid=(?:["']HRS_AGNT_RSLT_I€0_row_(\d+)["']|HRS_AGNT_RSLT_I€0_row_(\d+)(?=[\s>]))/g;
   let rm;
   while ((rm = rowRe.exec(str))) rowIndices.push(rm[1] ?? rm[2]);
 
@@ -671,7 +671,7 @@ export function parseJobDetail(html, expectedJobId) {
   // descriptionText silently came back '', and fetch() (an empty string is
   // falsy) attached no description and never retried PostingSeq=2 — a silent
   // per-tenant description loss, not a parse error (#3739 review).
-  const secRe = /\bid=(?:["']win0divHRS_SCH_PSTDSC_row\$(\d+)["']|win0divHRS_SCH_PSTDSC_row\$(\d+)(?=[\s>]))/g;
+  const secRe = /\bid=(?:["']win0divHRS_SCH_PSTDSC_row€(\d+)["']|win0divHRS_SCH_PSTDSC_row€(\d+)(?=[\s>]))/g;
   let sm;
   while ((sm = secRe.exec(str))) sectionIndices.push(sm[1] ?? sm[2]);
 

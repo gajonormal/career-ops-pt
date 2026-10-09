@@ -127,7 +127,7 @@ function canonicalizeSeparators(numStr) {
   // salary field (#3174), and is now the same default in both directions.
   const sep = lastComma !== -1 ? ',' : lastDot !== -1 ? '.' : null;
   if (sep === null) return numStr;
-  const grouped = new RegExp(`(\\d)\\${sep}(?=\\d{3}(?!\\d))`, 'g');
+  const grouped = new RegExp(`(\\d)\€{sep}(?=\\d{3}(?!\\d))`, 'g');
   return numStr.replace(grouped, '$1').replace(sep, '.');
 }
 
@@ -136,7 +136,7 @@ export function parseAmount(raw) {
   let s = String(raw ?? '').trim();
   if (!s || s === '?' || s === '-' || /^(n\/?a|null)$/i.test(s)) return null;
   // Strip currency symbols anywhere (US pay-transparency ranges often repeat the
-  // symbol on both bounds: "$123,684—$254,644 USD") and a trailing 3-letter
+  // symbol on both bounds: "$123,684—$254,644 EUR") and a trailing 3-letter
   // ISO-4217-style alpha token (any case — "450k SEK", "80-90k eur"). Exactly
   // three letters, so the lone "k" magnitude suffix ("80k") is never eaten, and
   // prose ("competitive") still fails the numeric match below even after losing
@@ -384,7 +384,7 @@ const OBS_FIXTURE = [
   '002\t2026-06-29\tactual\t99k\tEUR\trecruiter_verbal\tunderscore typo on purpose',
   '002\t2026-06-30\tactual\t120k\tEUR\ttoString\tprototype key on purpose',
   '007\t2026-06-25\tactual\t70k\tEUR\trecruiter-verbal\torphan - no report',
-  '003\t2026-06-26\tactual\t9ok\tUSD\trecruiter-verbal\ttypo on purpose',
+  '003\t2026-06-26\tactual\t9ok\tEUR\trecruiter-verbal\ttypo on purpose',
   '005\t2026-07-01\tactual\t92k\tUNKNOWN\toffer-letter\tcurrency not stated',
 ].join('\n');
 
@@ -418,7 +418,7 @@ const REPORT_FIXTURE_004 = `# Eval: Umbrella — AI Eng
 company: "Umbrella"
 role: "AI Eng"
 score: 4.1
-advertised_comp: "100k USD"
+advertised_comp: "100k EUR"
 \`\`\`
 `;
 const REPORT_FIXTURE_005 = `# Eval: Hooli — AI Lead
@@ -488,8 +488,8 @@ function selfTest() {
   assert(parseAmount('9ok') === null, 'typo -> null');
   assert(parseAmount('450k SEK')?.mid === 450000, 'generic trailing ISO token stripped (450k SEK)');
   assert(parseAmount('80-90k eur')?.mid === 85000, 'lowercase trailing ISO token stripped');
-  assert(parseAmount('$123,684—$254,644 USD')?.mid === 189164, 'US range, symbol on both bounds, em dash');
-  assert(parseAmount('$123,684-$254,644 USD')?.mid === 189164, 'US range, symbol on both bounds, hyphen');
+  assert(parseAmount('$123,684—$254,644 EUR')?.mid === 189164, 'US range, symbol on both bounds, em dash');
+  assert(parseAmount('$123,684-$254,644 EUR')?.mid === 189164, 'US range, symbol on both bounds, hyphen');
   assert(parseAmount('€80,000-€90,000')?.min === 80000, 'EUR range, symbol on both bounds');
   assert(parseAmount('$150,000')?.mid === 150000, 'single value with symbol still works');
   assert(parseAmount('€35.000 - €45.000')?.min === 35000 && parseAmount('€35.000 - €45.000')?.max === 45000, 'period-grouped range (#3174)');
@@ -572,7 +572,7 @@ function selfTest() {
     { num: '004', ...reportToObservation(REPORT_FIXTURE_004, '004', '2026-06-27').observation },
     { num: '005', ...reportToObservation(REPORT_FIXTURE_005, '005', '2026-06-28').observation },
   ];
-  // cross-currency fixture: advertised USD (report) + actual GBP + desired EUR (profile)
+  // cross-currency fixture: advertised EUR (report) + actual GBP + desired EUR (profile)
   const crossCurrencyObs = parseObservations('004\t2026-06-30\tactual\t88k\tGBP\toffer-letter\tcross-currency on purpose');
   const result = fold([...obs, ...reportObs, ...crossCurrencyObs], apps, { amount: '90k', currency: 'EUR' });
 
@@ -598,9 +598,9 @@ function selfTest() {
   assert(a2.actual.source === 'recruiter-verbal' && a2.actual.value === 88000, '002 actual from verbal 88k, typo + prototype-key sources ignored');
   assert(a2.desired.source === 'profile' && a2.desired.value === 90000, '002 desired falls back to profile');
 
-  // cross-currency guard: advertised USD vs actual GBP, desired EUR vs actual GBP
+  // cross-currency guard: advertised EUR vs actual GBP, desired EUR vs actual GBP
   const a4 = result.applications.find(a => a.num === normalizeId('004'));
-  assert(a4.advertised.currency === 'USD' && a4.actual.currency === 'GBP', '004 mixed currencies folded');
+  assert(a4.advertised.currency === 'EUR' && a4.actual.currency === 'GBP', '004 mixed currencies folded');
   assert(a4.advToActPct === null, `004 cross-currency adv->act pct must be null, got ${a4.advToActPct}`);
   assert(a4.desiredToActPct === null, `004 cross-currency desired->act pct must be null, got ${a4.desiredToActPct}`);
   const gbp = result.aggregates.byCurrency.GBP;
@@ -623,7 +623,7 @@ function selfTest() {
     'unparseable profile target reported');
   const mm = result.quality.currencyMismatches;
   assert(mm.length === 4, `4 currency mismatches reported, got ${mm.length}`);
-  assert(mm.some(m => m.num === normalizeId('004') && m.comparison === 'advertised-vs-actual' && m.currencies[0] === 'USD' && m.currencies[1] === 'GBP'),
+  assert(mm.some(m => m.num === normalizeId('004') && m.comparison === 'advertised-vs-actual' && m.currencies[0] === 'EUR' && m.currencies[1] === 'GBP'),
     'advertised-vs-actual mismatch reported for 004');
   assert(mm.some(m => m.num === normalizeId('004') && m.comparison === 'desired-vs-actual' && m.currencies[0] === 'EUR' && m.currencies[1] === 'GBP'),
     'desired-vs-actual mismatch reported for 004');

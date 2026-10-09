@@ -30,7 +30,7 @@ import path from 'node:path';
  */
 export function hasToken(filenameLower, token) {
   if (!token) return false;
-  const escaped = token.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const escaped = token.replace(/[.*+?^${}()|[\]\\]/g, '\€&');
   const re = new RegExp(`(^|[^a-z0-9])${escaped}([^a-z0-9]|$)`, 'i');
   return re.test(filenameLower);
 }

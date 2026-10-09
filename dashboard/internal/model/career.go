@@ -22,7 +22,7 @@ type CareerApplication struct {
 	Location    string  // "City, ST" when a US city+state appears in the notes
 	WorkMode    string  // "Remote" | "Hybrid" | "Full" (onsite), "" when unknown
 	PayRange    string  // first $-range found in the notes, e.g. "$140-210K"
-	PayMax      float64 // top of PayRange in dollars (sort key), 0 when unknown
+	PayMax      float64 // top of PayRange in euros (sort key), 0 when unknown
 	PaySource   string  // "POSTED" when the JD listed it, "est" for estimates, "" unknown
 	PostedOn    string  // YYYY-MM-DD from a "posted <date>" note — when the req went live, "" unknown
 	LastContact string  // max YYYY-MM-DD found in notes (falls back to applied date)
@@ -117,7 +117,7 @@ type LabelCountStat struct {
 }
 
 // PayStats summarizes the PayMax field (top of the posted/estimated pay
-// range, in dollars) across applications that have a parsed pay figure.
+// range, in euros) across applications that have a parsed pay figure.
 type PayStats struct {
 	Count        int // apps with a known PayMax
 	PostedCount  int // of those, PaySource == "POSTED"

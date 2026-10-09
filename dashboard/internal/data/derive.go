@@ -129,7 +129,7 @@ func isBareSymbol(tok string) bool {
 	return true
 }
 
-// payCeiling converts a matched pay span to its top dollar amount for sorting:
+// payCeiling converts a matched pay span to its top euro amount for sorting:
 // "$140-210K" → 210000, "$174,986-209,983" → 209983, "$170K" → 170000.
 func payCeiling(span string) float64 {
 	top := 0.0

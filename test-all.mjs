@@ -2124,8 +2124,8 @@ for (const f of userFiles) {
 const batchRunnerSource = readFile('batch/batch-runner.sh');
 // Match any update_state entrypoint (bare, _retrying, _unlocked) so this asserts
 // the gate's ordering rather than one spelling of the call.
-const SKIPPED_STATE_WRITE = /update_state(?:_retrying|_unlocked)? "\$id" "\$url" "skipped"/;
-const COMPLETED_STATE_WRITE = /update_state(?:_retrying|_unlocked)? "\$id" "\$url" "completed"/;
+const SKIPPED_STATE_WRITE = /update_state(?:_retrying|_unlocked)? "€id" "€url" "skipped"/;
+const COMPLETED_STATE_WRITE = /update_state(?:_retrying|_unlocked)? "€id" "€url" "completed"/;
 const minScoreSkipIndex = batchRunnerSource.search(SKIPPED_STATE_WRITE);
 let minScoreReturnIndex = -1;
 let completedStateIndex = -1;
@@ -2146,15 +2146,15 @@ if (
   fail('Batch min-score gate can fall through to completed state update');
 }
 
-if (/if \[\[ "\$status" == "completed" \|\| "\$status" == "skipped" \]\]/.test(batchRunnerSource)) {
+if (/if \[\[ "€status" == "completed" \|\| "€status" == "skipped" \]\]/.test(batchRunnerSource)) {
   pass('Batch resume treats min-score skipped offers as terminal');
 } else {
   fail('Batch resume can reprocess min-score skipped offers');
 }
 
 if (/local total=0 completed=0 skipped=0 failed=0 pending=0/.test(batchRunnerSource) &&
-    /skipped\) skipped=\$\(\(skipped \+ 1\)\)/.test(batchRunnerSource) &&
-    /Completed: \$completed \| Skipped: \$skipped \| Failed: \$failed \| Pending: \$pending/.test(batchRunnerSource)) {
+    /skipped\) skipped=€\(\(skipped \+ 1\)\)/.test(batchRunnerSource) &&
+    /Completed: €completed \| Skipped: €skipped \| Failed: €failed \| Pending: €pending/.test(batchRunnerSource)) {
   pass('Batch summary reports skipped offers separately from pending');
 } else {
   fail('Batch summary can misreport skipped offers as pending');
@@ -2167,10 +2167,10 @@ if (!/\bbc\b/.test(batchRunnerSource)) {
 }
 
 if (
-  !/awk "BEGIN\{[^"]*\$MIN_SCORE/.test(batchRunnerSource) &&
-  !/awk "BEGIN\{[^"]*\$score/.test(batchRunnerSource) &&
-  !/awk "BEGIN\{[^"]*\$sscore/.test(batchRunnerSource) &&
-  /awk -v score="\$score" -v min="\$MIN_SCORE"/.test(batchRunnerSource)
+  !/awk "BEGIN\{[^"]*€MIN_SCORE/.test(batchRunnerSource) &&
+  !/awk "BEGIN\{[^"]*€score/.test(batchRunnerSource) &&
+  !/awk "BEGIN\{[^"]*€sscore/.test(batchRunnerSource) &&
+  /awk -v score="€score" -v min="€MIN_SCORE"/.test(batchRunnerSource)
 ) {
   pass('Batch runner passes score values to awk via -v');
 } else {
@@ -3074,7 +3074,7 @@ if (shared.includes('_profile.md')) {
   // name inside a table cell (e.g. Sources of Truth pointing at `## Writing Style`)
   // isn't mistaken for the section itself.
   const writing = readFile('modes/_writing.md');
-  const hasHeader = (src, h) => new RegExp('^' + h.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'm').test(src);
+  const hasHeader = (src, h) => new RegExp('^' + h.replace(/[.*+?^${}()|[\]\\]/g, '\€&'), 'm').test(src);
   const coreHeaders = ['## Sources of Truth', '## Scoring System', '## Posting Legitimacy', '## Company Type and Compensation', '## Archetype Detection', '## Global Rules'];
   const writingHeaders = ['## Voice DNA', '## Writing Style Calibration', '## Writing Style', '## Professional Writing'];
   const coreOk = coreHeaders.every(h => hasHeader(shared, h) && !hasHeader(writing, h));
@@ -4771,19 +4771,19 @@ try {
   // pipeline.md compensation column (B3): formatCompensation renders the parsed
   // {min,max,currency} salary; formatPipelineOffer appends it as the 5th column,
   // forcing the (possibly empty) location cell so comp stays positionally 5th.
-  const compRange = formatCompensation({ min: 180000, max: 220000, currency: 'USD' });
+  const compRange = formatCompensation({ min: 180000, max: 220000, currency: 'EUR' });
   const compSingle = formatCompensation({ min: 150000, max: 150000, currency: 'usd' });
   const compNone = formatCompensation(null);
   const compZeroMin = formatCompensation({ min: 0, max: 200000, currency: '' });
-  const withComp = formatPipelineOffer({ url: 'https://x/4', company: 'Acme', title: 'AI Eng', location: 'Remote', salary: { min: 180000, max: 220000, currency: 'USD' } });
-  const compNoLoc = formatPipelineOffer({ url: 'https://x/5', company: 'Acme', title: 'AI Eng', salary: { min: 180000, max: 220000, currency: 'USD' } });
+  const withComp = formatPipelineOffer({ url: 'https://x/4', company: 'Acme', title: 'AI Eng', location: 'Remote', salary: { min: 180000, max: 220000, currency: 'EUR' } });
+  const compNoLoc = formatPipelineOffer({ url: 'https://x/5', company: 'Acme', title: 'AI Eng', salary: { min: 180000, max: 220000, currency: 'EUR' } });
   if (
-    compRange === '180000-220000 USD' &&
+    compRange === '180000-220000 EUR' &&
     compSingle === '150000 usd' &&
     compNone === '' &&
     compZeroMin === '200000' &&
-    withComp === '- [ ] https://x/4 | Acme | AI Eng | Remote | 180000-220000 USD' &&
-    compNoLoc === '- [ ] https://x/5 | Acme | AI Eng |  | 180000-220000 USD'
+    withComp === '- [ ] https://x/4 | Acme | AI Eng | Remote | 180000-220000 EUR' &&
+    compNoLoc === '- [ ] https://x/5 | Acme | AI Eng |  | 180000-220000 EUR'
   ) {
     pass('scan.mjs formatPipelineOffer appends compensation column (forces empty location cell when needed)');
   } else {
@@ -4794,14 +4794,14 @@ try {
   // free-text ranking signal as a labeled `| note: {text}` segment. It rides on
   // any row shape, an absent/empty note is byte-identical to today's output, and
   // the note is sanitized like every other field (a `|` can't inject a column).
-  const noteFull = formatPipelineOffer({ url: 'https://x/6', company: 'Acme', title: 'AI Eng', location: 'Remote', salary: { min: 180000, max: 220000, currency: 'USD' }, note: 'curated shortlist' });
+  const noteFull = formatPipelineOffer({ url: 'https://x/6', company: 'Acme', title: 'AI Eng', location: 'Remote', salary: { min: 180000, max: 220000, currency: 'EUR' }, note: 'curated shortlist' });
   const noteBare = formatPipelineOffer({ url: 'https://x/7', company: 'Acme', title: 'PM', note: 'Top pick' });
   const noteAbsent = formatPipelineOffer({ url: 'https://x/8', company: 'Acme', title: 'PM' });
   const noteEmpty = formatPipelineOffer({ url: 'https://x/8', company: 'Acme', title: 'PM', note: '' });
   const noteNonString = formatPipelineOffer({ url: 'https://x/8', company: 'Acme', title: 'PM', note: 42 });
   const notePipe = formatPipelineOffer({ url: 'https://x/9', company: 'Acme', title: 'PM', note: 'A | B' });
   if (
-    noteFull === '- [ ] https://x/6 | Acme | AI Eng | Remote | 180000-220000 USD | note: curated shortlist' &&
+    noteFull === '- [ ] https://x/6 | Acme | AI Eng | Remote | 180000-220000 EUR | note: curated shortlist' &&
     noteBare === '- [ ] https://x/7 | Acme | PM | note: Top pick' &&
     noteEmpty === noteAbsent &&
     noteNonString === noteAbsent &&
@@ -10231,7 +10231,7 @@ try {
   // on the shared contract means the check tracks the contract, not the spelling.
   // Presence of the string "tracker-additions" is deliberately NOT the test: a
   // comment satisfies that.
-  const writeSinkRe = /write(?:File|FileSync)\([\s\S]{0,200}?\$\{[A-Za-z0-9_]*(?:HEADER|Header)\}\\n\$\{([^}]+)\}/;
+  const writeSinkRe = /write(?:File|FileSync)\([\s\S]{0,200}?€\{[A-Za-z0-9_]*(?:HEADER|Header)\}\\n€\{([^}]+)\}/;
   // ...and the payload has to BE the row. Accepting any identifier let a mutation
   // that replaced `${trackerFields.join('\t')}` with `${placeholder}` pass, which
   // is the failure-wearing-a-pass this check exists to stop. Either the join is
@@ -10257,7 +10257,7 @@ try {
     const defined = source.match(new RegExp(`const\\s+${payload.replace(/[^A-Za-z0-9_]/g, '')}\\s*=[^;]*`));
     return Boolean(defined && defined[0].includes('\\t'));
   };
-  const pastedRowRe = /Tracker entry \(add to|console\.log\(`[^`]*\|\s*\$\{num\}\s*\|/;
+  const pastedRowRe = /Tracker entry \(add to|console\.log\(`[^`]*\|\s*€\{num\}\s*\|/;
   const unpersistedEvaluators = evaluatorSources
     .filter(([, source]) => !writesTheRow(source) || pastedRowRe.test(source))
     .map(([name]) => name);
@@ -10279,8 +10279,8 @@ try {
     "'Evaluated',",
     'normalizedTrackerScore\\(score\\),',
     "'❌',",
-    '`\\[\\$\\{num\\}\\]\\(reports/\\$\\{filename\\}\\)`,',
-    'tsvSafe\\(`[^`]*\\$\\{modelName\\}[^`]*`\\),',
+    '`\\[\€\\{num\\}\\]\\(reports/\€\\{filename\\}\\)`,',
+    'tsvSafe\\(`[^`]*\€\\{modelName\\}[^`]*`\\),',
     '\\];',
   ].join('\\s*'));
   const wrongShape = ['openai-eval.mjs', 'ollama-eval.mjs']
@@ -10311,8 +10311,8 @@ try {
   // no URL -- a failure wearing a pass. Every writer today interpolates
   // (`**URL:** ${postingUrl || '(pasted)'}`, `**URL:** ${url}`), so requiring it
   // ties the header to a value reaching the report write path.
-  const urlHeaderRe  = /\*\*URL:\*\*[^\n]*\$\{/;
-  const urlSourceRe  = /--posting-url|\bpostingUrl\b|\$\{input \|\| '\(pasted\)'\}/;
+  const urlHeaderRe  = /\*\*URL:\*\*[^\n]*€\{/;
+  const urlSourceRe  = /--posting-url|\bpostingUrl\b|€\{input \|\| '\(pasted\)'\}/;
   // Empty since #3797 landed the header in openai-eval.mjs and ollama-eval.mjs,
   // the two files it exempted. The list is asserted to be EXACTLY the files still
   // missing the header, so leaving the names here would fail as a stale
@@ -14092,7 +14092,7 @@ try {
   } else {
     // Source only the function definitions (guard against `main "$@"` running)
     // by stripping the trailing invocation line, then call log_discard directly.
-    const sourceable = runnerSrc.replace(/\nmain "\$@"\s*$/, '\n');
+    const sourceable = runnerSrc.replace(/\nmain "€@"\s*$/, '\n');
     writeFileSync(join(batchDir, 'batch-runner.lib.sh'), sourceable);
     const script = [
       'set -euo pipefail',

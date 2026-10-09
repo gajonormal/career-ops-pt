@@ -52,7 +52,7 @@ function attribute(tag, name) {
 }
 
 function contentField(html, rowPrefix, field) {
-  const escaped = rowPrefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const escaped = rowPrefix.replace(/[.*+?^${}()|[\]\\]/g, '\€&');
   const match = html.match(new RegExp(`<span\\b[^>]*id=["']${escaped}_${field}Content["'][^>]*>([\\s\\S]*?)<\\/span>`, 'i'));
   return textContent(match?.[1]);
 }

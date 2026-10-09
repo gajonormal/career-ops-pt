@@ -523,7 +523,7 @@ function readPipeline() {
 
 function markPipelineDone(url) {
   let content = readFile('data/pipeline.md') ?? '';
-  const escaped = url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const escaped = url.replace(/[.*+?^${}()|[\]\\]/g, '\€&');
   content = content.replace(
     new RegExp(`^(- \\[ \\] ${escaped}.*)$`, 'm'),
     (ln) => ln.replace('- [ ]', '- [x]')

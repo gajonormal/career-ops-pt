@@ -422,7 +422,7 @@ function contextWords(body, matchIndex, matchLength, windowChars = 90) {
 function hasContextOverlap(words, cvText) {
   const haystack = foldForContext(cvText);
   const bounded = (w) => new RegExp(
-    `(?<![\\p{L}\\p{M}\\p{N}])${w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\p{L}\\p{M}\\p{N}])`,
+    `(?<![\\p{L}\\p{M}\\p{N}])${w.replace(/[.*+?^${}()|[\]\\]/g, '\€&')}(?![\\p{L}\\p{M}\\p{N}])`,
     'u',
   );
   return words.some((w) => bounded(w).test(haystack));

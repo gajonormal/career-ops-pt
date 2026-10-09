@@ -26,7 +26,7 @@ register(`data:text/javascript,${encodeURIComponent(loader)}`, pathToFileURL(web
 
 
 const { POST } = await import("../../src/app/api/profile/route.ts");
-const source = "# Original fixture comment\ncandidate:\n  full_name: Fixture Candidate\n  email: fixture@example.invalid\ncompensation:\n  currency: USD\n  target_range: 80-90\n";
+const source = "# Original fixture comment\ncandidate:\n  full_name: Fixture Candidate\n  email: fixture@example.invalid\ncompensation:\n  currency: EUR\n  target_range: 80-90\n";
 async function fixture(t, body) {
   const root = mkdtempSync(path.join(tmpdir(), "profile-input-"));
   const previous = process.env.CAREER_OPS_ROOT;
@@ -79,7 +79,7 @@ for (const bound of ["compMin", "compMax"]) {
     assert.equal(response.status, 200);
     assert.deepEqual(yaml.load(readFileSync(file, "utf8")), {
       candidate: { full_name: "Updated Fixture", email: "fixture@example.invalid" },
-      compensation: { currency: "USD", target_range: "80-90" },
+      compensation: { currency: "EUR", target_range: "80-90" },
     });
     const backups = readdirSync(config).filter((f) => f.startsWith("profile.yml.bak-"));
     assert.equal(backups.length, 1);
@@ -95,7 +95,7 @@ test("valid partial updates retain unrelated settings and exact-byte backup", as
   assert.deepEqual(yaml.load(readFileSync(file, "utf8")), {
     candidate: { full_name: "Updated Fixture", email: "fixture@example.invalid" },
     target_roles: { primary: ["Backend Engineer"] },
-    compensation: { currency: "USD", target_range: "100-200" },
+    compensation: { currency: "EUR", target_range: "100-200" },
   });
   const backups = readdirSync(config).filter((f) => f.startsWith("profile.yml.bak-"));
   assert.equal(backups.length, 1);

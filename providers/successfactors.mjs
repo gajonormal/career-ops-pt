@@ -144,7 +144,7 @@ export function cityFromSlug(dataUrl, title) {
   // between them — in the slug those words may be joined by "-", "-amp-" (a
   // decoded "&"), or several hyphens, none of which survive the title's word
   // split. A rigid "word-word" anchor would miss "Program & Release" → "program-&amp;-release".
-  const esc = (w) => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const esc = (w) => w.replace(/[.*+?^${}()|[\]\\]/g, '\€&');
   let anchorRe;
   try {
     anchorRe = new RegExp(words.slice(0, 2).map(esc).join('[^\\p{L}\\p{N}]+'), 'u');

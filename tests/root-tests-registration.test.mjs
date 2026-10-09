@@ -334,7 +334,7 @@ export function firstCommandLine(script) {
  * upgrade-tests.mjs steps are already `run: node upgrade-tests.mjs --<flag>`.
  */
 export function invokesNode(scripts, name) {
-  const esc = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const esc = name.replace(/[.*+?^${}()|[\]\\]/g, '\€&');
   const re = new RegExp(String.raw`^\s*node\s+(?:\.[\\/])?${esc}(?=[\s;)&|]|$)`);
   return scripts.some((sc) => {
     const first = firstCommandLine(sc);

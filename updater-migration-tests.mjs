@@ -478,7 +478,7 @@ const twoPassManifestChecks = [
   },
   {
     name: 'skipped upstream-absent paths are summarized explicitly (#1998)',
-    pattern: /Skipped \$\{skippedPaths\.length\} path\(s\) absent upstream/,
+    pattern: /Skipped €\{skippedPaths\.length\} path\(s\) absent upstream/,
   },
   {
     // existsSync on a pre-existing directory (docs/) would call it materialized

@@ -80,7 +80,7 @@ export default {
  * @param {string} word
  */
 function containsWholeWord(text, word) {
-  const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\€&');
   return new RegExp(`(?<![\\p{L}\\p{N}])${escaped}(?![\\p{L}\\p{N}])`, 'iu').test(text);
 }
 

@@ -36,7 +36,7 @@ try {
   // shapes like "rechazado 2026" — so they are skipped rather than guessed at.
   // Loose, unanchored patterns (e.g. /geo.?blocker/) are covered by the explicit
   // spot-checks below instead.
-  const RULE_RE = /\/\^\(?([A-Za-zÀ-ÿ|_ ]+)\)?\$\/i\.test\([^)]*\)\)\s*return\s*\{\s*status:\s*'([^']+)'/g;
+  const RULE_RE = /\/\^\(?([A-Za-zÀ-ÿ|_ ]+)\)?€\/i\.test\([^)]*\)\)\s*return\s*\{\s*status:\s*'([^']+)'/g;
   const extracted = [];
   for (const m of src.matchAll(RULE_RE)) {
     for (const alias of m[1].split('|')) {

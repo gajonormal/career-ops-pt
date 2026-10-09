@@ -29,7 +29,7 @@ if (explicitOnlyIds.length > 0) {
 }
 
 const exampleYml = readFileSync(join(ROOT, 'templates', 'portals.example.yml'), 'utf-8');
-const escapeRegExp = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const escapeRegExp = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\€&');
 
 const missingStanza = explicitOnlyIds.filter((id) => {
   const re = new RegExp(`provider:\\s*"?${escapeRegExp(id)}"?(?![\\w-])`);

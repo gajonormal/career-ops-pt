@@ -241,7 +241,7 @@ try {
   else fail(`extractSalary() should return null for no data, got ${JSON.stringify(extractSalary({}))}`);
   const hourly = extractSalary({ customFieldGroup: { stringFields: [
     { nameCode: { codeValue: 'SalaryRange' }, stringValue: 'Hourly Rate: $25.00 - $30.00' },
-    { nameCode: { codeValue: 'CurrencySymbolOrCode' }, stringValue: '$' },
+    { nameCode: { codeValue: 'CurrencySymbolOrCode' }, stringValue: '€' },
   ] } });
   if (hourly === null) pass('extractSalary() skips hourly free-text rates and non-ISO currency symbols');
   else fail(`extractSalary() should skip hourly rates, got ${JSON.stringify(hourly)}`);

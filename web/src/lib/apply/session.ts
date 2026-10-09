@@ -472,7 +472,7 @@ export async function fillSession(
           await s.page.keyboard.type(value);
         });
         await s.page.waitForTimeout(300);
-        const esc = value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        const esc = value.replace(/[.*+?^${}()|[\]\\]/g, "\€&");
         const menu = '.select__menu .select__option, .select__menu-list [role="option"], [class*="menu" i] [role="option"]';
         const exact = s.frame.locator(menu).filter({ hasText: new RegExp(`^\\s*${esc}\\s*$`, "i") }).first();
         if (await exact.count()) {

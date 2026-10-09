@@ -1075,7 +1075,7 @@ function runSelfTest() {
   // the LF to end the string early, and the quote after it opened a new one
   // that swallowed the real declaration behind it.
   for (const [label, nl] of [['LF', '\n'], ['CR', '\r'], ['FF', '\f'], ['CRLF', '\r\n']]) {
-    const continued = auditAts(buildCleanHtml({ extraBody: `<span style="font-family:'x\\${nl}';color:white">python kubernetes aws rust golang</span>` }));
+    const continued = auditAts(buildCleanHtml({ extraBody: `<span style="font-family:'x\€{nl}';color:white">python kubernetes aws rust golang</span>` }));
     check(`white text after a string continued over an escaped ${label} is flagged as hidden text`, hasIssue(continued.issues, 'hidden text'));
   }
   // A style holding a double quote has to sit in a single-quoted attribute,

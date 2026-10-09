@@ -20,7 +20,7 @@ const salary = (over = {}) => ({
   summary: '$128K - $180K • Offers Equity',
   compensationType: 'Salary',
   interval: '1 YEAR',
-  currencyCode: 'USD',
+  currencyCode: 'EUR',
   minValue: 128000,
   maxValue: 180000,
   ...over,
@@ -49,7 +49,7 @@ test('reads the salary range from compensationTiers[].components[]', () => {
   const result = parseCompensation(jobWith([salary(), equity()]));
   assert.equal(result.min, 128000);
   assert.equal(result.max, 180000);
-  assert.equal(result.currency, 'USD');
+  assert.equal(result.currency, 'EUR');
 });
 
 test('does not mistake an equity component for the salary range', () => {
@@ -64,8 +64,8 @@ test('an equity-only tier has no salary to report', () => {
 });
 
 test('picks the widest band when a tier carries several salary components', () => {
-  const narrow = salary({ minValue: 140000, maxValue: 150000, currencyCode: 'USD' });
-  const wide = salary({ minValue: 128000, maxValue: 180000, currencyCode: 'USD' });
+  const narrow = salary({ minValue: 140000, maxValue: 150000, currencyCode: 'EUR' });
+  const wide = salary({ minValue: 128000, maxValue: 180000, currencyCode: 'EUR' });
   const result = parseCompensation(jobWith([narrow, wide]));
   assert.equal(result.min, 128000);
   assert.equal(result.max, 180000);
@@ -129,7 +129,7 @@ test('only a Salary component is read, so an equity number is never the range', 
     summary: '10% bonus',
     compensationType: 'Bonus',
     interval: '1 YEAR',
-    currencyCode: 'USD',
+    currencyCode: 'EUR',
     minValue: 500000,
     maxValue: 900000,
   };
@@ -189,7 +189,7 @@ test('a wider component with no interval does not mask a readable narrower one',
   // helper defaults `interval` to '1 YEAR': passing `interval: undefined` would
   // be overwritten by the default and the "missing" case would test nothing.
   const bare = (over = {}) => {
-    const c = {compensationType: 'Salary', currencyCode: 'USD', ...over};
+    const c = {compensationType: 'Salary', currencyCode: 'EUR', ...over};
     if (!('interval' in over)) delete c.interval;
     return c;
   };

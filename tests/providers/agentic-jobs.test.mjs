@@ -85,12 +85,12 @@ try {
   // normalizeAgenticSalary — flat salaryMin/Max/Currency → {min, max, currency},
   // never coercing a null bound to 0.
   const bothBounds = normalizeAgenticSalary({ salaryMin: 196875, salaryMax: 246094, salaryCurrency: 'usd' });
-  if (bothBounds && bothBounds.min === 196875 && bothBounds.max === 246094 && bothBounds.currency === 'USD') {
+  if (bothBounds && bothBounds.min === 196875 && bothBounds.max === 246094 && bothBounds.currency === 'EUR') {
     pass('normalizeAgenticSalary() maps both bounds and uppercases currency');
   } else {
     fail(`normalizeAgenticSalary() both-bounds wrong: ${JSON.stringify(bothBounds)}`);
   }
-  const minOnly = normalizeAgenticSalary({ salaryMin: 100000, salaryMax: null, salaryCurrency: 'USD' });
+  const minOnly = normalizeAgenticSalary({ salaryMin: 100000, salaryMax: null, salaryCurrency: 'EUR' });
   if (minOnly && minOnly.min === 100000 && !('max' in minOnly)) {
     pass('normalizeAgenticSalary() omits a null bound instead of coercing it to 0');
   } else {
@@ -137,7 +137,7 @@ try {
   } else {
     fail(`normalizeAgenticJob() postedAt wrong: ${job && job.postedAt}`);
   }
-  if (job && job.salary && job.salary.min === 120000 && job.salary.max === 160000 && job.salary.currency === 'USD') {
+  if (job && job.salary && job.salary.min === 120000 && job.salary.max === 160000 && job.salary.currency === 'EUR') {
     pass('normalizeAgenticJob() attaches the normalized salary');
   } else {
     fail(`normalizeAgenticJob() salary wrong: ${JSON.stringify(job && job.salary)}`);

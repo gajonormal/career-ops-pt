@@ -78,13 +78,13 @@ try {
 
   // parseCompensation() — annualization, coercion, and rejection paths.
   const annual = parseCompensation({ compensation: { interval: '1 YEAR', minValue: 90000, maxValue: 120000, currency: 'usd' } });
-  if (annual && annual.min === 90000 && annual.max === 120000 && annual.currency === 'USD') {
+  if (annual && annual.min === 90000 && annual.max === 120000 && annual.currency === 'EUR') {
     pass('parseCompensation() keeps annual values as-is and uppercases the currency');
   } else {
     fail(`parseCompensation(annual) = ${JSON.stringify(annual)}`);
   }
 
-  const hourly = parseCompensation({ compensation: { interval: '1 HOUR', minValue: 50, maxValue: 70, currency: 'USD' } });
+  const hourly = parseCompensation({ compensation: { interval: '1 HOUR', minValue: 50, maxValue: 70, currency: 'EUR' } });
   if (hourly && hourly.min === 50 * 2080 && hourly.max === 70 * 2080) {
     pass('parseCompensation() annualizes hourly compensation at 2080 hours/year');
   } else {
@@ -110,7 +110,7 @@ try {
     fail('parseCompensation() should return null without compensation data');
   }
 
-  if (parseCompensation({ compensation: { interval: '1 YEAR', minValue: '', maxValue: null, currency: 'USD' } }) === null) {
+  if (parseCompensation({ compensation: { interval: '1 YEAR', minValue: '', maxValue: null, currency: 'EUR' } }) === null) {
     pass('parseCompensation() returns null when neither min nor max is a usable number');
   } else {
     fail('parseCompensation() should reject empty-string/null min and max');
@@ -123,7 +123,7 @@ try {
     fail(`parseCompensation(coerced) = ${JSON.stringify(coerced)}`);
   }
 
-  const swapped = parseCompensation({ compensation: { interval: '1 YEAR', minValue: 120000, maxValue: 90000, currency: 'USD' } });
+  const swapped = parseCompensation({ compensation: { interval: '1 YEAR', minValue: 120000, maxValue: 90000, currency: 'EUR' } });
   if (swapped && swapped.min === 90000 && swapped.max === 120000) {
     pass('parseCompensation() reorders an inverted min/max pair');
   } else {
@@ -180,7 +180,7 @@ try {
       && fetched[0]?.url === 'https://jobs.ashbyhq.com/acme/1234'
       && fetched[0]?.company === 'Acme'
       && fetched[0]?.postedAt === Date.parse('2026-07-02T00:00:00.000Z')
-      && fetched[0]?.salary && fetched[0].salary.min === 150000 && fetched[0].salary.max === 180000 && fetched[0].salary.currency === 'USD')
+      && fetched[0]?.salary && fetched[0].salary.min === 150000 && fetched[0].salary.max === 180000 && fetched[0].salary.currency === 'EUR')
     pass('ashby.fetch() maps title/jobUrl/entry.name/publishedAt/compensation');
   else fail(`ashby.fetch() row 0 = ${JSON.stringify(fetched[0])}`);
 

@@ -4,7 +4,7 @@ Quando o candidato cola uma vaga (texto ou URL), entregar SEMPRE os 6 blocos:
 
 ## Passo 0 -- Detecção de Arquétipo
 
-Classificar a vaga em um dos 6 arquétipos (ver `_shared.md`). Se for híbrido, indicar os 2 mais próximos. Isso determina:
+Classificar a vaga num dos 6 arquétipos (ver `_shared.md`). Se for híbrido, indicar os 2 mais próximos. Isto determina:
 - Quais proof points priorizar no bloco B
 - Como reescrever o summary no bloco E
 - Quais histórias STAR preparar no bloco F
@@ -13,12 +13,12 @@ Classificar a vaga em um dos 6 arquétipos (ver `_shared.md`). Se for híbrido, 
 
 Tabela com:
 - Arquétipo detectado
-- Domain (platform/agentic/LLMOps/ML/enterprise)
+- Domínio (platform/agentic/LLMOps/ML/enterprise)
 - Função (build/consult/manage/deploy)
 - Senioridade
 - Remoto (full/híbrido/presencial)
-- Tamanho do time (se mencionado)
-- TL;DR em 1 frase
+- Dimensão da equipa (se mencionada)
+- TL;DR numa frase
 
 ## Bloco B -- Match com o Currículo
 
@@ -47,19 +47,19 @@ Secção de **gaps** com estratégia de mitigação para cada um. Para cada gap:
 ## Bloco D -- Remuneração e Demanda
 
 Usar WebSearch para:
-- Salários atuais da vaga (Glassdoor, Levels.fyi, Blind, Glassdoor BR)
+- Salários atuais da vaga (Glassdoor PT, Teamlyzer, Levels.fyi, Blind)
 - Reputação de remuneração da empresa
-- Tendência de demanda da vaga
+- Tendência de procura da vaga
 
 Tabela com dados e fontes citadas. Se não houver dados, dizer isso em vez de inventar.
 
 **Mercado Português -- Checks obrigatórios:**
-- Contrato Sem Termo ou B2B / Recibos Verdes? Se Contrato Sem Termo: considerar Subsídios (14 meses), férias, Segurança Social, seguro de saúde, Subsídio de Alimentação na comparação.
-- Se B2B / Recibos Verdes: qual o valor mensal? Calcular equivalente Contrato Sem Termo.
-- Prémio Anual / Bónus mencionado? Quantos salários extras?
+- Contrato Sem Termo ou B2B / Recibos Verdes? Se Contrato Sem Termo: considerar Subsídio de Férias e de Natal (14 meses), Segurança Social, seguro de saúde, Subsídio de Alimentação na comparação.
+- Se B2B / Recibos Verdes: qual o valor mensal? Calcular o equivalente a Contrato Sem Termo.
+- Prémio Anual / Bónus mencionado? Quantos salários extra?
 - Stock options / VSOP? Avaliar vesting, cliff e liquidez.
-- Vale-refeição / vale-alimentação? Valor mensal?
-- Plano de saúde? Coparticipação ou integral?
+- Subsídio de Alimentação / Cartão Refeição? Valor diário/mensal? Isento em cartão ou pago em dinheiro?
+- Seguro de saúde? Com copagamento ou cobertura total?
 
 ## Bloco E -- Plano de Personalização
 
@@ -77,7 +77,7 @@ Top 5 mudanças no currículo + Top 5 mudanças no LinkedIn para maximizar o mat
 | # | Requisito do JD | História STAR+R | S | T | A | R | Reflection |
 |---|----------------|-----------------|---|---|---|---|------------|
 
-A coluna **Reflection** captura o que foi aprendido ou o que seria feito diferente. Isso sinaliza senioridade — candidatos juniores descrevem o que aconteceu, candidatos seniores extraem lições.
+A coluna **Reflection** captura o que foi aprendido ou o que seria feito de forma diferente. Isto sinaliza senioridade — candidatos juniores descrevem o que aconteceu, candidatos seniores extraem lições.
 
 **Story Bank:** Se `interview-prep/story-bank.md` existir, verificar se alguma dessas histórias já está lá. Se não, adicionar as novas. Com o tempo, isso constrói um banco reutilizável de 5-10 histórias-mestre que podem ser adaptadas para qualquer pergunta de entrevista.
 
@@ -91,7 +91,7 @@ A coluna **Reflection** captura o que foi aprendido ou o que seria feito diferen
 
 Incluir também:
 - 1 case study recomendado (qual projeto apresentar e como)
-- Perguntas red-flag e como respondê-las (ex: "Por que tu vendeu sua empresa?", "Tu tinha reports diretos?")
+- Perguntas red-flag e como respondê-las (ex: "Porque vendeste a tua empresa?", "Tinhas reportes diretos?")
 
 ---
 

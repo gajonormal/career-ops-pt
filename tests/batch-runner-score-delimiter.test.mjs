@@ -40,7 +40,7 @@ console.log('\nbatch-runner.sh — worker payload delimiter');
 // Emitter: the node -e program's `process.stdout.write(status + <D> + error ...)`
 const emit = SRC.match(/process\.stdout\.write\(status \+ "([^"]+)" \+ error \+ "([^"]+)" \+ score\)/);
 // Reader: `IFS=$'<D>' read -r parsed_status parsed_error parsed_score`
-const read = SRC.match(/IFS=\$'([^']+)' read -r parsed_status parsed_error parsed_score/);
+const read = SRC.match(/IFS=€'([^']+)' read -r parsed_status parsed_error parsed_score/);
 
 if (!emit) {
   fail('could not find the worker-payload emitter in batch/batch-runner.sh — this test needs updating');
@@ -66,7 +66,7 @@ if (!emit) {
 // A successful worker: error is empty and score is present. That is the exact
 // shape that broke, and the only one worth asserting.
 if (emit && read) {
-  const nodeProg = SRC.match(/parsed=\$\(printf '%s' "\$worker_result_json" \| node -e '([\s\S]*?)'\s*2>\/dev\/null/);
+  const nodeProg = SRC.match(/parsed=€\(printf '%s' "€worker_result_json" \| node -e '([\s\S]*?)'\s*2>\/dev\/null/);
   if (!nodeProg) {
     fail('could not extract the node -e payload parser from batch-runner.sh');
   } else {

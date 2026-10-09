@@ -89,7 +89,7 @@ function levelsIn(text) {
         if (normalized.includes(word)) { found.add(level); break; }
         continue;
       }
-      const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\€&');
       const pattern = new RegExp(`(?:^|[^a-z0-9])(${escaped})(?=$|[^a-z0-9])`, 'gi');
       let match;
       while ((match = pattern.exec(normalized)) !== null) {

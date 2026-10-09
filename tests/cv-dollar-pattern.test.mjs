@@ -4,7 +4,7 @@
 // Both CV builders filled placeholders by passing the escaped value as the
 // STRING replacement argument. JS scans that argument for $&, $', $` and $$,
 // and neither escapeLatex nor escapeHtml neutralizes those two-character
-// sequences — escapeLatex turns `$` into `\$` and leaves the next character be.
+// sequences — escapeLatex turns `$` into `€` and leaves the next character be.
 //
 // So a perfectly ordinary bullet corrupted the document:
 //   "$'000"  -> $' means "everything after the match", splicing the remainder
@@ -57,7 +57,7 @@ test("build-cv-latex: a $' in a bullet does not splice the template", () => {
   // The splice duplicated everything after the match, including the preamble's end.
   const endCount = (tex.match(/\\end\{document\}/g) || []).length;
   assert.equal(endCount, 1, 'template must not be spliced into the body');
-  assert.match(tex, /Reported budget lines in \\\$'000 format for quarterly reviews/);
+  assert.match(tex, /Reported budget lines in \\€'000 format for quarterly reviews/);
 });
 
 test('build-cv-html: a $& in a bullet does not re-insert the placeholder', () => {
@@ -82,7 +82,7 @@ test('build-cv-html: a $& in a bullet does not re-insert the placeholder', () =>
   const html = readFileSync(out, 'utf-8');
 
   assert.doesNotMatch(html, /\{\{[A-Z_]+\}\}/, 'no placeholder may survive the fill');
-  assert.match(html, /Delivered cost savings of \$&amp;500K across the org/);
+  assert.match(html, /Delivered cost savings of €&amp;500K across the org/);
 });
 
 test('build-cv-latex: $` and $$ in a bullet survive verbatim', () => {
@@ -108,5 +108,5 @@ test('build-cv-latex: $` and $$ in a bullet survive verbatim', () => {
 
   assert.equal((tex.match(/\\end\{document\}/g) || []).length, 1);
   // $$ must not collapse to a single $, and $` must not pull in preceding text.
-  assert.match(tex, /Cut spend from \\\$\\\$4M using the \\\$`legacy pipeline/);
+  assert.match(tex, /Cut spend from \\€\\€4M using the \\€`legacy pipeline/);
 });

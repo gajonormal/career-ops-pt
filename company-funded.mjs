@@ -359,15 +359,15 @@ export function extractCompanyFromFundingTitle(title) {
   if (/^(ask hn|tell hn|who is hiring|launch hn)\b/i.test(t)) return '';
 
   const patterns = [
-    /\b(?:raises?|raised|lands|landed|secures?|secured|closes?|closed|nabs?|nabbed|bags?|bagged)\s+(?:an?\s+|over\s+|more\s+than\s+|up\s+to\s+)?\$[\d.,]+\s*(?:billion|million|bn|[bkmt])?\s+for\s+(?:an?\s+)?(?:ai\s+)?startup\s+(.+?)$/i,
+    /\b(?:raises?|raised|lands|landed|secures?|secured|closes?|closed|nabs?|nabbed|bags?|bagged)\s+(?:an?\s+|over\s+|more\s+than\s+|up\s+to\s+)?€[\d.,]+\s*(?:billion|million|bn|[bkmt])?\s+for\s+(?:an?\s+)?(?:ai\s+)?startup\s+(.+?)$/i,
     /\bstartup\s+(.+?)\s+(?:reportedly\s+)?(?:raises?|raised|lands|landed|secures?|secured|closes?|closed|nabs?|nabbed|bags?|bagged)\b/i,
     /(?:startup|company|agency|platform)\s+(.+?)\s+hits\s+unicorn\s+status\b.*\braises?\b/i,
-    /^(.+?)\s+(?:raises?|raised|lands|landed|secures?|secured|closes?|closed|nabs?|nabbed|bags?|bagged)\s+(?:an?\s+|over\s+|more\s+than\s+|up\s+to\s+)?\$[\d.,]+\s*(?:billion|million|bn|[bkmt])?\b/i,
+    /^(.+?)\s+(?:raises?|raised|lands|landed|secures?|secured|closes?|closed|nabs?|nabbed|bags?|bagged)\s+(?:an?\s+|over\s+|more\s+than\s+|up\s+to\s+)?€[\d.,]+\s*(?:billion|million|bn|[bkmt])?\b/i,
     /^(.+?)\s+(?:raises?|raised|lands|landed|secures?|secured|closes?|closed|nabs?|nabbed|bags?|bagged)\s+(?:an?\s+)?(?:\w+\s+){0,4}(?:funding|round|series\s+[a-h]|seed|pre-seed|investment|financing|valuation)\b/i,
-    /^(.+?)\s+(?:announces?|announced)\s+(?:\$[\d.,]+\s*(?:billion|million|bn|[bkmt])?\s+)?(?:\w+\s+){0,4}(?:funding|round|series\s+[a-h]|seed|pre-seed|financing)\b/i,
-    /^(.+?)\s+(?:gets|got|receives?|received)\s+(?:\$[\d.,]+\s*(?:billion|million|bn|[bkmt])?\s+)?(?:in\s+)?(?:funding|investment|financing)\b/i,
-    /^(.+?)\s+(?:hits?|hit|reaches?|reached)\s+(?:a\s+)?\$[\d.,]+(?:\.\d+)?\s*(?:billion|million|bn|[bkmt])?\s+valuation\b/i,
-    /^(.+?)\s+valued\s+at\s+\$[\d.,]+(?:\.\d+)?\s*(?:billion|million|bn|[bkmt])?\b/i,
+    /^(.+?)\s+(?:announces?|announced)\s+(?:€[\d.,]+\s*(?:billion|million|bn|[bkmt])?\s+)?(?:\w+\s+){0,4}(?:funding|round|series\s+[a-h]|seed|pre-seed|financing)\b/i,
+    /^(.+?)\s+(?:gets|got|receives?|received)\s+(?:€[\d.,]+\s*(?:billion|million|bn|[bkmt])?\s+)?(?:in\s+)?(?:funding|investment|financing)\b/i,
+    /^(.+?)\s+(?:hits?|hit|reaches?|reached)\s+(?:a\s+)?€[\d.,]+(?:\.\d+)?\s*(?:billion|million|bn|[bkmt])?\s+valuation\b/i,
+    /^(.+?)\s+valued\s+at\s+€[\d.,]+(?:\.\d+)?\s*(?:billion|million|bn|[bkmt])?\b/i,
     /^(.+?)\s+emerges? from stealth\b/i,
     /^(.+?)\s+in\s+talks\s+to\s+raise\b/i,
   ];
@@ -381,7 +381,7 @@ export function extractCompanyFromFundingTitle(title) {
 
 export function extractFundingDetails(text) {
   const raw = xmlText(text);
-  const amount = raw.match(/\$[\d,.]+(?:\.\d+)?\s*(?:billion|million|bn|m|b|k)?/i)?.[0] || '';
+  const amount = raw.match(/€[\d,.]+(?:\.\d+)?\s*(?:billion|million|bn|m|b|k)?/i)?.[0] || '';
   const round = raw.match(/\b(?:pre-seed|seed|series\s+[a-h]|strategic|venture|growth)\b/i)?.[0] || '';
   return {
     amount: compact(amount),
@@ -607,7 +607,7 @@ function isExcludedFundingItem(item) {
     // Plural too: "amid workforce reductions" bypassed the singular-only form.
     /\b(lays?\s+off|laying\s+off|laid\s+off|job\s+cuts|workforce\s+reductions?|headcount\s+reductions?|staff\s+reductions?)\b/i,
     /\b(public offering|registered direct offering|private placement|atm offering|offering of common stock)\b/i,
-    /\braises?\s+\$[\d,.]+(?:\.\d+)?\s*(?:billion|million|bn|m|b|k)?\s+fund\b/i,
+    /\braises?\s+€[\d,.]+(?:\.\d+)?\s*(?:billion|million|bn|m|b|k)?\s+fund\b/i,
     /\b(venture fund|vc fund|investment fund|private equity fund|capital fund|fund ii|fund iii|fund iv|new fund)\b/i,
     /\b(grant|grants|scholarship|scholarships|award|awards|donation|donates?)\b/i,
     /\b(how to raise|ways to raise|guide to fundraising|startup valuations|bubble fears)\b/i,
