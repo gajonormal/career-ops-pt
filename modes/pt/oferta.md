@@ -24,13 +24,14 @@ Tabela com:
 
 Ler `cv.md`. Criar tabela com cada requisito do JD mapeado para linhas exatas do currículo.
 
-**Adaptado ao arquétipo:**
-- Se FDE → priorizar proof points de entrega rápida e proximidade com cliente
-- Se SA → priorizar design de sistemas e integrações
-- Se PM → priorizar product discovery e métricas
-- Se LLMOps → priorizar evals, observability, pipelines
-- Se Agentic → priorizar multi-agent, HITL, orquestração
-- Se Transformation → priorizar gestão de mudança, adoção, escalabilidade
+**Adaptado ao arquétipo (consultar `modes/_profile.md`):**
+- Ler SEMPRE os arquétipos e proof points do candidato em `modes/_profile.md` (Junior Full-Stack, Cloud/DevOps, Backend, AI/ML, Mobile Flutter, Data Engineer).
+- Se Full-Stack / Frontend / Web → priorizar React, Next.js, TypeScript e projetos do portfólio.
+- Se Cloud / DevOps → priorizar Azure (Functions, CosmosDB, Bicep, App Service), Docker e CI/CD do Oportunia.
+- Se Backend → priorizar APIs REST, Flask/Python, Node.js e agregação de dados.
+- Se AI / ML → priorizar Azure OpenAI GPT-4o, análise semântica e algoritmos de compatibilidade do Oportunia.
+- Se Mobile → priorizar arquitetura offline-first em Flutter/Firebase, geofencing e Haversine do VisitAR.
+- Se Data Engineering / Analytics → priorizar CosmosDB, MongoDB, Neo4j (Cypher) e bases de dados relacionais.
 
 Secção de **gaps** com estratégia de mitigação para cada um. Para cada gap:
 1. É um hard blocker ou um nice-to-have?
@@ -41,8 +42,8 @@ Secção de **gaps** com estratégia de mitigação para cada um. Para cada gap:
 ## Bloco C -- Nível e Estratégia
 
 1. **Nível detectado** no JD vs **nível natural do candidato para esse arquétipo**
-2. **Plano "vender senior sem mentir"**: frases específicas adaptadas ao arquétipo, conquistas concretas a destacar, como posicionar experiência de founder como vantagem
-3. **Plano "se me downlevelearem"**: aceitar se a remuneração for justa, negociar revisão em 6 meses, critérios claros de promoção
+2. **Plano de Posicionamento ("Projetos Reais vs Apenas Teoria")**: frases específicas adaptadas ao arquétipo, conquistas concretas a destacar dos projetos do `cv.md` (VisitAR, Oportunia, Portfólio), como posicionar funções de liderança técnica (Tech Lead) e rigor de engenharia como diferencial de entrada.
+3. **Plano de Enquadramento**: avaliar se a vaga é estágio profissional (ex: IEFP nível 6), posição júnior ou mid-level. Se a vaga pedir 1-2 anos de experiência, mostrar como os projetos práticos end-to-end e papel de Tech Lead cobrem essa lacuna.
 
 ## Bloco D -- Remuneração e Demanda
 
@@ -81,17 +82,17 @@ A coluna **Reflection** captura o que foi aprendido ou o que seria feito de form
 
 **Story Bank:** Se `interview-prep/story-bank.md` existir, verificar se alguma dessas histórias já está lá. Se não, adicionar as novas. Com o tempo, isso constrói um banco reutilizável de 5-10 histórias-mestre que podem ser adaptadas para qualquer pergunta de entrevista.
 
-**Selecionadas e enquadradas conforme o arquétipo:**
-- FDE → enfatizar velocidade de entrega e proximidade com cliente
-- SA → enfatizar decisões de arquitetura
-- PM → enfatizar discovery e trade-offs
-- LLMOps → enfatizar métricas, evals, production hardening
-- Agentic → enfatizar orquestração, tratamento de erros, HITL
-- Transformation → enfatizar adoção e mudança organizacional
+**Selecionadas e enquadradas conforme o arquétipo (ver `modes/_profile.md`):**
+- Full-Stack / Web → enfatizar qualidade de código, tipagem robusta (TypeScript) e design clean.
+- Cloud / DevOps → enfatizar automação de infraestrutura como código (IaC / Bicep), pipelines CI/CD e serverless.
+- Backend → enfatizar escalabilidade de APIs, agregação de fontes de dados e persistência.
+- AI / ML → enfatizar integração prática de LLMs (Azure OpenAI GPT-4o), engenharia de prompts e matching semântico.
+- Mobile → enfatizar resiliência offline-first, otimização de geolocalização e gestão de mudança de âmbito.
+- Liderança / Teamwork → enfatizar o papel de Tech Lead no Oportunia: coordenação de equipa de 3, desbloqueio de tarefas e cumprimento de prazos.
 
 Incluir também:
-- 1 case study recomendado (qual projeto apresentar e como)
-- Perguntas red-flag e como respondê-las (ex: "Porque vendeste a tua empresa?", "Tinhas reportes diretos?")
+- 1 case study recomendado (VisitAR ou Oportunia conforme o foco da vaga).
+- Perguntas desafiantes / red-flag e como respondê-las (ex: "Qual foi o maior desafio técnico no VisitAR?", "Como geriste conflitos ou prazos na equipa do Oportunia?", "Como aprendes rapidamente uma stack nova?").
 
 ---
 

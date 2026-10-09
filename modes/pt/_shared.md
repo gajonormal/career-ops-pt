@@ -73,19 +73,12 @@ A skill trata TODAS as vagas-alvo com a mesma importância. Nenhuma é primária
 
 | Arquétipo | Eixos temáticos | O que as empresas procuram |
 |-----------|-----------------|----------------------|
-| **AI Platform / LLMOps Engineer** | Avaliação, Observability, Confiabilidade, Pipelines | Alguém que coloca IA em produção sustentada por métricas |
-| **Agentic Workflows / Automation** | HITL, Tooling, Orquestração, Multi-Agent | Alguém que constrói sistemas de agentes fiáveis |
-| **Technical AI Product Manager** | GenAI/Agents, PRDs, Discovery, Delivery | Alguém que traduz necessidades de negócio em produtos de IA |
-| **AI Solutions Architect** | Hiperautomação, Enterprise, Integrações | Alguém que projeta arquiteturas de IA de ponta a ponta |
-| **AI Forward Deployed Engineer** | Proximidade ao cliente, entrega rápida, Prototipagem | Alguém que implementa soluções de IA rapidamente no cliente |
-| **AI Transformation Lead** | Gestão de mudança, Adoção, Capacitação organizacional | Alguém que lidera a transformação de IA nas organizações |
-
-<!-- [PERSONALIZAR] Adapta os arquétipos acima para as tuas vagas-alvo.
-     Exemplo para engenharia backend:
-     - Senior Backend Engineer
-     - Staff Platform Engineer
-     - Engineering Manager
-     etc. -->
+| **Junior Full-Stack Developer** | React, Next.js, TypeScript, Node.js, Python | Recém-licenciado com projetos full-stack end-to-end e boas práticas |
+| **Junior Cloud / DevOps Engineer** | Azure, Docker, CI/CD (GitHub Actions), IaC (Bicep) | Perfil com experiência prática em cloud pública e automação |
+| **Junior Backend Developer** | Python (Flask), Node.js, APIs REST, Microsserviços | Builder de serviços e integrações funcionais com persistência |
+| **Junior AI / ML Engineer** | Azure OpenAI, GPT-4o, Prompt Engineering, LangChain | Perfil com projetos reais de integração e matching com LLMs |
+| **Junior Mobile Developer** | Flutter, Dart, Firebase, Offline-First | Aplicações móveis sólidas com geolocalização e persistência |
+| **Junior Data Engineer / Analyst** | Python, MongoDB, CosmosDB, Neo4j, SQL | Perfil com boa manipulação de dados em bases SQL e NoSQL/Grafos |
 
 ### Framing Adaptativo por Arquétipo
 
@@ -93,36 +86,27 @@ A skill trata TODAS as vagas-alvo com a mesma importância. Nenhuma é primária
 
 | Se a vaga for... | Enfatiza no candidato... | Fontes de Proof Points |
 |----------------|--------------------------|------------------------|
-| Platform / LLMOps | Experiência em produção, Observability, Evals, Closed-Loop | article-digest.md + cv.md |
-| Agentic / Automation | Orquestração multi-agente, HITL, Fiabilidade, Gestão de Custos | article-digest.md + cv.md |
-| Technical AI PM | Product Discovery, PRDs, Métricas, Gestão de stakeholders | cv.md + article-digest.md |
-| Solutions Architect | Design de sistemas, Integrações, Enterprise-ready | article-digest.md + cv.md |
-| Forward Deployed Engineer | Entrega rápida, proximidade ao cliente, de Protótipo a Produção | cv.md + article-digest.md |
-| AI Transformation Lead | Gestão de mudança, Capacitação de equipas, Adoção | cv.md + article-digest.md |
+| Full-Stack Developer | React/Next.js + TypeScript (Portfólio), Python/Flask (Oportunia), Node.js | cv.md + GitHub |
+| Cloud / DevOps | Azure end-to-end (Oportunia): App Service, Functions, CosmosDB, Bicep, CI/CD | cv.md |
+| Backend Developer | Flask/Python (Oportunia), Node.js, APIs REST, integração de 4 fontes externas | cv.md |
+| AI / ML Engineer | Azure OpenAI GPT-4o (Oportunia), análise semântica, algoritmos de matching | cv.md |
+| Mobile Developer | Flutter offline-first (VisitAR): geofencing, Haversine, Firebase, 360° viewer | cv.md |
+| Data Engineer | MongoDB/CosmosDB (Oportunia), Neo4j/Cypher (certificado), MySQL, MariaDB | cv.md |
 
-<!-- [PERSONALIZAR] Mapeia os teus projetos/artigos concretos para os arquétipos acima -->
+### Narrativa de Entrada / Transição (usar em TODOS os framings)
 
-### Narrativa de Transição (usar em TODOS os framings)
-
-<!-- [PERSONALIZAR] Substitui pela tua própria narrativa. Exemplos:
-     - "Construí e vendi o meu próprio SaaS em 5 anos. Agora foco-me inteiramente na aplicação de IA no Enterprise."
-     - "Lead de engenharia numa Series-B durante um crescimento 10x. À procura do próximo desafio."
-     - "Transição de consultoria para produto. À procura de vagas com elevado grau de responsabilidade."
-     Lido de config/profile.yml -> narrative.exit_story -->
-
-Usa a narrativa de transição do `config/profile.yml` para enquadrar TODO o conteúdo:
-- **Nos Resumos em PDF:** Constrói a ponte do passado para o futuro — "Aplico agora as mesmas [competências] no contexto de [domínio da vaga]."
-- **Nas histórias STAR:** Faz referência aos proof points do `article-digest.md`.
-- **Nas respostas de rascunho (Bloco G):** A narrativa de transição deve constar na primeira resposta.
-- **Quando a vaga menciona "empreendedor", "ownership", "builder", "end-to-end":** Este é o teu grande diferencial. Aumenta o peso do match nestes casos.
+Usa a narrativa do `config/profile.yml` e `modes/_profile.md` para enquadrar TODO o conteúdo:
+- **Nos Resumos em PDF:** Conecta a formação académica à vaga — "Finalista de Engenharia Informática no IPCB com experiência prática demonstrável em [stack da vaga] através de projetos end-to-end."
+- **Nas histórias STAR:** Foca nos desafios reais superados no VisitAR (arquitetura offline, geofencing) e no Oportunia (liderança técnica de 3 pessoas, cloud Azure, GPT-4o).
+- **Nas respostas de rascunho (Bloco G):** Destaca prontidão técnica, autonomia, espírito de equipa e vontade de aprender.
+- **Quando a vaga menciona "ownership", "proativo", "vontade de aprender", "rigor":** São diferenciais naturais para recém-licenciados. Destaca-os.
 
 ### Vantagem Transversal
 
-Posiciona o perfil como **"Builder técnico com experiência prática comprovada"**, ajustando o enquadramento à vaga:
-- Para PM: "Builder que reduz a incerteza através de protótipos e lidera a passagem a produção com rigor."
-- Para FDE: "Builder que entrega resultados desde o primeiro dia, garantindo métricas e observability."
-- Para SA: "Builder que desenha sistemas end-to-end com experiência real e profunda de integração."
-- Para LLMOps: "Builder que coloca IA em produção com sistemas fechados e de elevada qualidade."
+Posiciona o perfil como **"Engenheiro Informático com projetos reais e mentalidade prática"**, ajustando o enquadramento à vaga:
+- Para Desenvolvimento Web: "Código limpo, tipagem forte (TypeScript) e foco na experiência de utilização."
+- Para Cloud/DevOps: "Mentalidade de automação desde o primeiro dia: IaC com Bicep e pipelines CI/CD automatizados."
+- Para IA Aplicada: "Integração prática de LLMs orientada a resolver problemas reais de negócio."
 
 O posicionamento de "Builder" serve como um selo de profissionalismo — e não de um mero "curioso". Os proof points reais são o que lhe conferem credibilidade.
 
@@ -165,6 +149,16 @@ Em vagas e negociações relativas ao mercado português, existem termos e prát
 | **Aviso Prévio** | 30 a 60 dias mediante o Código do Trabalho | O candidato deve planear a sua data de início com base nesta obrigatoriedade no seu atual emprego. |
 | **Seguro de Saúde** | Cobertura médica privada (ex: Médis, Multicare, AdvanceCare) | Altamente valorizado em Portugal dadas as debilidades do serviço público. A ausência de seguro de saúde num pacote de Contrato Sem Termo é uma forte red flag. |
 | **Ajudas de Custo (Esquemas de Faturação)** | Pagamentos não sujeitos a impostos frequentemente usados por Consultoras para inflacionar o valor líquido | Analisa sempre com extrema cautela — inflaciona o líquido a curto prazo, mas destrói os descontos reais para a Segurança Social, reformas, baixas e acesso a crédito habitação. |
+
+### Mercado Europeu Remoto (EU Remote / Cross-Border)
+
+Ao avaliar vagas remotas de empresas sediadas no estrangeiro (UK, Alemanha, Países Baixos, Irlanda, Suíça, Nórdicos, etc.):
+
+| Modelo Contratual | Como Funciona em Portugal | Vantagens / Atenção |
+|-------------------|--------------------------|---------------------|
+| **Employer of Record (EOR)** (ex: Deel, Remote.com, Oyster) | A empresa estrangeira utiliza uma entidade patronal registada em Portugal | **Contrato de trabalho português (Sem Termo)** com todos os direitos: 14 meses, retenção na fonte de IRS, descontos para a Segurança Social e subsídio de alimentação. A experiência do candidato é idêntica à de trabalhar para uma empresa nacional de topo, mas com salário europeu. |
+| **B2B / Contractor (Recibos Verdes / Unipessoal)** | O candidato fatura mensalmente como trabalhador independente para a empresa na UE | **Autoliquidação de IVA (Reverse Charge):** Não há cobrança de IVA ao cliente europeu (art. 6.º, n.º 6, al. a) do CIVA) para clientes com NIF registado no VIES.<br>**IRS Simplificado:** 75% do rendimento é tributável (com redução de 50% no 1.º ano de início de atividade).<br>**Segurança Social:** Isenção total nos primeiros 12 meses de início de atividade.<br>**Compensação:** A taxa diária/mensal deve ser 30-50% superior a um contrato direto para compensar férias e ausência de 14 meses. |
+| **Hub / Sucursal em Portugal** (ex: Cloudflare, Datadog, Revolut, Dashlane) | Contrato direto sob lei laboral portuguesa | Vencimentos competitivos à escala europeia com estabilidade contratual nacional direta. |
 
 ### Scripts de Negociação
 
