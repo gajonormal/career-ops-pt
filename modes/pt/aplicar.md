@@ -64,16 +64,16 @@ Para cada pergunta, gerar a resposta seguindo:
 
 1. **Contexto do report**: Usar proof points do Bloco B, histórias STAR do Bloco F
 2. **Bloco G anterior**: Se existe um rascunho, usar como base e refinar
-3. **Tom "Estou escolhendo tus"**: Mesmo framework da auto-pipeline — confiante, não suplicante
-4. **Especificidade**: Referenciar algo concreto do JD visível na ecrã
+3. **Tom Profissional e Confiante**: Focado no valor mútuo — seguro, rigoroso e sem subserviência
+4. **Especificidade**: Referenciar algo concreto do JD visível no ecrã
 5. **career-ops proof point**: Incluir em "Informações adicionais" se houver campo para isso
 
 **Campos específicos do mercado português que aparecem com frequência:**
-- **Pretensão salarial (bruto, mensal ou anual)** → Faixa de `profile.yml`, em BRL, com nota "negociável conforme pacote total"
-- **Regime de contratação preferido (Contrato Sem Termo/B2B / Recibos Verdes)** → Responder conforme `profile.yml`, ou "aberto a ambos" se aplicável
-- **Disponibilidade / prazo para início** → Data realista considerando aviso prévio (Código do Trabalho) atual (Contrato Sem Termo: 30 dias + 3 dias/ano)
-- **Autorização de trabalho** → Responder com clareza; se português: "Cidadão Europeu, sem necessidade de visto"
-- **Idiomas** → Informar nível por idioma (nativo, fluente, intermediário, básico)
+- **Pretensão salarial (bruto, mensal ou anual)** → Faixa de `profile.yml`, em **EUR** (especificar se anual a 14 meses ou mensal bruto), com nota "negociável conforme pacote total e benefícios".
+- **Regime de contratação preferido (Contrato Sem Termo / B2B)** → Responder conforme `profile.yml` ("Aberto a Contrato Sem Termo ou B2B/Prestação de Serviços").
+- **Disponibilidade / prazo para início** → Informar disponibilidade imediata (ou prazo de aviso prévio estipulado no Código do Trabalho: 30 dias até 2 anos de antiguidade, 60 dias para mais de 2 anos).
+- **Autorização de trabalho** → "Cidadão português e da União Europeia, com plena autorização de trabalho sem necessidade de visto ou patrocínio".
+- **Idiomas** → Português (Nativo), Inglês (Fluente / C1).
 
 **Formato de output:**
 
