@@ -32,7 +32,7 @@ Ler `cv.md`. Criar tabela com cada requisito do JD mapeado para linhas exatas do
 - Se Agentic → priorizar multi-agent, HITL, orquestração
 - Se Transformation → priorizar gestão de mudança, adoção, escalabilidade
 
-Seção de **gaps** com estratégia de mitigação para cada um. Para cada gap:
+Secção de **gaps** com estratégia de mitigação para cada um. Para cada gap:
 1. É um hard blocker ou um nice-to-have?
 2. O candidato consegue demonstrar experiência adjacente?
 3. Existe um projeto do portfolio que cubra esse gap?
@@ -53,17 +53,17 @@ Usar WebSearch para:
 
 Tabela com dados e fontes citadas. Se não houver dados, dizer isso em vez de inventar.
 
-**Mercado Brasileiro -- Checks obrigatórios:**
-- CLT ou PJ? Se CLT: considerar 13º, férias, FGTS, plano de saúde, VR/VA na comparação.
-- Se PJ: qual o valor mensal? Calcular equivalente CLT.
-- PLR mencionado? Quantos salários extras?
+**Mercado Português -- Checks obrigatórios:**
+- Contrato Sem Termo ou B2B / Recibos Verdes? Se Contrato Sem Termo: considerar Subsídios (14 meses), férias, Segurança Social, seguro de saúde, Subsídio de Alimentação na comparação.
+- Se B2B / Recibos Verdes: qual o valor mensal? Calcular equivalente Contrato Sem Termo.
+- Prémio Anual / Bónus mencionado? Quantos salários extras?
 - Stock options / VSOP? Avaliar vesting, cliff e liquidez.
 - Vale-refeição / vale-alimentação? Valor mensal?
 - Plano de saúde? Coparticipação ou integral?
 
 ## Bloco E -- Plano de Personalização
 
-| # | Seção | Estado atual | Mudança proposta | Por que |
+| # | Secção | Estado atual | Mudança proposta | Por que |
 |---|-------|-------------|------------------|---------|
 | 1 | Summary | ... | ... | ... |
 | ... | ... | ... | ... | ... |
@@ -91,7 +91,7 @@ A coluna **Reflection** captura o que foi aprendido ou o que seria feito diferen
 
 Incluir também:
 - 1 case study recomendado (qual projeto apresentar e como)
-- Perguntas red-flag e como respondê-las (ex: "Por que você vendeu sua empresa?", "Você tinha reports diretos?")
+- Perguntas red-flag e como respondê-las (ex: "Por que tu vendeu sua empresa?", "Tu tinha reports diretos?")
 
 ---
 
@@ -103,7 +103,7 @@ Incluir também:
 
 Salvar avaliação completa em `reports/{###}-{company-slug}-{YYYY-MM-DD}.md`.
 
-- `{###}` = próximo número sequencial (3 dígitos, zero-padded). Para alocar de forma atômica e evitar condições de corrida, você DEVE executar `node reserve-report-num.mjs` para reservar o número (a saída retornará `{###}`), escrever o relatório, e em seguida executar `node reserve-report-num.mjs --release {###}` para liberar o sentinel.
+- `{###}` = próximo número sequencial (3 dígitos, zero-padded). Para alocar de forma atômica e evitar condições de corrida, tu DEVE executar `node reserve-report-num.mjs` para reservar o número (a saída retornará `{###}`), escrever o relatório, e em seguida executar `node reserve-report-num.mjs --release {###}` para liberar o sentinel.
 - `{company-slug}` = nome da empresa em lowercase, sem espaços (usar hifens)
 - `{YYYY-MM-DD}` = data atual
 

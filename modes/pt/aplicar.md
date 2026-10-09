@@ -1,11 +1,11 @@
 # Modo: aplicar -- Assistente de Candidatura ao Vivo
 
-Modo interativo para quando o candidato está preenchendo um formulário de candidatura no Chrome. Lê o que está na tela, carrega o contexto da avaliação prévia da vaga e gera respostas personalizadas para cada pergunta do formulário.
+Modo interativo para quando o candidato está a preencher um formulário de candidatura no Chrome. Lê o que está na ecrã, carrega o contexto da avaliação prévia da vaga e gera respostas personalizadas para cada pergunta do formulário.
 
 ## Requisitos
 
 - **Melhor com Playwright visível**: No modo visível, o candidato vê o navegador e Claude pode interagir com a página.
-- **Sem Playwright**: o candidato compartilha um screenshot ou cola as perguntas manualmente.
+- **Sem Playwright**: o candidato partilha um screenshot ou cola as perguntas manualmente.
 
 ## Workflow
 
@@ -14,7 +14,7 @@ Modo interativo para quando o candidato está preenchendo um formulário de cand
 2. IDENTIFICAR → Extrair empresa + vaga da página
 3. BUSCAR      → Match contra reports existentes em reports/
 4. CARREGAR    → Ler report completo + Bloco G (se existir)
-5. COMPARAR    → A vaga na tela coincide com a avaliada? Se mudou → avisar
+5. COMPARAR    → A vaga na ecrã coincide com a avaliada? Se mudou → avisar
 6. ANALISAR    → Identificar TODAS as perguntas visíveis do formulário
 7. GERAR       → Para cada pergunta, gerar resposta personalizada
 8. APRESENTAR  → Mostrar respostas formatadas para copy-paste
@@ -26,7 +26,7 @@ Modo interativo para quando o candidato está preenchendo um formulário de cand
 
 **Sem Playwright:** Pedir ao candidato que:
 - Compartilhe um screenshot do formulário (o Read tool lê imagens)
-- Ou cole as perguntas do formulário como texto
+- Ou cola as perguntas do formulário como texto
 - Ou diga empresa + vaga para buscarmos o contexto
 
 ## Passo 2 -- Identificar e buscar contexto
@@ -39,7 +39,7 @@ Modo interativo para quando o candidato está preenchendo um formulário de cand
 
 ## Passo 3 -- Detectar mudanças na vaga
 
-Se a vaga na tela difere da avaliada:
+Se a vaga na ecrã difere da avaliada:
 - **Avisar o candidato**: "A vaga mudou de [X] para [Y]. Quer que eu reavalie ou adapto as respostas ao novo título?"
 - **Se adaptar**: Ajustar as respostas ao novo título sem reavaliar
 - **Se reavaliar**: Executar avaliação completa A-F, atualizar report, regenerar Bloco G
@@ -64,15 +64,15 @@ Para cada pergunta, gerar a resposta seguindo:
 
 1. **Contexto do report**: Usar proof points do Bloco B, histórias STAR do Bloco F
 2. **Bloco G anterior**: Se existe um rascunho, usar como base e refinar
-3. **Tom "Estou escolhendo vocês"**: Mesmo framework da auto-pipeline — confiante, não suplicante
-4. **Especificidade**: Referenciar algo concreto do JD visível na tela
+3. **Tom "Estou escolhendo tus"**: Mesmo framework da auto-pipeline — confiante, não suplicante
+4. **Especificidade**: Referenciar algo concreto do JD visível na ecrã
 5. **career-ops proof point**: Incluir em "Informações adicionais" se houver campo para isso
 
-**Campos específicos do mercado brasileiro que aparecem com frequência:**
+**Campos específicos do mercado português que aparecem com frequência:**
 - **Pretensão salarial (bruto, mensal ou anual)** → Faixa de `profile.yml`, em BRL, com nota "negociável conforme pacote total"
-- **Regime de contratação preferido (CLT/PJ)** → Responder conforme `profile.yml`, ou "aberto a ambos" se aplicável
-- **Disponibilidade / prazo para início** → Data realista considerando aviso prévio atual (CLT: 30 dias + 3 dias/ano)
-- **Autorização de trabalho** → Responder com clareza; se brasileiro: "Cidadão brasileiro, não necessita autorização"
+- **Regime de contratação preferido (Contrato Sem Termo/B2B / Recibos Verdes)** → Responder conforme `profile.yml`, ou "aberto a ambos" se aplicável
+- **Disponibilidade / prazo para início** → Data realista considerando aviso prévio (Código do Trabalho) atual (Contrato Sem Termo: 30 dias + 3 dias/ano)
+- **Autorização de trabalho** → Responder com clareza; se português: "Cidadão Europeu, sem necessidade de visto"
 - **Idiomas** → Informar nível por idioma (nativo, fluente, intermediário, básico)
 
 **Formato de output:**
@@ -109,6 +109,6 @@ Se o candidato confirmar que enviou a candidatura:
 ## Scroll handling
 
 Se o formulário tem mais perguntas do que as visíveis:
-- Pedir ao candidato para dar scroll e compartilhar outro screenshot
+- Pedir ao candidato para dar scroll e partilhar outro screenshot
 - Ou colar as perguntas restantes
 - Processar em iterações até cobrir todo o formulário

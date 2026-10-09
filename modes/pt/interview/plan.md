@@ -6,14 +6,14 @@ Dada uma descrição da vaga e a data/hora da entrevista, monte um plano de prep
 
 ## Inputs
 
-1. **Descrição da vaga** (obrigatório) — cole aqui ou forneça a URL
+1. **Descrição da vaga** (obrigatório) — cola aqui ou forneça o URL
 2. **Data e hora da entrevista** (obrigatório) — para calcular as horas disponíveis
 3. **Nome e cargo do entrevistador** (se souber) — definem a profundidade e o tom da preparação
 4. **Tipo de rodada** (se souber) — triagem, técnica/específica da área, design/estudo de caso, painel comportamental
 5. **CV** em `cv.md` + `article-digest.md` (se existir) — leia para experiência, competências, pontos de prova
 6. **Perfil** em `config/profile.yml` + `modes/_profile.md` — leia para narrativa, arquétipos e objetivos
 7. **Story bank** em `interview-prep/story-bank.md` — histórias STAR+R já existentes
-8. **Question bank** em `interview-prep/question-bank.md` — lacunas já conhecidas (se o arquivo existir)
+8. **Question bank** em `interview-prep/question-bank.md` — lacunas já conhecidas (se o ficheiro existir)
 
 ---
 
@@ -31,7 +31,7 @@ Seja honesto. Uma lacuna é uma lacuna — sinalize-a com clareza, para que o te
 
 ## Step 2 — Round Intelligence
 
-Identifique o que esta rodada realmente avalia, com base em:
+Identifica o que esta rodada realmente avalia, com base em:
 - Cargo do entrevistador (gestor = comunicação + motivação + fundamentos; especialista da área = profundidade + julgamento)
 - Rótulo da rodada (triagem, técnica/domínio, design/estudo de caso, final)
 - Sinais da descrição da vaga (aquilo que enfatizam)
@@ -67,7 +67,7 @@ Calibre o plano à rodada. Preparar profundidade em excesso para uma triagem des
 
 Calcule as horas disponíveis de agora até o horário da entrevista. Divida em blocos:
 
-Antes de dimensionar os blocos, verifique `interview-prep/question-bank.md` (se existir). Qualquer pergunta marcada com 🔴 em uma rodada anterior é uma lacuna comprovada — ela ganha um bloco dedicado, independentemente de como a análise CV-vs-vaga a classifique. Dados reais de desempenho superam o risco inferido.
+Antes de dimensionar os blocos, verifica `interview-prep/question-bank.md` (se existir). Qualquer pergunta marcada com 🔴 em uma rodada anterior é uma lacuna comprovada — ela ganha um bloco dedicado, independentemente de como a análise CV-vs-vaga a classifique. Dados reais de desempenho superam o risco inferido.
 
 **Template (ajuste o tamanho dos blocos conforme o total de horas disponíveis):**
 
@@ -88,7 +88,7 @@ Bloco 3 — Tópico de domínio secundário
   - Tempo: ~20% das horas disponíveis
 
 Bloco 4 — Histórias comportamentais
-  - Mapeie as histórias existentes para os prováveis tipos de pergunta
+  - Mapeia as histórias existentes para os prováveis tipos de pergunta
   - Pratique a versão verbal de 2 minutos de cada uma
   - Prepare a Reflection de cada uma — o diferencial do candidato sênior
   - Tempo: ~15% das horas disponíveis
@@ -120,7 +120,7 @@ Ao final do plano, produza um resumo de uma página que o candidato possa revisa
 ```markdown
 ## 15-Minute Pre-Interview Review
 
-**Your anchor sentence:** [uma frase que resume por que você é a pessoa certa para esta vaga]
+**Your anchor sentence:** [uma frase que resume por que tu é a pessoa certa para esta vaga]
 
 **Top 3 things to remember:**
 1. [a mensagem mais importante a deixar com o entrevistador]
@@ -137,7 +137,7 @@ Ao final do plano, produza um resumo de uma página que o candidato possa revisa
 
 ## Step 5 — Save Output
 
-Salve o plano em `interview-prep/{company-slug}-{role-slug}.md` se o arquivo não existir, ou acrescente uma seção `## Prep Plan` se já existir.
+Salve o plano em `interview-prep/{company-slug}-{role-slug}.md` se o ficheiro não existir, ou acrescente uma secção `## Prep Plan` se já existir.
 
 ---
 
@@ -148,5 +148,5 @@ Salve o plano em `interview-prep/{company-slug}-{role-slug}.md` se o arquivo nã
 - **Lacunas 🔴 da question bank têm prioridade sobre lacunas inferidas.** Dados reais de desempenho vencem a análise CV-vs-vaga. Se o candidato já sabe que tem dificuldade em um tópico, não o enterre.
 - **Um tópico por bloco.** Misturar tópicos em um único bloco reduz a retenção.
 - **Sempre inclua tempo de descanso.** Um candidato descansado tem melhor desempenho do que um que estuda até o último minuto.
-- **Nunca gere informações falsas sobre a empresa.** Se você não tem pesquisa, diga isso — não invente alegações sobre a cultura ou detalhes técnicos da empresa.
+- **Nunca gere informações falsas sobre a empresa.** Se tu não tem pesquisa, diga isso — não invente alegações sobre a cultura ou detalhes técnicos da empresa.
 - **Nunca invente alegações para o candidato.** A frase-âncora e os pontos de fala pré-entrevista do resumo (Step 4) devem se basear no que o candidato realmente tem — `cv.md`, `article-digest.md` ou a story bank. Não redija alegações que dependam de experiências ou métricas que o candidato não possui. Se uma alegação aparecer em `interview-prep/retracted-claims.md`, nunca a inclua.

@@ -22,7 +22,7 @@ Após uma entrevista real, registre o que foi perguntado, avalie o que funcionou
 6. **Story bank** em `interview-prep/story-bank.md` — adicione novas histórias se surgirem
 7. **CV** em `cv.md` + `article-digest.md` (se existir) — para ancorar respostas sugeridas em experiência real
 8. **Alegações retiradas** em `interview-prep/retracted-claims.md` (se existir) — barreira rígida; nunca use uma alegação retirada em uma resposta sugerida, mesmo que o candidato a tenha dito na entrevista
-9. **Arquivo de preparação específico da vaga** — acrescente as notas do debrief
+9. **Ficheiro de preparação específico da vaga** — acrescente as notas do debrief
 
 ---
 
@@ -37,7 +37,7 @@ Para cada pergunta registrada:
 
 Se a memória estiver incompleta, faça perguntas direcionadas:
 - "Houve alguma pergunta que te pegou de surpresa?"
-- "Houve algo que você gostaria de ter respondido de forma diferente?"
+- "Houve algo que tu gostaria de ter respondido de forma diferente?"
 - "O entrevistador fez algum acompanhamento sobre algo — isso normalmente significa que ele queria mais?"
 
 ---
@@ -75,8 +75,8 @@ Se a question bank não existir, crie-a usando as perguntas desta entrevista com
 Para cada lacuna 🔴 identificada:
 
 1. **Explique a resposta correta** — clara, concisa, com um exemplo resolvido (código, cálculo, diagrama) onde ajudar
-2. **Conecte a uma história real** se possível — "você na verdade tem isto na sua [história existente da story bank] — veja como usá-la"
-3. **Acrescente ao arquivo de preparação da vaga** sob uma seção "Gaps to Close Before Round N"
+2. **Conecte a uma história real** se possível — "tu na verdade tem isto na sua [história existente da story bank] — veja como usá-la"
+3. **Acrescente ao ficheiro de preparação da vaga** sob uma secção "Gaps to Close Before Round N"
 4. **Acrescente a `interview-prep/interview-prep-guide.md`** (se o candidato mantiver um) quando for um princípio reutilizável que se aplica além desta vaga
 
 ---
@@ -85,7 +85,7 @@ Para cada lacuna 🔴 identificada:
 
 Às vezes uma entrevista real revela uma história que o candidato não havia preparado. Se o candidato descreveu uma experiência que não havia formalizado:
 
-> "Você mencionou [X] na sua resposta — parece que isso poderia virar uma história STAR+R completa. Quer montá-la agora enquanto está fresca?"
+> "Tu mencionou [X] na sua resposta — parece que isso poderia virar uma história STAR+R completa. Quer montá-la agora enquanto está fresca?"
 
 Se sim, monte-a como uma história STAR+R (Situation, Task, Action, Result, Reflection) e acrescente-a a `interview-prep/story-bank.md`.
 
@@ -155,7 +155,7 @@ Acrescente a `interview-prep/{company-slug}-{role-slug}.md`:
 
 ## Step 9 — Write Session Transcript
 
-Após o debrief, escreva também uma transcrição da sessão legível por máquina em `interview-prep/sessions/{company-slug}-{role-slug}-{round}-{YYYY-MM-DD}.md`. Este é um registro estruturado da rodada para modos de análise posteriores; os turnos com rótulo de quem fala permitem que um consumidor leia qualquer um dos lados sem reinferir quem falou. O contrato completo está em `interview-prep/sessions/README.md`.
+Após o debrief, escreva também uma transcrição da sessão legível por máquina em `interview-prep/sessions/{company-slug}-{role-slug}-{round}-{YYYY-MM-DD}.md`. Este é um registo estruturado da rodada para modos de análise posteriores; os turnos com rótulo de quem fala permitem que um consumidor leia qualquer um dos lados sem reinferir quem falou. O contrato completo está em `interview-prep/sessions/README.md`.
 
 Formato:
 
@@ -181,10 +181,10 @@ source: debrief
 Regras para a transcrição:
 
 - **Mapeie o tipo de rodada para o enum** acima (ex.: triagem com recrutador → `screen`, triagem com gestor → `hiring-manager`, aprofundamento técnico → `technical`, design/estudo de caso → `system-design`).
-- **Marque cada resposta.** Na linha diretamente acima de cada linha `**Candidate:**`, emita `<!-- competency: tag[, tag...] -->` — em lowercase-kebab-case, separada por vírgulas para respostas com múltiplas competências (ex.: `system-design`, `people-leadership`, `incident-response`). Você já avaliou cada resposta no Step 2, então marque a partir dessa avaliação, sem reler. As tags são livres; escolha a competência que a pergunta realmente testou.
-- **Reconstrua o turno do candidato fielmente.** Use o que o candidato relatou ter dito no Step 1, não uma resposta idealizada. A "correct/complete answer" do Step 2 pertence ao arquivo de debrief, nunca à transcrição — a transcrição registra o que aconteceu.
+- **Marque cada resposta.** Na linha diretamente acima de cada linha `**Candidate:**`, emita `<!-- competency: tag[, tag...] -->` — em lowercase-kebab-case, separada por vírgulas para respostas com múltiplas competências (ex.: `system-design`, `people-leadership`, `incident-response`). Tu já avaliou cada resposta no Step 2, então marque a partir dessa avaliação, sem reler. As tags são livres; escolha a competência que a pergunta realmente testou.
+- **Reconstrua o turno do candidato fielmente.** Use o que o candidato relatou ter dito no Step 1, não uma resposta idealizada. A "correct/complete answer" do Step 2 pertence ao ficheiro de debrief, nunca à transcrição — a transcrição registra o que aconteceu.
 - **`source: debrief`.**
-- O arquivo da sessão fica em um diretório no gitignore (nomes/empresas reais nunca entram no controle de versão); escreva-o sem censurar.
+- O ficheiro da sessão fica em um diretório no gitignore (nomes/empresas reais nunca entram no controle de versão); escreva-o sem censurar.
 
 ---
 
@@ -195,6 +195,6 @@ Regras para a transcrição:
 - **Nunca coloque alegações inventadas na boca do candidato.** As respostas corretas/completas podem recorrer a conhecimento geral da área, mas qualquer alegação pessoal ou métrica sugerida deve vir do que o candidato disse, de `cv.md`, `article-digest.md` ou da story bank.
 - **Alegações retiradas são uma barreira rígida.** Se uma alegação aparecer em `interview-prep/retracted-claims.md`, nunca sugira que o candidato a use — mesmo que ele a tenha dito na entrevista real. Sinalize-a: "Essa alegação está na sua lista de retiradas — não é defensável sob pressão. Aqui está uma versão que não depende dela."
 - **Registre novas retratações.** Se o debrief revelar uma alegação que o candidato usou na entrevista real e que agora concorda não ser defensável, ofereça-se para acrescentá-la a `interview-prep/retracted-claims.md`: `**"[claim]"** ([context]). Reason: [one-line reason + correct framing if applicable].`
-- **Extraia lacunas de vocabulário explicitamente.** Se o candidato usou um termo impreciso onde existe um preciso, acrescente-o a `interview-prep/interview-prep-guide.md` na seção de vocabulário (se o candidato mantiver uma).
+- **Extraia lacunas de vocabulário explicitamente.** Se o candidato usou um termo impreciso onde existe um preciso, acrescente-o a `interview-prep/interview-prep-guide.md` na secção de vocabulário (se o candidato mantiver uma).
 - **Uma lacuna = uma correção.** Não sobrecarregue com um plano de estudo completo para cada lacuna. Priorize as 1–2 com maior probabilidade de serem testadas na próxima rodada.
 - **Celebre o que funcionou.** O debrief não é só sobre lacunas. Nomeie o que foi forte — isso reforça o comportamento certo e constrói confiança para a próxima rodada.

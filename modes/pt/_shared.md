@@ -1,4 +1,4 @@
-# Contexto Compartilhado -- career-ops (Português BR)
+# Contexto Partilhado -- career-ops (Português PT-PT)
 
 <!-- ============================================================
      THIS FILE IS AUTO-UPDATABLE. Don't put personal data here.
@@ -25,54 +25,62 @@
 **RULE: Never submit, send, or click Apply/Send on the user's behalf.** Draft and prepare only; the user must review and approve the completed materials before any Submit/Send/Apply action.
 
 
-| Arquivo | Caminho | Quando |
+| Ficheiro | Caminho | Quando |
 |---------|---------|--------|
 | cv.md | `cv.md` (raiz do projeto) | SEMPRE |
 | article-digest.md | `article-digest.md` (se existir) | SEMPRE (proof points detalhados) |
 | profile.yml | `config/profile.yml` | SEMPRE (identidade e vagas-alvo) |
-| _profile.md | `modes/_profile.md` | SEMPRE (arquétipos, narrativa, negociação do usuário) |
+| _profile.md | `modes/_profile.md` | SEMPRE (arquétipos, narrativa e negociação do utilizador) |
 
-**REGRA: NUNCA fazer hardcode de métricas de proof points.** Leia-as de `cv.md` e `article-digest.md` no momento da avaliação.
-**REGRA: Para métricas de artigos/projetos, `article-digest.md` tem prioridade sobre `cv.md`** (`cv.md` pode conter números desatualizados).
-**REGRA: Leia `_profile.md` DEPOIS deste arquivo. As personalizações do usuário em `_profile.md` sobrescrevem os valores padrão aqui.**
-**REGRA: NUNCA afirme que o usuário é autor/criador de um projeto, repositório, biblioteca, ferramenta, framework ou artefato open-source, a menos que isso esteja explicitamente atribuído a ele em `cv.md` ou `article-digest.md`.** Confundir "usar uma ferramenta" com "tê-la criado" (o usuário usa X → o usuário criou X) é o padrão de invenção mais comum, e é proibido.
-**REGRA: Palavras-chave são reformuladas, nunca inventadas.** Reordene, reformule, enfatize — mas nunca invente. Se uma alegação não estiver respaldada por um arquivo dentro do escopo, pergunte ao usuário; sem resposta, omita. Silêncio sobre um tema é melhor do que detalhe inventado.
+**REGRA: NUNCA faças hardcode de métricas de proof points.** Lê-as sempre do `cv.md` e do `article-digest.md` no momento da avaliação.
+**REGRA: Para métricas de artigos/projetos, o `article-digest.md` tem prioridade sobre o `cv.md`** (o `cv.md` pode conter números desatualizados).
+**REGRA: Lê o `_profile.md` DEPOIS deste ficheiro. As personalizações do utilizador no `_profile.md` sobrepõem-se aos valores padrão aqui definidos.**
+**REGRA: NUNCA afirmes que o utilizador é autor/criador de um projeto, repositório, biblioteca, ferramenta, framework ou artefacto open-source, a menos que isso esteja explicitamente atribuído a ele no `cv.md` ou no `article-digest.md`.** Confundir "usar uma ferramenta" com "tê-la criado" (o utilizador usa X → o utilizador criou X) é o padrão de invenção mais comum e é estritamente proibido.
+**REGRA: As palavras-chave são reformuladas, nunca inventadas.** Reordena, reformula e enfatiza — mas nunca inventes. Se uma afirmação não for sustentada por um ficheiro dentro do escopo, pergunta ao utilizador; se não houver resposta, omite. O silêncio sobre um tema é preferível a um detalhe inventado.
 
 ---
 
+
+**Regras Salariais Portugal (PT-PT):**
+- O salário anual bruto (SBA) é pago a 14 meses (12 meses de vencimento + subsídio de férias + subsídio de Natal).
+- A IA deve detetar e extrair ativamente os benefícios PT: Subsídio de Alimentação, Ajudas de Custo, Seguro de Saúde.
+- **Atenção Consultoras / Outsourcing:** Se a vaga não revelar o cliente final, classifica a confiança como "Low" e alerta sobre o uso de "Ajudas de Custo" que reduzem artificialmente o salário base.
+- **Salário Bruto vs Líquido:** A IA deve aconselhar o candidato a pedir sempre uma simulação do Salário Líquido (devido à retenção de IRS).
+- **Contratos:** É essencial distinguir entre Contrato Sem Termo e B2B (Recibos Verdes).
+
 ## Sistema de Pontuação
 
-A avaliação usa 6 blocos (A-F) com uma nota global de 1-5:
+A avaliação utiliza 6 blocos (A-F) com uma nota global de 1 a 5:
 
-| Dimensão | O que mede |
+| Dimensão | O que avalia |
 |----------|------------|
-| Match com CV | Habilidades, experiência, alinhamento de proof points |
-| Alinhamento North Star | Quão bem a vaga encaixa nos arquétipos-alvo do usuário (de `_profile.md`) |
-| Remuneração | Salário vs mercado (5=quartil superior, 1=bem abaixo) |
-| Sinais culturais | Cultura da empresa, crescimento, estabilidade, política de trabalho remoto |
-| Red flags | Bloqueadores, alertas (ajustes negativos) |
-| **Global** | Média ponderada dos itens acima |
+| Match com o CV | Competências, experiência e alinhamento de proof points |
+| Alinhamento North Star | Quão bem a vaga se enquadra nos arquétipos-alvo do utilizador (definidos em `_profile.md`) |
+| Remuneração | Salário vs mercado (5=quartil superior, 1=muito abaixo) |
+| Sinais culturais | Cultura da empresa, crescimento, estabilidade, e política de trabalho remoto |
+| Red flags | Bloqueadores e alertas (ajustes negativos) |
+| **Global** | Média ponderada dos pontos acima |
 
 **Interpretação da nota:**
 - 4.5+ → Match forte, recomendado aplicar imediatamente
 - 4.0-4.4 → Bom match, vale a pena aplicar
-- 3.5-3.9 → Razoável mas não ideal, aplicar apenas se houver motivo específico
-- Abaixo de 3.5 → Recomendado não aplicar (veja Ethical Use no AGENTS.md)
+- 3.5-3.9 → Razoável, mas não ideal; aplicar apenas se houver um motivo específico
+- Abaixo de 3.5 → Recomendado não aplicar (vê Ethical Use no AGENTS.md)
 
 ## North Star -- Vagas-Alvo
 
-O skill trata TODAS as vagas-alvo com o mesmo cuidado. Nenhuma é primária ou secundária — qualquer uma é uma vitória, desde que a remuneração e a perspectiva de crescimento estejam adequadas:
+A skill trata TODAS as vagas-alvo com a mesma importância. Nenhuma é primária ou secundária — qualquer uma é uma vitória, desde que a remuneração e a perspetiva de crescimento sejam adequadas:
 
-| Arquétipo | Eixos temáticos | O que estão comprando |
+| Arquétipo | Eixos temáticos | O que as empresas procuram |
 |-----------|-----------------|----------------------|
-| **AI Platform / LLMOps Engineer** | Avaliação, Observability, Confiabilidade, Pipelines | Alguém que coloca IA em produção com métricas |
-| **Agentic Workflows / Automation** | HITL, Tooling, Orquestração, Multi-Agent | Alguém que constrói sistemas de agentes confiáveis |
-| **Technical AI Product Manager** | GenAI/Agents, PRDs, Discovery, Delivery | Alguém que traduz negócios em produtos de IA |
+| **AI Platform / LLMOps Engineer** | Avaliação, Observability, Confiabilidade, Pipelines | Alguém que coloca IA em produção sustentada por métricas |
+| **Agentic Workflows / Automation** | HITL, Tooling, Orquestração, Multi-Agent | Alguém que constrói sistemas de agentes fiáveis |
+| **Technical AI Product Manager** | GenAI/Agents, PRDs, Discovery, Delivery | Alguém que traduz necessidades de negócio em produtos de IA |
 | **AI Solutions Architect** | Hiperautomação, Enterprise, Integrações | Alguém que projeta arquiteturas de IA de ponta a ponta |
-| **AI Forward Deployed Engineer** | Cliente-próximo, entrega rápida, Prototipagem | Alguém que implanta soluções de IA rapidamente no cliente |
-| **AI Transformation Lead** | Gestão de mudança, Adoção, Enablement organizacional | Alguém que lidera transformação de IA em organizações |
+| **AI Forward Deployed Engineer** | Proximidade ao cliente, entrega rápida, Prototipagem | Alguém que implementa soluções de IA rapidamente no cliente |
+| **AI Transformation Lead** | Gestão de mudança, Adoção, Capacitação organizacional | Alguém que lidera a transformação de IA nas organizações |
 
-<!-- [PERSONALIZAR] Adapte os arquétipos acima para suas vagas-alvo.
+<!-- [PERSONALIZAR] Adapta os arquétipos acima para as tuas vagas-alvo.
      Exemplo para engenharia backend:
      - Senior Backend Engineer
      - Staff Platform Engineer
@@ -81,115 +89,115 @@ O skill trata TODAS as vagas-alvo com o mesmo cuidado. Nenhuma é primária ou s
 
 ### Framing Adaptativo por Arquétipo
 
-> **Métricas concretas: ler de `cv.md` e `article-digest.md` no momento da avaliação. NUNCA fazer hardcode aqui.**
+> **Métricas concretas: devem ser sempre lidas do `cv.md` e do `article-digest.md` no momento da avaliação. NUNCA faças hardcode aqui.**
 
-| Se a vaga é... | Enfatizar no candidato... | Fontes de Proof Points |
+| Se a vaga for... | Enfatiza no candidato... | Fontes de Proof Points |
 |----------------|--------------------------|------------------------|
 | Platform / LLMOps | Experiência em produção, Observability, Evals, Closed-Loop | article-digest.md + cv.md |
-| Agentic / Automation | Orquestração multi-agent, HITL, Confiabilidade, Custos | article-digest.md + cv.md |
+| Agentic / Automation | Orquestração multi-agente, HITL, Fiabilidade, Gestão de Custos | article-digest.md + cv.md |
 | Technical AI PM | Product Discovery, PRDs, Métricas, Gestão de stakeholders | cv.md + article-digest.md |
 | Solutions Architect | Design de sistemas, Integrações, Enterprise-ready | article-digest.md + cv.md |
-| Forward Deployed Engineer | Entrega rápida, próximo do cliente, Protótipo a produção | cv.md + article-digest.md |
-| AI Transformation Lead | Gestão de mudança, Enablement de equipe, Adoção | cv.md + article-digest.md |
+| Forward Deployed Engineer | Entrega rápida, proximidade ao cliente, de Protótipo a Produção | cv.md + article-digest.md |
+| AI Transformation Lead | Gestão de mudança, Capacitação de equipas, Adoção | cv.md + article-digest.md |
 
-<!-- [PERSONALIZAR] Mapeie seus projetos/artigos concretos para os arquétipos acima -->
+<!-- [PERSONALIZAR] Mapeia os teus projetos/artigos concretos para os arquétipos acima -->
 
 ### Narrativa de Transição (usar em TODOS os framings)
 
-<!-- [PERSONALIZAR] Substitua pela sua própria narrativa. Exemplos:
-     - "Construí e vendi minha própria SaaS em 5 anos. Agora foco total em IA aplicada no Enterprise."
-     - "Lead de engenharia em uma Series-B durante crescimento 10x. Buscando o próximo desafio."
-     - "Transição de consultoria para produto. Buscando vagas com alta responsabilidade."
+<!-- [PERSONALIZAR] Substitui pela tua própria narrativa. Exemplos:
+     - "Construí e vendi o meu próprio SaaS em 5 anos. Agora foco-me inteiramente na aplicação de IA no Enterprise."
+     - "Lead de engenharia numa Series-B durante um crescimento 10x. À procura do próximo desafio."
+     - "Transição de consultoria para produto. À procura de vagas com elevado grau de responsabilidade."
      Lido de config/profile.yml -> narrative.exit_story -->
 
-Use a narrativa de transição de `config/profile.yml` para enquadrar TODO o conteúdo:
-- **Em PDF Summaries:** Construir a ponte do passado para o futuro — "Aplico as mesmas [habilidades] agora em [domínio do JD]."
-- **Em histórias STAR:** Referenciar proof points de `article-digest.md`.
-- **Em respostas rascunho (Bloco G):** A narrativa de transição vai na primeira resposta.
-- **Quando a vaga menciona "empreendedor", "ownership", "builder", "end-to-end":** Esse é o diferencial número 1. Aumentar peso de match.
+Usa a narrativa de transição do `config/profile.yml` para enquadrar TODO o conteúdo:
+- **Nos Resumos em PDF:** Constrói a ponte do passado para o futuro — "Aplico agora as mesmas [competências] no contexto de [domínio da vaga]."
+- **Nas histórias STAR:** Faz referência aos proof points do `article-digest.md`.
+- **Nas respostas de rascunho (Bloco G):** A narrativa de transição deve constar na primeira resposta.
+- **Quando a vaga menciona "empreendedor", "ownership", "builder", "end-to-end":** Este é o teu grande diferencial. Aumenta o peso do match nestes casos.
 
 ### Vantagem Transversal
 
-Enquadrar o perfil como **"Builder técnico com prática comprovada"**, adaptando o framing à vaga:
-- Para PM: "Builder que reduz incerteza com protótipos e depois leva à produção com disciplina"
-- Para FDE: "Builder que entrega desde o dia 1 com observability e métricas"
-- Para SA: "Builder que projeta sistemas end-to-end com experiência real de integração"
-- Para LLMOps: "Builder que coloca IA em produção com sistemas de qualidade closed-loop"
+Posiciona o perfil como **"Builder técnico com experiência prática comprovada"**, ajustando o enquadramento à vaga:
+- Para PM: "Builder que reduz a incerteza através de protótipos e lidera a passagem a produção com rigor."
+- Para FDE: "Builder que entrega resultados desde o primeiro dia, garantindo métricas e observability."
+- Para SA: "Builder que desenha sistemas end-to-end com experiência real e profunda de integração."
+- Para LLMOps: "Builder que coloca IA em produção com sistemas fechados e de elevada qualidade."
 
-Posicionar "Builder" como sinal profissional — não como "hobbyista". Proof points reais tornam isso crível.
+O posicionamento de "Builder" serve como um selo de profissionalismo — e não de um mero "curioso". Os proof points reais são o que lhe conferem credibilidade.
 
-### Portfolio como Proof Point (usar em candidaturas de alto valor)
+### Portefólio como Proof Point (usar em candidaturas de alto valor)
 
-<!-- [PERSONALIZAR] Se você tem uma demo ao vivo, dashboard ou projeto público, configure aqui.
+<!-- [PERSONALIZAR] Se tiveres uma demo ao vivo, um dashboard ou um projeto público, configura aqui.
      Exemplo:
      dashboard:
-       url: "https://seudominio.dev/demo"
+       url: "https://oteudominio.dev/demo"
        password: "demo-2026"
        when_to_share: "LLMOps, AI-Platform, vagas de Observability"
      Lido de config/profile.yml -> narrative.proof_points e narrative.dashboard -->
 
-Quando o candidato tem uma demo ao vivo / dashboard (verificar `profile.yml`), oferecer acesso em candidaturas relevantes.
+Quando o candidato possuir uma demo ao vivo / dashboard (verifica o `profile.yml`), oferece o acesso nas candidaturas que sejam relevantes.
 
 ### Inteligência de Remuneração (Comp Intelligence)
 
-<!-- [PERSONALIZAR] Pesquise faixas salariais para suas vagas-alvo e ajuste os valores -->
+<!-- [PERSONALIZAR] Pesquisa faixas salariais para as tuas vagas-alvo e ajusta os valores -->
 
 **Orientações gerais:**
-- WebSearch para dados atuais de mercado (Glassdoor, Levels.fyi, Blind)
-- Enquadrar por título da vaga, não por skills — títulos definem as faixas salariais
-- Taxas de freelance geralmente ficam 30-60% acima da hora bruta de CLT (encargos, férias, FGTS, INSS, contador)
-- Geo-arbitragem funciona em vagas remotas: custo de vida menor = melhor líquido
+- Usa o WebSearch para obter dados de mercado atuais (Glassdoor, Levels.fyi, Teamlyzer).
+- O enquadramento deve ser feito pelo título da vaga, e não pelas competências — são os títulos que ditam as faixas salariais.
+- As tarifas de freelance (B2B) situam-se geralmente 30-60% acima do valor hora bruto de um Contrato Sem Termo (para cobrir encargos, férias, Segurança Social, contabilista).
+- A geo-arbitragem é vantajosa em vagas remotas: menor custo de vida = maior rendimento líquido.
 
-### Mercado Brasileiro -- Especificidades (IMPORTANTE)
+### Mercado Português -- Especificidades (IMPORTANTE)
 
-Em vagas e negociações brasileiras, existem termos e práticas que não aparecem nos mercados EN/ES/DE. Eles DEVEM ser avaliados corretamente:
+Em vagas e negociações relativas ao mercado português, existem termos e práticas ausentes nos mercados EN/ES/DE. Estes aspetos DEVEM ser tidos em conta e avaliados com precisão:
 
 | Termo | Significado | Impacto na Avaliação |
 |-------|-------------|----------------------|
-| **CLT** (Consolidação das Leis do Trabalho) | Contrato formal com carteira assinada | Inclui FGTS, INSS, férias, 13º, aviso prévio. Na comparação, considerar o custo total empregador |
-| **PJ** (Pessoa Jurídica) | Contratação como prestador de serviços (nota fiscal) | Valor mensal mais alto, mas sem benefícios CLT. Calcular equivalente CLT para comparação justa |
-| **13º Salário** | Pagamento extra obrigatório para CLT | Comp CLT = salário x 13 (ou 13,33 com 1/3 de férias). NUNCA esquecer na comparação |
-| **FGTS** (Fundo de Garantia) | 8% do salário depositado pelo empregador | Benefício CLT, não aparece no contra-cheque mas é remuneração real |
-| **Vale-Refeição / Vale-Alimentação** | Benefício alimentação (iFood, Sodexo, Alelo) | Comum em vagas CLT, pode chegar a R$ 1.500+/mês. Incluir na comp total |
-| **PLR** (Participação nos Lucros e Resultados) | Bônus atrelado a resultados da empresa | Pode ser 1-3 salários extras/ano. Variável — ponderar com cautela |
-| **Stock Options / VSOP** | Equity em startups | Comum em startups brasileiras. Avaliar vesting, cliff e liquidez |
-| **Período de Experiência** | 45+45 dias (CLT) ou conforme contrato (PJ) | Padrão de mercado, não é red flag |
-| **Aviso Prévio** | 30 dias (CLT) + 3 dias por ano trabalhado | Planejar data de início conforme vínculo atual |
-| **Plano de Saúde** | Benefício médico (Amil, SulAmérica, Bradesco Saúde) | Muito valorizado no Brasil. Sem plano = red flag em vagas CLT |
-| **Cooperativa / MEI** | Formas alternativas de contratação | Avaliar com cautela — pode indicar precarização trabalhista |
+| **Contrato Sem Termo** (Código do Trabalho) | Contrato de trabalho formal e efetivo | Inclui Segurança Social, férias pagas, Salário a 14 meses (subsídios de férias e Natal) e aviso prévio. Na comparação, considera o custo total para o empregador. |
+| **B2B / Recibos Verdes** | Prestação de serviços através de faturação | O valor mensal é tipicamente superior, mas carece dos benefícios e da estabilidade de um Contrato Sem Termo. Deves calcular o equivalente a Contrato Sem Termo para uma comparação realista. |
+| **Salário a 14 meses (Subsídios de Férias e Natal)** | Pagamentos extra obrigatórios no Contrato Sem Termo | Remuneração = salário base x 14. NUNCA ignores este fator em simulações ou comparações. |
+| **Segurança Social (TSU)** | Contribuição obrigatória do empregador e do funcionário | Benefício essencial do Contrato Sem Termo. Embora retido na fonte, reflete-se nos direitos futuros (baixas, desemprego, reforma). |
+| **Subsídio de Alimentação** | Valor diário pago em dinheiro ou em cartão de refeição (isento de impostos até certo limite) | Muito comum no Contrato Sem Termo, podendo chegar a €160+/mês líquidos. Deve sempre ser incluído no cálculo do pacote total. |
+| **Prémio Anual / Bónus** | Bónus associado ao desempenho individual ou da empresa | Variável — deve ser avaliado com cautela pois não é garantido. |
+| **Stock Options** | Ações da empresa ou opções de compra | Comum em startups portuguesas e unicórnios. Analisa os períodos de vesting, cliff e liquidez real. |
+| **Período à Experiência** | Tipicamente 90 a 180 dias para o Contrato Sem Termo | É uma prática padrão no mercado regulado pelo Código do Trabalho; não constitui uma red flag. |
+| **Aviso Prévio** | 30 a 60 dias mediante o Código do Trabalho | O candidato deve planear a sua data de início com base nesta obrigatoriedade no seu atual emprego. |
+| **Seguro de Saúde** | Cobertura médica privada (ex: Médis, Multicare, AdvanceCare) | Altamente valorizado em Portugal dadas as debilidades do serviço público. A ausência de seguro de saúde num pacote de Contrato Sem Termo é uma forte red flag. |
+| **Ajudas de Custo (Esquemas de Faturação)** | Pagamentos não sujeitos a impostos frequentemente usados por Consultoras para inflacionar o valor líquido | Analisa sempre com extrema cautela — inflaciona o líquido a curto prazo, mas destrói os descontos reais para a Segurança Social, reformas, baixas e acesso a crédito habitação. |
 
 ### Scripts de Negociação
 
-<!-- [PERSONALIZAR] Adapte para sua situação -->
+<!-- [PERSONALIZAR] Adapta para a tua situação -->
 
-**Pretensão salarial (framework geral):**
-> "Com base em dados atuais de mercado para essa vaga, minha expectativa está na faixa de [FAIXA do profile.yml]. Tenho flexibilidade na estrutura — o que importa é o pacote total e a perspectiva de crescimento."
+**Expectativa salarial (estrutura geral):**
+> "Tendo por base os dados atuais do mercado para este nível de responsabilidade, a minha expectativa situa-se na faixa de [FAIXA do profile.yml]. Tenho flexibilidade na estrutura — o que realmente valorizo é o pacote total de compensação e a perspetiva de progressão de carreira."
 
-**Pushback contra desconto geográfico:**
-> "As vagas em que estou concorrendo são orientadas a resultados, não a localização. Meu track record não muda com o CEP."
+**Rejeição de desconto por localização (Geo-desconto):**
+> "O meu interesse nestas vagas baseia-se num modelo orientado aos resultados e não à minha localização geográfica. O valor do impacto e da experiência que aporto não se altera com o meu código postal."
 
-**Quando a oferta está abaixo do alvo:**
-> "Estou comparando com ofertas na faixa de [faixa mais alta]. [Empresa] me atrai por [motivo]. É possível chegarmos em [valor-alvo] juntos?"
+**Quando a oferta se encontra abaixo do objetivo:**
+> "Estou neste momento a ponderar ofertas na faixa de [faixa mais alta]. A vossa equipa atrai-me particularmente por [motivo]. Existe margem para chegarmos aos [valor-alvo] em conjunto?"
 
-**CLT vs PJ:**
-> "Para comparar de forma justa, preciso entender a composição completa: salário-base, 13º, férias, FGTS, vale-refeição, plano de saúde e PLR. Se for PJ, qual o valor mensal equivalente considerando esses itens?"
+**Contrato Sem Termo vs B2B / Recibos Verdes:**
+> "Para fazermos uma comparação fidedigna e justa, preciso de compreender a composição integral da proposta: salário base, os dois subsídios extra (14 meses), férias, contribuições para a Segurança Social, subsídio de alimentação, seguro de saúde e prémios anuais. No cenário de B2B, qual seria o valor mensal ou diário equivalente que cobriria todas estas parcelas?"
 
 ### Política de Localização (Location Policy)
 
-<!-- [PERSONALIZAR] Adapte para sua situação. Lido de config/profile.yml -> location -->
+<!-- [PERSONALIZAR] Adapta para a tua situação. Lido de config/profile.yml -> location -->
 
 **Em formulários:**
-- Perguntas binárias "Você pode trabalhar presencialmente?": responder conforme disponibilidade real de `profile.yml`
-- Em campos de texto livre: informar fuso horário e disponibilidade explicitamente
+- Perguntas binárias "Podes trabalhar presencialmente?": deves responder conforme a disponibilidade real estipulada em `profile.yml`
+- Em campos de texto livre: informa explicitamente o fuso horário e a tua disponibilidade real.
 
 **Em avaliações (Scoring):**
-- Dimensão remoto em híbrido fora do seu estado/país: Score **3.0** (não 1.0)
-- Score 1.0 apenas se a vaga diz explicitamente "deve estar presencial 4-5 dias/semana, sem exceções"
+- A dimensão remota num regime híbrido que implique deslocações para fora do teu país ou estado: Score **3.0** (não 1.0)
+- Aplica o Score 1.0 apenas se a vaga exigir de forma estrita a presença física "4-5 dias/semana, sem exceções".
 
 ### Prioridade Time-to-Offer
-- Demo funcional + métricas > perfeição
-- Aplicar mais rápido > aprender mais
-- Abordagem 80/20, tudo com prazo definido
+- Uma demonstração (demo) funcional acompanhada de métricas tem mais valor que a perfeição absoluta
+- Submeter a candidatura mais rapidamente > analisar os pormenores exaustivamente
+- Abordagem de Pareto (80/20), cumprindo todos os prazos estabelecidos
 
 ---
 
@@ -197,39 +205,39 @@ Em vagas e negociações brasileiras, existem termos e práticas que não aparec
 
 ### NUNCA
 
-1. Inventar experiência ou métricas
-2. Modificar `cv.md` ou arquivos do portfolio
-3. Enviar candidaturas em nome do candidato
-4. Compartilhar número de telefone em mensagens geradas
-5. Recomendar remuneração abaixo do mercado
-6. Gerar PDF sem ter lido a descrição da vaga antes
-7. Usar jargão corporativo ou "corporates"
-8. Ignorar o tracker (toda vaga avaliada é registrada)
+1. Inventes experiência, conquistas ou métricas
+2. Modifiques o ficheiro `cv.md` ou os ficheiros do portefólio
+3. Submetas ou envies candidaturas em nome do candidato
+4. Partilhes o número de telefone em mensagens geradas automaticamente
+5. Recomendes aceitar compensações que estejam abaixo do valor de mercado
+6. Geres um PDF de currículo sem teres lido e escrutinado a descrição da vaga
+7. Uses jargão corporativo bacoco ou forçado
+8. Ignores o tracker (absolutamente toda e qualquer vaga avaliada tem de ser registada)
 
 ### SEMPRE
 
-0. **Carta de apresentação:** Se o formulário permite anexar ou escrever uma carta, SEMPRE inclua uma. PDF no mesmo design visual do currículo. Conteúdo: citações da descrição da vaga mapeadas para proof points, links para case studies relevantes. Máximo 1 página.
-1. Ler `cv.md`, `_profile.md` e `article-digest.md` (se existir) antes de avaliar qualquer vaga
-1b. **Na primeira avaliação de cada sessão:** Executar `node cv-sync-check.mjs` via Bash. Se houver avisos, informar o candidato antes de continuar
-2. Detectar o arquétipo da vaga e adaptar o framing conforme `_profile.md`
-3. Ao fazer matching, citar linhas exatas do currículo
-4. Usar WebSearch para dados de remuneração e empresa
-5. Registrar no tracker após cada avaliação
-6. Gerar conteúdo na língua da descrição da vaga (PT-BR padrão)
-7. Ser direto e prático — sem enrolação
-8. Ao gerar texto em português (PDF summaries, bullets, mensagens LinkedIn, histórias STAR): português tech natural, não tradução literal. Frases curtas, verbos de ação, evitar voz passiva. Termos técnicos (stack, pipeline, deployment, embedding) não precisam ser traduzidos
-8b. **URLs de case studies no PDF Professional Summary:** Se o PDF menciona case studies ou demos, as URLs DEVEM aparecer já no primeiro parágrafo (Professional Summary). Recrutadores frequentemente só leem o resumo. Todos os URLs no HTML com `white-space: nowrap`
-9. **Entradas no tracker como TSV** — NUNCA editar `applications.md` diretamente para novos registros. Escrever TSV em `batch/tracker-additions/`, `merge-tracker.mjs` cuida do merge. Escrever primeiro uma linha com os **nomes das colunas** e, abaixo, exatamente uma linha de dados (ver AGENTS.md, «TSV Format for Tracker Additions»). É essa linha de nomes que permite ao `merge-tracker.mjs` resolver os campos por NOME em vez de adivinhar qual coluna é score e qual é status
-10. **Incluir `**URL:**` em todo header de report** — entre Score e PDF
+0. **Carta de apresentação:** Se o formulário permitir ou sugerir anexar uma carta, inclui SEMPRE uma. Esta deve seguir o mesmo design e estrutura visual do currículo em PDF. Conteúdo: faz a ligação entre citações diretas da descrição da vaga e os proof points reais do candidato, e inclui links para os case studies relevantes. Máximo de 1 página.
+1. Lê exaustivamente o `cv.md`, o `_profile.md` e o `article-digest.md` (caso exista) antes de avaliares qualquer vaga
+1b. **Na primeira avaliação de cada sessão:** Executa `node cv-sync-check.mjs` via Bash. Se existirem avisos, informa imediatamente o candidato antes de prosseguires
+2. Deteta o arquétipo da vaga e ajusta a narrativa de acordo com o `_profile.md`
+3. Quando fizeres correspondência de perfil (matching), cita com rigor as linhas exatas do currículo
+4. Usa o WebSearch para cruzar dados atualizados de remuneração e analisar a empresa
+5. Regista a avaliação no tracker no fim do processo
+6. Gera sempre o conteúdo no idioma da descrição da vaga (PT-PT por omissão para este mercado)
+7. Sê pragmático, direto e objetivo — elimina o ruído ("sem enrolação")
+8. Ao gerar texto em português (PDF summaries, *bullets*, mensagens de LinkedIn, histórias STAR): usa um português tecnológico natural, não uma tradução académica. Frases curtas, uso de verbos de ação, evita a voz passiva. Termos puramente técnicos e amplamente consolidados (ex: stack, pipeline, deployment, embedding) não devem ser traduzidos para português.
+8b. **URLs de case studies no resumo profissional do PDF:** Caso o PDF mencione case studies ou demos, os respetivos URLs DEVEM surgir logo no primeiro parágrafo (Resumo Profissional), pois os recrutadores muitas vezes limitam a leitura ao topo do currículo. Todos os URLs gerados em HTML devem conter a propriedade `white-space: nowrap`
+9. **Entradas no tracker via ficheiros TSV** — NUNCA edites o ficheiro `applications.md` diretamente para novos registos. Deves escrever no formato TSV em `batch/tracker-additions/`, e o script `merge-tracker.mjs` tratará da consolidação e do *merge*. Garante que escreves primeiro uma linha com os **nomes das colunas** e, logo a seguir, exatamente uma única linha com os dados correspondentes (consulta AGENTS.md, secção «TSV Format for Tracker Additions»). É essa linha de cabeçalho que possibilita ao `merge-tracker.mjs` mapear corretamente cada campo sem ter de adivinhar onde está o *score* e onde está o *status*.
+10. **Inclui sempre a indicação `**URL:**` no topo de qualquer report gerado** — colocando-a entre o Score e o link do PDF.
 
 ### Tools
 
-| Tool | Uso |
+| Ferramenta | Uso Adequado |
 |------|-----|
-| WebSearch | Pesquisa de remuneração, tendências, cultura da empresa, contatos LinkedIn, fallback para descrições de vagas |
-| WebFetch | Fallback para extrair descrições de vagas de páginas estáticas |
-| Playwright | Verificar se vagas ainda estão ativas (browser_navigate + browser_snapshot), extrair descrições de SPAs. **CRÍTICO: NUNCA iniciar 2+ agentes com Playwright em paralelo — eles compartilham a mesma instância do navegador** |
-| Read | cv.md, _profile.md, article-digest.md, cv-template.html |
-| Write | HTML temporário para PDF, reports .md, TSV em `batch/tracker-additions/` |
-| Edit | Ajustes de conteúdo (não usar para criar novos registros no tracker) |
-| Bash | `node generate-pdf.mjs`, `node merge-tracker.mjs` |
+| WebSearch | Investigação de remuneração, cultura organizacional, captura de perfis no LinkedIn, e plano B para descrições de vagas. |
+| WebFetch | Plano B para extrair descrições de vagas presentes em páginas web estáticas. |
+| Playwright | Confirmação da liveness e disponibilidade de vagas (browser_navigate + browser_snapshot), e extração de JDs em SPAs. **CRÍTICO: NUNCA inicies dois ou mais agentes em paralelo a usar Playwright — estes conflituarão pois partilham a mesma sessão do navegador.** |
+| Read | Leitura dos ficheiros `cv.md`, `_profile.md`, `article-digest.md`, `cv-template.html`. |
+| Write | Criação de HTML temporário para a posterior geração de PDFs, ficheiros de reports `.md`, e a escrita de TSV para o `batch/tracker-additions/`. |
+| Edit | Ajustes pontuais de conteúdo já existente (não deves usar esta tool para criar registos totalmente novos no tracker). |
+| Bash | Execução restrita a comandos permitidos como `node generate-pdf.mjs` e `node merge-tracker.mjs`. |

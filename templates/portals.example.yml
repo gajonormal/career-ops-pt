@@ -151,7 +151,27 @@
 # Example below targets US-based remote + a couple of US metros, blocking
 # common foreign hubs. Customize to your geography.
 
-# location_filter:
+
+location_filter:
+  always_allow:
+    - "Portugal"
+    - "Lisbon"
+    - "Lisboa"
+    - "Porto"
+  allow:
+    - "Remote"
+    - "Portugal"
+    - "Lisbon"
+    - "Lisboa"
+    - "Porto"
+    - "EMEA"
+    - "Europe"
+  block_hard:
+    - "United States"
+    - "USA"
+    - "India"
+    - "Brazil"
+
 #   # always_allow is checked BEFORE block — keep this list to your home region only
 #   always_allow:
 #     - "United States"   # also admits City, ST homonyms (Dublin, OH) via USPS states
@@ -3183,3 +3203,65 @@ criticalsoftware:
 outsystems:
   type: greenhouse
   board_token: outsystems
+
+# Hubs em Portugal / Remote-friendly PT
+datadog:
+  type: greenhouse
+  board_token: datadog
+
+pipedrive:
+  type: greenhouse
+  board_token: pipedrive
+
+revolut:
+  type: lever
+  board_token: revolut
+
+dashlane:
+  type: greenhouse
+  board_token: dashlane
+
+anchorage:
+  type: greenhouse
+  board_token: anchorage
+
+volkswagen-digital-solutions:
+  type: workable
+  board_token: volkswagen-digital-solutions
+
+mercedes-benz-io:
+  type: workable
+  board_token: mercedesbenzio
+
+# Globais Remote-First
+gitlab:
+  type: greenhouse
+  board_token: gitlab
+
+doist:
+  type: workable
+  board_token: doist
+
+remote:
+  type: greenhouse
+  board_token: remote
+
+deel:
+  type: lever
+  board_token: deel
+
+stripe:
+  type: greenhouse
+  board_token: stripe
+
+shopify:
+  type: smartrecruiters
+  board_token: shopify
+
+vercel:
+  type: lever
+  board_token: vercel
+
+canonical:
+  type: greenhouse
+  board_token: canonical
