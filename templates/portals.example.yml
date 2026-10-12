@@ -241,11 +241,11 @@ location_filter:
 #   - Partial ranges (min only or max only) work correctly
 #   - If this entire block is absent, salary is not filtered (default behavior)
 #
-# Example: target roles paying at least $100k, no upper limit
+# Exemplo para Portugal: filtrar ofertas a partir de €35.000 brutos anuais
 # salary_filter:
-#   min: 100000
+#   min: 35000
 #   max: 0
-#   currency: "USD"
+#   currency: "EUR"
 
 # Read-only portal housekeeping: `node stats.mjs --prune --summary`.
 # Uses exact-lowercase company names, scan history and recent health evidence.

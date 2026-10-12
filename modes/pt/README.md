@@ -1,17 +1,17 @@
 # career-ops -- Modos em Português (PT-PT) (`modes/pt/`)
 
-Esta pasta contém as traduções e adaptações para português de Portugal dos principais modos do career-ops, desenhadas para candidatos que procuram vagas no mercado português ou em empresas que operam em português.
+Esta pasta contém as traduções e adaptações para português de Portugal dos principais modos do career-ops, desenhadas para candidatos que procuram ofertas de emprego no mercado português ou em empresas que operam em português.
 
 ## Quando usar estes modos?
 
 Usa a pasta `modes/pt/` se pelo menos uma das condições abaixo for verdadeira:
 
-- Candidatas-te principalmente a **vagas em Portugal** (LinkedIn, Landing.Jobs, ITJobs, Teamlyzer, NetEmpregos)
-- O **idioma do teu currículo** é o português ou alternas entre PT-PT e EN consoante a vaga
+- Candidatas-te principalmente a **ofertas de emprego em Portugal** (LinkedIn, Landing.Jobs, ITJobs, Teamlyzer, NetEmpregos)
+- O **idioma do teu currículo** é o português ou alternas entre PT-PT e EN consoante a oferta
 - Precisas de respostas e cartas de apresentação com um **português tecnológico natural**, e não traduções literais geradas por máquina
-- Lidas com as **especificidades do mercado português**: Contrato Sem Termo vs B2B (Recibos Verdes), Salário a 14 meses (Subsídios de Férias e Natal), Retenção de IRS, Segurança Social, Prémios Anuais, Subsídio de Alimentação, Seguro de Saúde, Período à Experiência e Código do Trabalho.
+- Lidas com as **especificidades do mercado português**: Contrato Sem Termo vs B2B (Recibos Verdes), Salário a 14 meses (Subsídios de Férias e Natal), Retenção de IRS, Segurança Social, Prémios Anuais, Subsídio de Alimentação, Seguro de Saúde, Período Experimental e Código do Trabalho.
 
-Se a maioria das tuas vagas for em inglês, mantém os modos padrão na pasta `modes/`. Os modos em inglês funcionam automaticamente quando o Claude deteta uma vaga em português — mas não conhecem as particularidades do mercado português com o mesmo nível de detalhe e profundidade.
+Se a maioria das tuas ofertas for em inglês, mantém os modos padrão na pasta `modes/`. Os modos em inglês funcionam automaticamente quando o Claude deteta uma oferta em português — mas não conhecem as particularidades do mercado português com o mesmo nível de detalhe e profundidade.
 
 ## Como ativar?
 
@@ -50,9 +50,9 @@ Esta adaptação cobre os modos com maior impacto direto:
 | Ficheiro | Adaptado de | Finalidade |
 |---------|-------------|------------|
 | `_shared.md` | `modes/_shared.md` (EN) | Contexto partilhado, arquétipos, regras globais, e especificidades do mercado laboral em Portugal |
-| `oferta.md` | `modes/oferta.md` (ES) | Avaliação completa de uma vaga (Blocos A-F) |
+| `oferta.md` | `modes/oferta.md` (ES) | Avaliação completa de uma oferta de emprego (Blocos A-F) |
 | `aplicar.md` | `modes/apply.md` (EN) | Assistente interativo para preenchimento de formulários de candidatura |
-| `pipeline.md` | `modes/pipeline.md` (ES) | Caixa de entrada de URLs / Second Brain para vagas acumuladas |
+| `pipeline.md` | `modes/pipeline.md` (ES) | Caixa de entrada de URLs / Second Brain para ofertas acumuladas |
 
 Os restantes modos (`scan`, `batch`, `pdf`, `tracker`, `auto-pipeline`, `deep`, `contacto`, `ofertas`, `project`, `training`) não estão traduzidos de propósito. Eles continuam a funcionar perfeitamente através dos originais em EN, uma vez que o seu conteúdo diz respeito a tooling, caminhos locais e comandos de configuração — que devem ser estritamente independentes do idioma.
 
@@ -75,28 +75,29 @@ Se fores adaptar ou expandir os modos, segue este vocabulário para manter a con
 
 | Inglês | Português (PT-PT) |
 |--------|-------------------------------|
-| Job posting | Vaga / Descrição da vaga |
+| Job posting | Oferta de emprego / Descrição da oferta |
 | Application | Candidatura |
 | Cover letter | Carta de apresentação |
 | Resume / CV | Currículo |
 | Salary / Compensation | Salário / Remuneração |
 | Skills | Competências |
 | Interview | Entrevista |
-| Hiring manager | Hiring manager / Diretor da vaga |
+| Hiring manager | Hiring manager / Responsável pela contratação |
 | Recruiter | Recrutador(a) |
 | AI | IA (Inteligência Artificial) |
 | Requirements | Requisitos |
 | Career history | Trajetória profissional / Experiência |
 | Notice period | Aviso prévio |
-| Probation | Período à experiência |
+| Probation | Período experimental |
 | Vacation | Férias |
-| 13th month salary | Subsídios de Férias e Natal (Salário a 14 meses) |
+| 13th/14th month salary | Subsídios de Férias e Natal (Salário a 14 meses) |
 | Formal employment | Contrato Sem Termo |
 | Contractor | B2B / Recibos Verdes |
 | Profit sharing | Prémio Anual / Bónus |
 | Health insurance | Seguro de saúde |
 | Meal voucher | Subsídio de alimentação |
-| Severance fund | TSU / Segurança Social |
+| Severance pay / fund | Compensação por cessação de contrato / FCT |
+| Social security contributions | TSU (Taxa Social Única) / Segurança Social |
 | Stock options | Stock options |
 
 ## Como Contribuir
@@ -107,4 +108,4 @@ Se quiseres melhorar a linguagem ou expandir um modo adicional:
 2. Segue a tabela de vocabulário acima para manter o tom coerente
 3. Traduz de forma natural e idiomática de Portugal — sem traduções literais e sem gerúndios desnecessários
 4. Mantém os elementos estruturais (Blocos A-F, tabelas, blocos de código, e chamadas a ferramentas) rigorosamente intactos
-5. Testa exaustivamente com uma vaga real do mercado português (ex: do LinkedIn) antes de abrires o PR
+5. Testa exaustivamente com uma oferta real do mercado português (ex: do LinkedIn) antes de abrires o PR

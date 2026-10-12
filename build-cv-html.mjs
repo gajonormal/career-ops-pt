@@ -57,7 +57,7 @@ const DEFAULT_SECTION_TITLES = {
   competencies: 'Competências Principais',
   experience: 'Experiência Profissional',
   projects: 'Projetos',
-  education: 'Educação',
+  education: 'Formação Académica',
   certifications: 'Certificações',
   awards: 'Prémios e Distinções',
   interests: 'Interesses',

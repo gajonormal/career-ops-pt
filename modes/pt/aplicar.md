@@ -1,6 +1,6 @@
 # Modo: aplicar -- Assistente de Candidatura ao Vivo
 
-Modo interativo para quando o candidato está a preencher um formulário de candidatura no Chrome. Lê o que está no ecrã, carrega o contexto da avaliação prévia da vaga e gera respostas personalizadas para cada pergunta do formulário.
+Modo interativo para quando o candidato está a preencher um formulário de candidatura no Chrome. Lê o que está no ecrã, carrega o contexto da avaliação prévia da oferta e gera respostas personalizadas para cada pergunta do formulário.
 
 ## Requisitos
 
@@ -10,40 +10,40 @@ Modo interativo para quando o candidato está a preencher um formulário de cand
 ## Workflow
 
 ```
-1. DETECTAR    → Ler separador ativo do Chrome (screenshot/URL/título)
-2. IDENTIFICAR → Extrair empresa + vaga da página
-3. BUSCAR      → Match contra reports existentes em reports/
-4. CARREGAR    → Ler report completo + Bloco G (se existir)
-5. COMPARAR    → A vaga no ecrã coincide com a avaliada? Se mudou → avisar
-6. ANALISAR    → Identificar TODAS as perguntas visíveis do formulário
-7. GERAR       → Para cada pergunta, gerar resposta personalizada
-8. APRESENTAR  → Mostrar respostas formatadas para copy-paste
+1. DETETAR    → Ler separador ativo do Chrome (screenshot/URL/título)
+2. IDENTIFICAR → Extrair empresa + oferta/função da página
+3. PROCURAR   → Corresponder com relatórios existentes em reports/
+4. CARREGAR   → Ler report completo + Bloco G (se existir)
+5. COMPARAR   → A oferta no ecrã coincide com a avaliada? Se mudou → avisar
+6. ANALISAR   → Identificar TODAS as perguntas visíveis do formulário
+7. GERAR      → Para cada pergunta, gerar resposta personalizada
+8. APRESENTAR → Mostrar respostas formatadas para copy-paste
 ```
 
-## Passo 1 -- Detectar a vaga
+## Passo 1 -- Detetar a oferta
 
 **Com Playwright:** Tirar snapshot da página ativa. Ler título, URL e conteúdo visível.
 
 **Sem Playwright:** Pedir ao candidato que:
 - Partilhe uma captura de ecrã do formulário (o Read tool lê imagens)
 - Ou cole as perguntas do formulário como texto
-- Ou indique empresa + vaga para procurarmos o contexto
+- Ou indique empresa + oferta para procurarmos o contexto
 
-## Passo 2 -- Identificar e buscar contexto
+## Passo 2 -- Identificar e obter contexto
 
-1. Extrair nome da empresa e título da vaga da página
+1. Extrair nome da empresa e título da oferta/função da página
 2. Procurar em `reports/` pelo nome da empresa (Grep case-insensitive)
 3. Se houver match → carregar o report completo
 4. Se houver Bloco G → carregar os rascunhos de respostas anteriores como base
 5. Se NÃO houver match → avisar e oferecer executar auto-pipeline rápida
 
-## Passo 3 -- Detectar mudanças na vaga
+## Passo 3 -- Detetar mudanças na oferta
 
-Se a vaga no ecrã diferir da avaliada:
-- **Avisar o candidato**: "A vaga mudou de [X] para [Y]. Quer que eu reavalie ou adapto as respostas ao novo título?"
+Se a oferta no ecrã diferir da avaliada:
+- **Avisar o candidato**: "A oferta mudou de [X] para [Y]. Queres que reavalie ou que adapte as respostas ao novo título?"
 - **Se adaptar**: Ajustar as respostas ao novo título sem reavaliar
 - **Se reavaliar**: Executar avaliação completa A-F, atualizar report, regenerar Bloco G
-- **Atualizar tracker**: Alterar título da vaga em `applications.md` se necessário
+- **Atualizar tracker**: Alterar título da oferta em `applications.md` se necessário
 
 ## Passo 4 -- Analisar perguntas do formulário
 
@@ -51,7 +51,7 @@ Identificar TODAS as perguntas visíveis:
 - Campos de texto livre (carta de apresentação, motivação, etc.)
 - Dropdowns (como tomou conhecimento da oferta, autorização de trabalho, etc.)
 - Sim/Não (mudança de cidade, visto, disponibilidade, etc.)
-- Campos de salário (faixa, expectativa salarial)
+- Campos de salário (intervalo, expectativa salarial)
 - Campos de upload (currículo, carta de apresentação em PDF)
 
 Classificar cada pergunta:
@@ -69,7 +69,7 @@ Para cada pergunta, gerar a resposta seguindo:
 5. **career-ops proof point**: Incluir em "Informações adicionais" se houver campo para isso
 
 **Campos específicos do mercado português que aparecem com frequência:**
-- **Pretensão salarial (bruto, mensal ou anual)** → Faixa de `profile.yml`, em **EUR** (especificar se anual a 14 meses ou mensal bruto), com nota "negociável conforme pacote total e benefícios".
+- **Pretensão salarial (bruto, mensal ou anual)** → Intervalo de `profile.yml`, em **EUR** (especificar se anual a 14 meses ou mensal bruto), com nota "negociável conforme pacote total e benefícios".
 - **Regime de contratação preferido (Contrato Sem Termo / B2B)** → Responder conforme `profile.yml` ("Aberto a Contrato Sem Termo ou B2B/Prestação de Serviços").
 - **Disponibilidade / prazo para início** → Informar disponibilidade imediata (ou prazo de aviso prévio estipulado no Código do Trabalho: 30 dias até 2 anos de antiguidade, 60 dias para mais de 2 anos).
 - **Autorização de trabalho** → "Cidadão português e da União Europeia, com plena autorização de trabalho sem necessidade de visto ou patrocínio".
@@ -78,7 +78,7 @@ Para cada pergunta, gerar a resposta seguindo:
 **Formato de output:**
 
 ```
-## Respostas para [Empresa] -- [Vaga]
+## Respostas para [Empresa] -- [Função/Oferta]
 
 Base: Report #NNN | Score: X.X/5 | Arquétipo: [tipo]
 
@@ -95,20 +95,20 @@ Base: Report #NNN | Score: X.X/5 | Arquétipo: [tipo]
 ---
 
 Notas:
-- [Qualquer observação sobre a vaga, mudanças, etc.]
-- [Sugestões de personalização que o candidato deveria revisar]
+- [Qualquer observação sobre a oferta, mudanças, etc.]
+- [Sugestões de personalização que o candidato deveria rever]
 ```
 
 ## Passo 6 -- Pós-candidatura (opcional)
 
 Se o candidato confirmar que enviou a candidatura:
-1. Atualizar status para "Applied" com o CLI canônico: `node set-status.mjs <report#> Applied` (não editar a tabela de `applications.md` manualmente)
+1. Atualizar status para "Applied" com a CLI canónica: `node set-status.mjs <report#> Applied` (não editar a tabela de `applications.md` manualmente)
 2. Atualizar Bloco G do report com as respostas finais
 3. Sugerir próximo passo: `/career-ops contacto` para LinkedIn outreach
 
 ## Scroll handling
 
 Se o formulário tem mais perguntas do que as visíveis:
-- Pedir ao candidato para dar scroll e partilhar outro screenshot
+- Pedir ao candidato para fazer scroll e partilhar outro screenshot
 - Ou colar as perguntas restantes
 - Processar em iterações até cobrir todo o formulário

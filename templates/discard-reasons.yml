@@ -60,7 +60,7 @@ reasons:
 
   - id: estagio_iefp
     label: Estágio IEFP (bolsa abaixo do target)
-    when: A vaga é um Estágio Profissional IEFP com bolsa fixada pelo Estado (atualmente €820/mês para nível superior) e sem perspetiva clara de contratação no final do estágio.
+    when: A vaga é um Estágio Profissional IEFP com bolsa tabelada por lei (indexada a 1,8 x IAS para nível superior / licenciatura) e sem perspetiva clara de contratação no final do estágio.
 
   - id: cliente_nao_revelado
     label: Cliente final não revelado (consultora / outsourcing)
@@ -70,6 +70,6 @@ reasons:
     label: Salário ao nível do SMN (abaixo do target)
     when: A remuneração anunciada está ao nível do Salário Mínimo Nacional ou muito próximo, abaixo do mínimo aceite pelo candidato.
 
-  - id: periodo_experiencia_excessivo
-    label: Período à experiência excessivo (acima do legal)
-    when: A vaga indica um período à experiência superior a 180 dias para contrato Sem Termo, excedendo o máximo legal do Código do Trabalho (art. 111.º CT).
+  - id: periodo_experimental_excessivo
+    label: Período experimental excessivo (acima dos limites do art. 112.º CT)
+    when: A vaga estipula um período experimental superior aos limites imperativos do Código do Trabalho (máximo geral de 90 dias; 180 dias apenas para 1.º emprego/alta complexidade; 240 dias para quadros superiores — art. 112.º CT).

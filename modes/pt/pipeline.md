@@ -10,13 +10,13 @@ Processa URLs de ofertas acumuladas em `data/pipeline.md`. O candidato adiciona 
    b. **Extrair JD** usando Playwright (browser_navigate + browser_snapshot) → WebFetch → WebSearch
    c. Se o URL não for acessível → marcar como `- [!]` com nota e continuar
    d. **Executar auto-pipeline completa**: Avaliação A-F → Report .md → PDF (se score >= 3.0) → Tracker
-   e. **Mover de "Pendentes" para "Processadas"**: `- [x] #NNN | URL | Empresa | Vaga | Score/5 | PDF ✅/❌`
+   e. **Mover de "Pendentes" para "Processadas"**: `- [x] #NNN | URL | Empresa | Função | Score/5 | PDF ✅/❌`
 3. **Se houver 3+ URLs pendentes**, lançar agentes em paralelo apenas para etapas sem Playwright (ex.: organização, WebSearch/WebFetch).
-   Se a extração exigir Playwright, processar serialmente (1 vaga por vez) para evitar conflito de sessão.
+   Se a extração exigir Playwright, processar serialmente (1 oferta de cada vez) para evitar conflito de sessão.
 4. **Ao terminar**, mostrar tabela resumo:
 
 ```
-| # | Empresa | Vaga | Score | PDF | Ação recomendada |
+| # | Empresa | Função | Score | PDF | Ação recomendada |
 ```
 
 ## Formato de pipeline.md
@@ -45,15 +45,15 @@ Processa URLs de ofertas acumuladas em `data/pipeline.md`. O candidato adiciona 
 - **LinkedIn**: Pode exigir login → marcar com `[!]` e pedir ao candidato para colar o texto
 - **PDF**: Se o URL aponta para um PDF, ler diretamente com o Read tool
 - **`local:` prefix**: Ler ficheiro local. Exemplo: `local:jds/linkedin-pm-ai.md` → ler `jds/linkedin-pm-ai.md`
-- **LinkedIn / Greenhouse / Lever**: Plataformas comuns no Portugal. Playwright funciona bem com todas
+- **LinkedIn / Greenhouse / Lever**: Plataformas comuns em Portugal. Playwright funciona bem com todas
 - **ITJobs / NetEmpregos / Teamlyzer**: Portais portugueses, geralmente acessíveis via WebFetch
 - **LinkedIn**: Mesmas restrições do LinkedIn global — pode exigir login
 
 ## Numeração automática
 
-1. Executar `node reserve-report-num.mjs` para reservar o próximo número sequencial de forma atômica (a saída retornará `{###}`).
+1. Executar `node reserve-report-num.mjs` para reservar o próximo número sequencial de forma atómica (a saída retornará `{###}`).
 2. Gravar o ficheiro de relatório usando esse número.
-3. Liberar o sentinel executando `node reserve-report-num.mjs --release {###}` após a gravação do relatório.
+3. Libertar o sentinel executando `node reserve-report-num.mjs --release {###}` após a gravação do relatório.
 
 ## Sincronização de fontes
 

@@ -1,15 +1,15 @@
 # Modo: oferta -- Avaliação Completa A-F
 
-Quando o candidato cola uma vaga (texto ou URL), entregar SEMPRE os 6 blocos:
+Quando o candidato cola uma oferta de emprego (texto ou URL), entregar SEMPRE os 6 blocos:
 
 ## Passo 0 -- Detecção de Arquétipo
 
-Classificar a vaga num dos 6 arquétipos (ver `_shared.md`). Se for híbrido, indicar os 2 mais próximos. Isto determina:
+Classificar a oferta num dos 6 arquétipos (ver `_shared.md`). Se for híbrido, indicar os 2 mais próximos. Isto determina:
 - Quais proof points priorizar no bloco B
 - Como reescrever o summary no bloco E
 - Quais histórias STAR preparar no bloco F
 
-## Bloco A -- Resumo da Vaga
+## Bloco A -- Resumo da Oferta de Emprego
 
 Tabela com:
 - Arquétipo detectado
@@ -43,9 +43,9 @@ Secção de **gaps** com estratégia de mitigação para cada um. Para cada gap:
 
 1. **Nível detectado** no JD vs **nível natural do candidato para esse arquétipo**
 2. **Plano de Posicionamento ("Projetos Reais vs Apenas Teoria")**: frases específicas adaptadas ao arquétipo, conquistas concretas a destacar dos projetos do `cv.md` (VisitAR, Oportunia, Portfólio), como posicionar funções de liderança técnica (Tech Lead) e rigor de engenharia como diferencial de entrada.
-3. **Plano de Enquadramento**: avaliar se a vaga é estágio profissional (ex: IEFP nível 6), posição júnior ou mid-level. Se a vaga pedir 1-2 anos de experiência, mostrar como os projetos práticos end-to-end e papel de Tech Lead cobrem essa lacuna.
+3. **Plano de Enquadramento**: avaliar se a oferta é estágio profissional (ex: IEFP nível 6), posição júnior ou mid-level. Se a oferta pedir 1-2 anos de experiência, mostrar como os projetos práticos end-to-end e papel de Tech Lead cobrem essa lacuna.
 
-## Bloco D -- Remuneração e Demanda
+## Bloco D -- Remuneração e Procura de Mercado
 
 Aplica integralmente as **Regras Salariais Portugal (PT-PT)**: vencimento a 14 meses, Subsídio de Alimentação, Ajudas de Custo, Seguro de Saúde, B2B vs Contrato Sem Termo.
 
@@ -115,7 +115,7 @@ Se o candidato for elegível (< 35 anos, nos primeiros anos de trabalho após co
 
 ## Bloco E -- Plano de Personalização
 
-| # | Secção | Estado atual | Mudança proposta | Por que |
+| # | Secção | Estado atual | Mudança proposta | Porquê |
 |---|-------|-------------|------------------|---------|
 | 1 | Summary | ... | ... | ... |
 | ... | ... | ... | ... | ... |
@@ -142,7 +142,7 @@ A coluna **Reflection** captura o que foi aprendido ou o que seria feito de form
 - Liderança / Teamwork → enfatizar o papel de Tech Lead no Oportunia: coordenação de equipa de 3, desbloqueio de tarefas e cumprimento de prazos.
 
 Incluir também:
-- 1 case study recomendado (VisitAR ou Oportunia conforme o foco da vaga).
+- 1 case study recomendado (VisitAR ou Oportunia conforme o foco da oferta).
 - Perguntas desafiantes / red-flag e como respondê-las (ex: "Qual foi o maior desafio técnico no VisitAR?", "Como geriste conflitos ou prazos na equipa do Oportunia?", "Como aprendes rapidamente uma stack nova?").
 
 ## Bloco G -- Legitimidade da Oferta e Conformidade Laboral (Portugal)
@@ -154,14 +154,14 @@ Avaliar a oferta relativamente a sinais de autenticidade e conformidade com a le
 1. **Frescura da Oferta:** data de publicação, estado do botão de candidatura, indícios de repost repetido em `data/scan-history.tsv`.
 2. **Qualidade da Descrição:** especificidade da stack técnica, realismo dos requisitos vs senioridade, rácio de texto substantivo vs chavões genéricos.
 3. **Estabilidade da Empresa / Layoffs:** pesquisa rápida de notícias sobre despedimentos coletivos ou congelamento de contratações no ano corrente.
-4. **Licenciamento de Empresas de Trabalho Temporário (IEFP):** Se a vaga provier de uma agência de trabalho temporário ou colocação de pessoal, verificar `templates/agency-licensing.yml`. Informar que em Portugal as ETT carecem de autorização prévia obrigatória do IEFP (Lei n.º 19/2007 e DL n.º 260/2009) e disponibilizar a ligação ao registo oficial do IEFP (`https://www.iefp.pt/empresas-de-trabalho-temporario`).
+4. **Licenciamento de Empresas de Trabalho Temporário (IEFP):** Se a oferta provier de uma agência de trabalho temporário ou colocação de pessoal, verificar `templates/agency-licensing.yml`. Informar que em Portugal as ETT carecem de autorização prévia obrigatória do IEFP (Lei n.º 19/2007 e DL n.º 260/2009) e disponibilizar a ligação ao registo oficial do IEFP (`https://www.iefp.pt/empresas-de-trabalho-temporario`).
 5. **Conteúdo Proibido / Não Discriminação:** Verificar `templates/jurisdiction-prohibited-content.yml`. O art. 24.º do Código do Trabalho proíbe anúncios discriminatórios por idade ("até 35 anos"), estado civil, ausência de filhos ou encargos familiares, gravidez, etnia ou religião. Assinalar factualmente qualquer exigência restritiva encontrada.
 6. **Exigência Indevida de Cidadania / Nacionalidade:** Verificar `templates/immigration-status-requirements.yml`. No setor privado em Portugal, exigir "cidadania portuguesa obrigatória" constitui discriminação ilícita por nacionalidade (art. 24.º CT e Reg. UE 492/2011). Perguntas sobre autorização legal de residência/trabalho são legítimas e legais.
 7. **Triagem por IA e Decisões Automatizadas:** Verificar `templates/jurisdiction-ai-screening-disclosure.yml`. Ao abrigo do art. 22.º do RGPD e orientações da CNPD, candidatos sujeitos a avaliação automatizada com efeitos relevantes têm direito a informação prévia sobre a lógica do tratamento e direito a intervenção humana.
 8. **Ajudas de Custo como Parcela Salarial:** Se a JD referir ajudas de custo, kms ou deslocações como atrativo remuneratório regular, emitir o alerta sobre a perda de direitos sociais (baixas, pensão, subsídios de férias e Natal).
 9. **Consultora sem Revelação de Cliente:** Se for intermediário sem identificação do cliente final ("o nosso cliente"), classificar tipo como consultora, fiabilidade `Low` e recomendar apurar a entidade de colocação antes de testes técnicos exaustivos.
 10. **Estágio Profissional IEFP Disfarçado:** Se referir estágio profissional ou medida ATIVAR.PT, explicitar o valor tabelado por lei (fixado no IAS) e questionar a perspetiva de conversão em Contrato Sem Termo.
-11. **Limites do Período Experimental:** Se estipular período de experiência superior aos limites imperativos do art. 112.º do Código do Trabalho (máx. 90 dias geral; 180 dias primeiro emprego / elevada complexidade; 240 dias quadros superiores), assinalar a nulidade do excesso temporal.
+11. **Limites do Período Experimental:** Se estipular período experimental superior aos limites imperativos do art. 112.º do Código do Trabalho (máx. 90 dias geral; 180 dias primeiro emprego / elevada complexidade; 240 dias quadros superiores), assinalar a nulidade do excesso temporal.
 
 ---
 
@@ -169,9 +169,9 @@ Avaliar a oferta relativamente a sinais de autenticidade e conformidade com a le
 
 **SEMPRE** após gerar os blocos A-G:
 
-### 1. Salvar report .md
+### 1. Guardar relatório .md
 
-Salvar avaliação completa em `reports/{###}-{company-slug}-{YYYY-MM-DD}.md`.
+Gravar avaliação completa em `reports/{###}-{company-slug}-{YYYY-MM-DD}.md`.
 
 - `{###}` = próximo número sequencial (3 dígitos, zero-padded). Reservar atomicamente via `node reserve-report-num.mjs`, escrever o relatório, e libertar o sentinel via `node reserve-report-num.mjs --release {###}`.
 - `{company-slug}` = nome da empresa em minúsculas, com hífen em vez de espaços.
@@ -180,17 +180,17 @@ Salvar avaliação completa em `reports/{###}-{company-slug}-{YYYY-MM-DD}.md`.
 **Formato do report:**
 
 ```markdown
-# Avaliação: {Empresa} -- {Vaga}
+# Avaliação: {Empresa} -- {Cargo/Função}
 
 **Data:** {YYYY-MM-DD}
 **Arquétipo:** {detectado}
 **Score:** {X/5}
-**URL:** {URL da vaga}
+**URL:** {URL da oferta}
 **PDF:** {caminho ou pendente}
 
 ---
 
-## A) Resumo da Vaga
+## A) Resumo da Oferta
 (conteúdo completo do bloco A)
 
 ## B) Match com o Currículo
@@ -199,7 +199,7 @@ Salvar avaliação completa em `reports/{###}-{company-slug}-{YYYY-MM-DD}.md`.
 ## C) Nível e Estratégia
 (conteúdo completo do bloco C)
 
-## D) Remuneração e Demanda
+## D) Remuneração e Procura de Mercado
 (conteúdo completo do bloco D, incluindo decomposição e comparação B2B vs CST)
 
 ## E) Plano de Personalização

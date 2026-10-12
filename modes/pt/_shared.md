@@ -29,7 +29,7 @@
 |---------|---------|--------|
 | cv.md | `cv.md` (raiz do projeto) | SEMPRE |
 | article-digest.md | `article-digest.md` (se existir) | SEMPRE (proof points detalhados) |
-| profile.yml | `config/profile.yml` | SEMPRE (identidade e vagas-alvo) |
+| profile.yml | `config/profile.yml` | SEMPRE (identidade e ofertas/funções-alvo) |
 | _profile.md | `modes/_profile.md` | SEMPRE (arquétipos, narrativa e negociação do utilizador) |
 
 **REGRA: NUNCA faças hardcode de métricas de proof points.** Lê-as sempre do `cv.md` e do `article-digest.md` no momento da avaliação.
@@ -44,7 +44,7 @@
 **Regras Salariais Portugal (PT-PT):**
 - O salário anual bruto (SBA) é pago a 14 meses (12 meses de vencimento + subsídio de férias + subsídio de Natal).
 - A IA deve detetar e extrair ativamente os benefícios PT: Subsídio de Alimentação, Ajudas de Custo, Seguro de Saúde.
-- **Atenção Consultoras / Outsourcing:** Se a vaga não revelar o cliente final, classifica a confiança como "Low" e alerta sobre o uso de "Ajudas de Custo" que reduzem artificialmente o salário base.
+- **Atenção Consultoras / Outsourcing:** Se a oferta não revelar o cliente final, classifica a confiança como "Low" e alerta sobre o uso de "Ajudas de Custo" que reduzem artificialmente o salário base.
 - **Salário Bruto vs Líquido:** A IA deve aconselhar o candidato a pedir sempre uma simulação do Salário Líquido (devido à retenção de IRS).
 - **Contratos:** É essencial distinguir entre Contrato Sem Termo e B2B (Recibos Verdes).
 
@@ -55,17 +55,17 @@ A avaliação utiliza 6 blocos (A-F) com uma nota global de 1 a 5:
 | Dimensão | O que avalia |
 |----------|------------|
 | Match com o CV | Competências, experiência e alinhamento de proof points |
-| Alinhamento North Star | Quão bem a vaga se enquadra nos arquétipos-alvo do utilizador (definidos em `_profile.md`) |
+| Alinhamento North Star | Quão bem a oferta se enquadra nos arquétipos-alvo do utilizador (definidos em `_profile.md`) |
 | Remuneração | Salário vs mercado (5=quartil superior, 1=muito abaixo) |
 | Sinais culturais | Cultura da empresa, crescimento, estabilidade, e política de trabalho remoto |
 | Red flags | Bloqueadores e alertas (ajustes negativos) |
 | **Global** | Média ponderada dos pontos acima |
 
 **Interpretação da nota:**
-- 4.5+ → Match forte, recomendado aplicar imediatamente
-- 4.0-4.4 → Bom match, vale a pena aplicar
-- 3.5-3.9 → Razoável, mas não ideal; aplicar apenas se houver um motivo específico
-- Abaixo de 3.5 → Recomendado não aplicar (vê Ethical Use no AGENTS.md)
+- 4.5+ → Match forte, recomendado candidatares-te imediatamente
+- 4.0-4.4 → Bom match, vale a pena candidatares-te
+- 3.5-3.9 → Razoável, mas não ideal; candidatares-te apenas se houver um motivo específico
+- Abaixo de 3.5 → Recomendado não avançar com a candidatura (vê Ethical Use no AGENTS.md)
 
 ### Ajustes de Pontuação e Red Flags para o Mercado Português:
 - **B2B com remuneração inferior a +35% do CST equivalente:** Score de Remuneração limitado a **3.0/5** (não compensa a ausência de 14 meses, férias pagas e encargos de Segurança Social e seguros).
@@ -75,9 +75,9 @@ A avaliação utiliza 6 blocos (A-F) com uma nota global de 1 a 5:
 - **Período experimental superior aos limites do Código do Trabalho (art. 112.º CT):** Red flag jurídica explícita no Bloco G + penalização de -0.5 em Sinais Culturais / Contratuais.
 - **Ausência de Seguro de Saúde em regime Sem Termo para empresa tech/multinacional:** Alerta e penalização de -0.5 na Remuneração.
 
-## North Star -- Vagas-Alvo
+## North Star -- Funções e Ofertas-Alvo
 
-A skill trata TODAS as vagas-alvo com a mesma importância. Nenhuma é primária ou secundária — qualquer uma é uma vitória, desde que a remuneração e a perspetiva de crescimento sejam adequadas:
+A skill trata TODAS as ofertas/funções-alvo com a mesma importância. Nenhuma é primária ou secundária — qualquer uma é uma vitória, desde que a remuneração e a perspetiva de crescimento sejam adequadas:
 
 | Arquétipo | Eixos temáticos | O que as empresas procuram |
 |-----------|-----------------|----------------------|
@@ -92,7 +92,7 @@ A skill trata TODAS as vagas-alvo com a mesma importância. Nenhuma é primária
 
 > **Métricas concretas: devem ser sempre lidas do `cv.md` e do `article-digest.md` no momento da avaliação. NUNCA faças hardcode aqui.**
 
-| Se a vaga for... | Enfatiza no candidato... | Fontes de Proof Points |
+| Se a função/oferta for... | Enfatiza no candidato... | Fontes de Proof Points |
 |----------------|--------------------------|------------------------|
 | Full-Stack Developer | React/Next.js + TypeScript (Portfólio), Python/Flask (Oportunia), Node.js | cv.md + GitHub |
 | Cloud / DevOps | Azure end-to-end (Oportunia): App Service, Functions, CosmosDB, Bicep, CI/CD | cv.md |
@@ -104,14 +104,14 @@ A skill trata TODAS as vagas-alvo com a mesma importância. Nenhuma é primária
 ### Narrativa de Entrada / Transição (usar em TODOS os framings)
 
 Usa a narrativa do `config/profile.yml` e `modes/_profile.md` para enquadrar TODO o conteúdo:
-- **Nos Resumos em PDF:** Conecta a formação académica à vaga — "Finalista de Engenharia Informática no IPCB com experiência prática demonstrável em [stack da vaga] através de projetos end-to-end."
+- **Nos Resumos em PDF:** Conecta a formação académica à oferta — "Finalista de Engenharia Informática no IPCB com experiência prática demonstrável em [stack da oferta] através de projetos end-to-end."
 - **Nas histórias STAR:** Foca nos desafios reais superados no VisitAR (arquitetura offline, geofencing) e no Oportunia (liderança técnica de 3 pessoas, cloud Azure, GPT-4o).
 - **Nas respostas de rascunho (Bloco G):** Destaca prontidão técnica, autonomia, espírito de equipa e vontade de aprender.
-- **Quando a vaga menciona "ownership", "proativo", "vontade de aprender", "rigor":** São diferenciais naturais para recém-licenciados. Destaca-os.
+- **Quando a oferta menciona "ownership", "proativo", "vontade de aprender", "rigor":** São diferenciais naturais para recém-licenciados. Destaca-os.
 
 ### Vantagem Transversal
 
-Posiciona o perfil como **"Engenheiro Informático com projetos reais e mentalidade prática"**, ajustando o enquadramento à vaga:
+Posiciona o perfil como **"Engenheiro Informático com projetos reais e mentalidade prática"**, ajustando o enquadramento à função/oferta:
 - Para Desenvolvimento Web: "Código limpo, tipagem forte (TypeScript) e foco na experiência de utilização."
 - Para Cloud/DevOps: "Mentalidade de automação desde o primeiro dia: IaC com Bicep e pipelines CI/CD automatizados."
 - Para IA Aplicada: "Integração prática de LLMs orientada a resolver problemas reais de negócio."
@@ -125,24 +125,24 @@ O posicionamento de "Builder" serve como um selo de profissionalismo — e não 
      dashboard:
        url: "https://oteudominio.dev/demo"
        password: "demo-2026"
-       when_to_share: "LLMOps, AI-Platform, vagas de Observability"
+       when_to_share: "LLMOps, AI-Platform, ofertas de Observability"
      Lido de config/profile.yml -> narrative.proof_points e narrative.dashboard -->
 
 Quando o candidato possuir uma demo ao vivo / dashboard (verifica o `profile.yml`), oferece o acesso nas candidaturas que sejam relevantes.
 
 ### Inteligência de Remuneração (Comp Intelligence)
 
-<!-- [PERSONALIZAR] Pesquisa faixas salariais para as tuas vagas-alvo e ajusta os valores -->
+<!-- [PERSONALIZAR] Pesquisa intervalos salariais para as tuas funções-alvo e ajusta os valores -->
 
 **Orientações gerais:**
 - Usa o WebSearch para obter dados de mercado atuais (Glassdoor, Levels.fyi, Teamlyzer).
-- O enquadramento deve ser feito pelo título da vaga, e não pelas competências — são os títulos que ditam as faixas salariais.
+- O enquadramento deve ser feito pelo título da função/oferta, e não pelas competências — são os títulos que ditam os intervalos salariais.
 - As tarifas de freelance (B2B) situam-se geralmente 30-60% acima do valor hora bruto de um Contrato Sem Termo (para cobrir encargos, férias, Segurança Social, contabilista).
-- A geo-arbitragem é vantajosa em vagas remotas: menor custo de vida = maior rendimento líquido.
+- A geo-arbitragem é vantajosa em ofertas remotas: menor custo de vida = maior rendimento líquido.
 
 ### Mercado Português -- Especificidades (IMPORTANTE)
 
-Em vagas e negociações relativas ao mercado português, existem termos e práticas ausentes nos mercados EN/ES/DE. Estes aspetos DEVEM ser tidos em conta e avaliados com precisão:
+Em ofertas e negociações relativas ao mercado português, existem termos e práticas ausentes nos mercados EN/ES/DE. Estes aspetos DEVEM ser tidos em conta e avaliados com precisão:
 
 | Termo | Significado | Impacto na Avaliação |
 |-------|-------------|----------------------|
@@ -153,14 +153,14 @@ Em vagas e negociações relativas ao mercado português, existem termos e prát
 | **Subsídio de Alimentação** | Valor diário pago em dinheiro ou em cartão de refeição (isento de impostos até certo limite) | Muito comum no Contrato Sem Termo, podendo chegar a €160+/mês líquidos. Deve sempre ser incluído no cálculo do pacote total. |
 | **Prémio Anual / Bónus** | Bónus associado ao desempenho individual ou da empresa | Variável — deve ser avaliado com cautela pois não é garantido. |
 | **Stock Options** | Ações da empresa ou opções de compra | Comum em startups portuguesas e unicórnios. Analisa os períodos de vesting, cliff e liquidez real. |
-| **Período à Experiência** | Tipicamente 90 a 180 dias para o Contrato Sem Termo | É uma prática padrão no mercado regulado pelo Código do Trabalho; não constitui uma red flag. |
+| **Período Experimental** | Tipicamente 90 a 180 dias para o Contrato Sem Termo (art. 112.º CT) | É uma prática padrão no mercado regulado pelo Código do Trabalho; não constitui uma red flag. |
 | **Aviso Prévio** | 30 a 60 dias mediante o Código do Trabalho | O candidato deve planear a sua data de início com base nesta obrigatoriedade no seu atual emprego. |
 | **Seguro de Saúde** | Cobertura médica privada (ex: Médis, Multicare, AdvanceCare) | Altamente valorizado em Portugal dadas as debilidades do serviço público. A ausência de seguro de saúde num pacote de Contrato Sem Termo é uma forte red flag. |
 | **Ajudas de Custo (Esquemas de Faturação)** | Pagamentos não sujeitos a impostos frequentemente usados por Consultoras para inflacionar o valor líquido | Analisa sempre com extrema cautela — inflaciona o líquido a curto prazo, mas destrói os descontos reais para a Segurança Social, reformas, baixas e acesso a crédito habitação. |
 
 ### Mercado Europeu Remoto (EU Remote / Cross-Border)
 
-Ao avaliar vagas remotas de empresas sediadas no estrangeiro (UK, Alemanha, Países Baixos, Irlanda, Suíça, Nórdicos, etc.):
+Ao avaliar ofertas remotas de empresas sediadas no estrangeiro (UK, Alemanha, Países Baixos, Irlanda, Suíça, Nórdicos, etc.):
 
 | Modelo Contratual | Como Funciona em Portugal | Vantagens / Atenção |
 |-------------------|--------------------------|---------------------|
@@ -173,13 +173,13 @@ Ao avaliar vagas remotas de empresas sediadas no estrangeiro (UK, Alemanha, Paí
 <!-- [PERSONALIZAR] Adapta para a tua situação -->
 
 **Expectativa salarial (estrutura geral):**
-> "Tendo por base os dados atuais do mercado para este nível de responsabilidade, a minha expectativa situa-se na faixa de [FAIXA do profile.yml]. Tenho flexibilidade na estrutura — o que realmente valorizo é o pacote total de compensação e a perspetiva de progressão de carreira."
+> "Tendo por base os dados atuais do mercado para este nível de responsabilidade, a minha expectativa situa-se no intervalo de [INTERVALO do profile.yml]. Tenho flexibilidade na estrutura — o que realmente valorizo é o pacote total de compensação e a perspetiva de progressão de carreira."
 
 **Rejeição de desconto por localização (Geo-desconto):**
-> "O meu interesse nestas vagas baseia-se num modelo orientado aos resultados e não à minha localização geográfica. O valor do impacto e da experiência que aporto não se altera com o meu código postal."
+> "O meu interesse nestas ofertas baseia-se num modelo orientado aos resultados e não à minha localização geográfica. O valor do impacto e da experiência que aporto não se altera com o meu código postal."
 
 **Quando a oferta se encontra abaixo do objetivo:**
-> "Estou neste momento a ponderar ofertas na faixa de [faixa mais alta]. A vossa equipa atrai-me particularmente por [motivo]. Existe margem para chegarmos aos [valor-alvo] em conjunto?"
+> "Estou neste momento a ponderar ofertas no intervalo de [intervalo mais alto]. A vossa equipa atrai-me particularmente por [motivo]. Existe margem para chegarmos aos [valor-alvo] em conjunto?"
 
 **Contrato Sem Termo vs B2B / Recibos Verdes:**
 > "Para fazermos uma comparação fidedigna e justa, preciso de compreender a composição integral da proposta: salário base, os dois subsídios extra (14 meses), férias, contribuições para a Segurança Social, subsídio de alimentação, seguro de saúde e prémios anuais. No cenário de B2B, qual seria o valor mensal ou diário equivalente que cobriria todas estas parcelas?"
@@ -193,8 +193,8 @@ Ao avaliar vagas remotas de empresas sediadas no estrangeiro (UK, Alemanha, Paí
 - Em campos de texto livre: informa explicitamente o fuso horário e a tua disponibilidade real.
 
 **Em avaliações (Scoring):**
-- A dimensão remota num regime híbrido que implique deslocações para fora do teu país ou estado: Score **3.0** (não 1.0)
-- Aplica o Score 1.0 apenas se a vaga exigir de forma estrita a presença física "4-5 dias/semana, sem exceções".
+- A dimensão remota num regime híbrido que implique deslocações para fora do teu país ou distrito/região autónoma: Score **3.0** (não 1.0)
+- Aplica o Score 1.0 apenas se a oferta exigir de forma estrita a presença física "4-5 dias/semana, sem exceções".
 
 ### Prioridade Time-to-Offer
 - Uma demonstração (demo) funcional acompanhada de métricas tem mais valor que a perfeição absoluta
@@ -212,21 +212,21 @@ Ao avaliar vagas remotas de empresas sediadas no estrangeiro (UK, Alemanha, Paí
 3. Submetas ou envies candidaturas em nome do candidato
 4. Partilhes o número de telefone em mensagens geradas automaticamente
 5. Recomendes aceitar compensações que estejam abaixo do valor de mercado
-6. Geres um PDF de currículo sem teres lido e escrutinado a descrição da vaga
+6. Geres um PDF de currículo sem teres lido e escrutinado a descrição da oferta
 7. Uses jargão corporativo bacoco ou forçado
-8. Ignores o tracker (absolutamente toda e qualquer vaga avaliada tem de ser registada)
+8. Ignores o tracker (absolutamente toda e qualquer oferta avaliada tem de ser registada)
 
 ### SEMPRE
 
-0. **Carta de apresentação:** Se o formulário permitir ou sugerir anexar uma carta, inclui SEMPRE uma. Esta deve seguir o mesmo design e estrutura visual do currículo em PDF. Conteúdo: faz a ligação entre citações diretas da descrição da vaga e os proof points reais do candidato, e inclui links para os case studies relevantes. Máximo de 1 página.
-1. Lê exaustivamente o `cv.md`, o `_profile.md` e o `article-digest.md` (caso exista) antes de avaliares qualquer vaga
+0. **Carta de apresentação:** Se o formulário permitir ou sugerir anexar uma carta, inclui SEMPRE uma. Esta deve seguir o mesmo design e estrutura visual do currículo em PDF. Conteúdo: faz a ligação entre citações diretas da descrição da oferta e os proof points reais do candidato, e inclui links para os case studies relevantes. Máximo de 1 página.
+1. Lê exaustivamente o `cv.md`, o `_profile.md` e o `article-digest.md` (caso exista) antes de avaliares qualquer oferta
 1b. **Na primeira avaliação de cada sessão:** Executa `node cv-sync-check.mjs` via Bash. Se existirem avisos, informa imediatamente o candidato antes de prosseguires
-2. Deteta o arquétipo da vaga e ajusta a narrativa de acordo com o `_profile.md`
+2. Deteta o arquétipo da oferta e ajusta a narrativa de acordo com o `_profile.md`
 3. Quando fizeres correspondência de perfil (matching), cita com rigor as linhas exatas do currículo
 4. Usa o WebSearch para cruzar dados atualizados de remuneração e analisar a empresa
 5. Regista a avaliação no tracker no fim do processo
-6. Gera sempre o conteúdo no idioma da descrição da vaga (PT-PT por omissão para este mercado)
-7. Sê pragmático, direto e objetivo — elimina o ruído ("sem enrolação")
+6. Gera sempre o conteúdo no idioma da descrição da oferta (PT-PT por omissão para este mercado)
+7. Sê pragmático, direto e objetivo — elimina o ruído ("sem rodeios" / "direto ao assunto")
 8. Ao gerar texto em português (PDF summaries, *bullets*, mensagens de LinkedIn, histórias STAR): usa um português tecnológico natural, não uma tradução académica. Frases curtas, uso de verbos de ação, evita a voz passiva. Termos puramente técnicos e amplamente consolidados (ex: stack, pipeline, deployment, embedding) não devem ser traduzidos para português.
 8b. **URLs de case studies no resumo profissional do PDF:** Caso o PDF mencione case studies ou demos, os respetivos URLs DEVEM surgir logo no primeiro parágrafo (Resumo Profissional), pois os recrutadores muitas vezes limitam a leitura ao topo do currículo. Todos os URLs gerados em HTML devem conter a propriedade `white-space: nowrap`
 9. **Entradas no tracker via ficheiros TSV** — NUNCA edites o ficheiro `applications.md` diretamente para novos registos. Deves escrever no formato TSV em `batch/tracker-additions/`, e o script `merge-tracker.mjs` tratará da consolidação e do *merge*. Garante que escreves primeiro uma linha com os **nomes das colunas** e, logo a seguir, exatamente uma única linha com os dados correspondentes (consulta AGENTS.md, secção «TSV Format for Tracker Additions»). É essa linha de cabeçalho que possibilita ao `merge-tracker.mjs` mapear corretamente cada campo sem ter de adivinhar onde está o *score* e onde está o *status*.
@@ -236,9 +236,9 @@ Ao avaliar vagas remotas de empresas sediadas no estrangeiro (UK, Alemanha, Paí
 
 | Ferramenta | Uso Adequado |
 |------|-----|
-| WebSearch | Investigação de remuneração, cultura organizacional, captura de perfis no LinkedIn, e plano B para descrições de vagas. |
-| WebFetch | Plano B para extrair descrições de vagas presentes em páginas web estáticas. |
-| Playwright | Confirmação da liveness e disponibilidade de vagas (browser_navigate + browser_snapshot), e extração de JDs em SPAs. **CRÍTICO: NUNCA inicies dois ou mais agentes em paralelo a usar Playwright — estes conflituarão pois partilham a mesma sessão do navegador.** |
+| WebSearch | Investigação de remuneração, cultura organizacional, captura de perfis no LinkedIn, e plano B para descrições de ofertas. |
+| WebFetch | Plano B para extrair descrições de ofertas presentes em páginas web estáticas. |
+| Playwright | Confirmação da liveness e disponibilidade de ofertas (browser_navigate + browser_snapshot), e extração de JDs em SPAs. **CRÍTICO: NUNCA inicies dois ou mais agentes em paralelo a usar Playwright — estes conflituarão pois partilham a mesma sessão do navegador.** |
 | Read | Leitura dos ficheiros `cv.md`, `_profile.md`, `article-digest.md`, `cv-template.html`. |
 | Write | Criação de HTML temporário para a posterior geração de PDFs, ficheiros de reports `.md`, e a escrita de TSV para o `batch/tracker-additions/`. |
 | Edit | Ajustes pontuais de conteúdo já existente (não deves usar esta tool para criar registos totalmente novos no tracker). |

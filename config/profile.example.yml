@@ -14,11 +14,11 @@ candidate:
   # avoid reporting your own address as somebody to chase, when a tracker note happens to cite it.
   # alternate_emails:
   #   - "jane@previous-employer.example"
-  phone: "+1-555-0123"
+  phone: "+351 912 345 678"
   # Optional. Used by `/career-ops email` contact blocks in markets where WeChat
   # is an expected recruiting channel. Omit or leave blank if not applicable.
   wechat: ""
-  location: "San Francisco, CA"
+  location: "Lisboa, Portugal"
   linkedin: "linkedin.com/in/janesmith"
   portfolio_url: "https://janesmith.dev"
   github: "github.com/janesmith"
@@ -83,15 +83,15 @@ compensation:
   location_flexibility: "Remoto preferencial, 2 dias/semana no escritório possível"
 
 location:
-  country: "United States"
-  city: "San Francisco"
-  timezone: "PST"
-  visa_status: "No sponsorship needed"
+  country: "Portugal"
+  city: "Lisboa"
+  timezone: "Europe/Lisbon"
+  visa_status: "Cidadão UE / Sem necessidade de patrocínio"
   # Countries/regions where you ALREADY hold work authorization (no sponsorship
   # needed there). Drives the Work-Authorization signal in job evaluation
   # (modes/oferta.md → Block A "Work-authorization check"). Optional — omit or
   # leave [] if not applicable; the free-text visa_status above still applies.
-  authorized_in: ["United States"]
+  authorized_in: ["Portugal", "European Union"]
   # true if you need visa sponsorship for roles OUTSIDE authorized_in. When a JD
   # explicitly states it will not sponsor, that is a hard blocker (see
   # modes/_profile.md "Your Location Policy"). Omit → treated as false.
@@ -120,11 +120,11 @@ location:
 language:
   # Human-facing output language for reports, tracker notes, PDFs, cover
   # letters, outreach, and form answers. Use an ISO language code such as
-  # `en` or `zh-CN`; `zh-CN` also enables Chinese PDF typography rules.
+  # `pt-PT` or `en`.
   # This is separate from language.modes_dir: modes_dir selects market
   # vocabulary/rules, while output selects the prose language.
-  output: en
-  # modes_dir: modes/de  # optional: use DACH market vocabulary while still writing in English
+  output: pt-PT
+  modes_dir: modes/pt  # modos adaptados ao mercado de trabalho português
   # modes_dir can also be a LIST of declared candidate markets, for a
   # candidate genuinely running parallel campaigns in more than one market at
   # once (e.g. applying in both DACH and China simultaneously) — not for
@@ -155,9 +155,8 @@ spend_tier: standard
 
 # (Optional) Paper size for every generated PDF: "letter" or "a4".
 # One setting for the CV, the cover letter and the HTML body width, so they
-# cannot disagree. Absent means letter. An explicit --format flag or a payload
-# page_format still wins for a single render.
-# page_format: letter
+# cannot disagree. Absent means letter. Em Portugal e na Europa deve ser "a4".
+page_format: a4
 
 # (Optional) Visual theming for the generated CV and cover-letter PDFs (#1837).
 # Each token is injected as a CSS custom property that overrides the template
@@ -236,9 +235,9 @@ cv:
 # All fields are optional — omit any you don't need.
 
 cover_letter:
-  # Your notice period in calendar days. Surfaced as a prompt default when the
-  # JD requests an immediate start. The user confirms the actual value before it
-  # appears in the letter.
+  # Your notice period in calendar days (art. 400.º Código do Trabalho: 30 dias até 2 anos de antiguidade, 60 dias para mais de 2 anos).
+  # Surfaced as a prompt default when the JD requests an immediate start.
+  # The user confirms the actual value before it appears in the letter.
   notice_period_days: 30
   # Which cover-letter template to use by default. Kebab-case name of a file in
   # templates/ named cover-letter-template.<name>.html. Unset -> built-in
