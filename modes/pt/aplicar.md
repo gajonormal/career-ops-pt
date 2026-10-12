@@ -1,6 +1,6 @@
 # Modo: aplicar -- Assistente de Candidatura ao Vivo
 
-Modo interativo para quando o candidato está a preencher um formulário de candidatura no Chrome. Lê o que está na ecrã, carrega o contexto da avaliação prévia da vaga e gera respostas personalizadas para cada pergunta do formulário.
+Modo interativo para quando o candidato está a preencher um formulário de candidatura no Chrome. Lê o que está no ecrã, carrega o contexto da avaliação prévia da vaga e gera respostas personalizadas para cada pergunta do formulário.
 
 ## Requisitos
 
@@ -10,11 +10,11 @@ Modo interativo para quando o candidato está a preencher um formulário de cand
 ## Workflow
 
 ```
-1. DETECTAR    → Ler aba ativa do Chrome (screenshot/URL/título)
+1. DETECTAR    → Ler separador ativo do Chrome (screenshot/URL/título)
 2. IDENTIFICAR → Extrair empresa + vaga da página
 3. BUSCAR      → Match contra reports existentes em reports/
 4. CARREGAR    → Ler report completo + Bloco G (se existir)
-5. COMPARAR    → A vaga na ecrã coincide com a avaliada? Se mudou → avisar
+5. COMPARAR    → A vaga no ecrã coincide com a avaliada? Se mudou → avisar
 6. ANALISAR    → Identificar TODAS as perguntas visíveis do formulário
 7. GERAR       → Para cada pergunta, gerar resposta personalizada
 8. APRESENTAR  → Mostrar respostas formatadas para copy-paste
@@ -25,21 +25,21 @@ Modo interativo para quando o candidato está a preencher um formulário de cand
 **Com Playwright:** Tirar snapshot da página ativa. Ler título, URL e conteúdo visível.
 
 **Sem Playwright:** Pedir ao candidato que:
-- Compartilhe um screenshot do formulário (o Read tool lê imagens)
-- Ou cola as perguntas do formulário como texto
-- Ou diga empresa + vaga para buscarmos o contexto
+- Partilhe uma captura de ecrã do formulário (o Read tool lê imagens)
+- Ou cole as perguntas do formulário como texto
+- Ou indique empresa + vaga para procurarmos o contexto
 
 ## Passo 2 -- Identificar e buscar contexto
 
 1. Extrair nome da empresa e título da vaga da página
-2. Buscar em `reports/` pelo nome da empresa (Grep case-insensitive)
+2. Procurar em `reports/` pelo nome da empresa (Grep case-insensitive)
 3. Se houver match → carregar o report completo
 4. Se houver Bloco G → carregar os rascunhos de respostas anteriores como base
 5. Se NÃO houver match → avisar e oferecer executar auto-pipeline rápida
 
 ## Passo 3 -- Detectar mudanças na vaga
 
-Se a vaga na ecrã difere da avaliada:
+Se a vaga no ecrã diferir da avaliada:
 - **Avisar o candidato**: "A vaga mudou de [X] para [Y]. Quer que eu reavalie ou adapto as respostas ao novo título?"
 - **Se adaptar**: Ajustar as respostas ao novo título sem reavaliar
 - **Se reavaliar**: Executar avaliação completa A-F, atualizar report, regenerar Bloco G
@@ -48,10 +48,10 @@ Se a vaga na ecrã difere da avaliada:
 ## Passo 4 -- Analisar perguntas do formulário
 
 Identificar TODAS as perguntas visíveis:
-- Campos de texto livre (carta de apresentação, por que essa vaga, motivação, etc.)
-- Dropdowns (como ficou sabendo da vaga, autorização de trabalho, etc.)
+- Campos de texto livre (carta de apresentação, motivação, etc.)
+- Dropdowns (como tomou conhecimento da oferta, autorização de trabalho, etc.)
 - Sim/Não (mudança de cidade, visto, disponibilidade, etc.)
-- Campos de salário (faixa, pretensão salarial)
+- Campos de salário (faixa, expectativa salarial)
 - Campos de upload (currículo, carta de apresentação em PDF)
 
 Classificar cada pergunta:

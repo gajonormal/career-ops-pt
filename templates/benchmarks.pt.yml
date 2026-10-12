@@ -1,0 +1,39 @@
+# Career-Ops — Benchmarks de Calibração do Mercado Português (PT-PT)
+#
+# Referências direcionais de mercado adaptadas a Portugal.
+# Fontes: Teamlyzer Report 2024-2025, Hays Portugal Salary Guide 2024/2025,
+# Michael Page Talent Trends Portugal, LinkedIn Talent Solutions PT.
+# Métricas exclusivamente do lado do candidato (CANDIDATE-side).
+
+benchmarks:
+  response_rate:
+    denominator: per-application          # qualquer resposta do empregador / candidaturas enviadas
+    range_pct: [4, 18]                    # No mercado português, candidaturas direcionadas têm taxas superiores
+    typical_pct: 8
+    source: "Teamlyzer Report 2024-2025; estimativas comunitárias de recrutamento tech em Portugal"
+    year: 2025
+    caveat: "Mercado mais pequeno e de maior proximidade; candidaturas com CV adaptado e carta personalizada superam candidaturas em massa."
+
+  application_to_interview:
+    denominator: per-application
+    range_pct: [5, 15]                    # 1 entrevista por cada ~7 a 20 candidaturas
+    typical_pct: 8
+    source: "Hays Portugal Salary Guide 2025 & Teamlyzer Community Trends"
+    year: 2025
+    caveat: "Varia consideravelmente entre consultoras de outsourcing e clientes finais com equipas de engenharia próprias."
+
+  days_first_response:
+    denominator: per-application-with-response   # candidaturas com resposta efetiva
+    range_days: [5, 21]                   # 5 a 21 dias (processos em Portugal são tipicamente mais dilatados)
+    typical_days: 10
+    source: "Inquéritos à comunidade tech PT e dados agregados de plataformas de emprego (Teamlyzer/Landing.Jobs)"
+    year: 2025
+    caveat: "Consultoras respondem habitualmente em 3-7 dias; clientes finais e empresas públicas podem demorar 15-30 dias."
+
+  days_interview_to_offer:
+    denominator: per-successful-process
+    range_days: [14, 40]                  # 2 a 6 semanas desde a primeira entrevista até proposta formal
+    typical_days: 21
+    source: "Hays Portugal / Michael Page Portugal Recruitment Insights 2024-2025"
+    year: 2025
+    caveat: "Processos em consultoras costumam ser mais rápidos (1-2 fases); multinacionais demoram tipicamente 3 a 5 rondas."

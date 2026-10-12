@@ -45,3 +45,31 @@ reasons:
   - id: company_culture
     label: Company culture
     when: Culture, values, or working-model signals conflict with the candidate's stated preferences.
+
+  # ── Razões específicas do mercado português ─────────────────────────────────
+  # Estas razões são relevantes para candidatos em Portugal e refletem
+  # especificidades do mercado laboral português (CT, B2B, IEFP, etc.)
+
+  - id: b2b_only
+    label: B2B apenas (sem Contrato Sem Termo)
+    when: A vaga só oferece regime B2B (Recibos Verdes / faturação) e o candidato prefere Contrato Sem Termo com proteção laboral completa.
+
+  - id: ajudas_custo_dominantes
+    label: Remuneração maioritariamente Ajudas de Custo
+    when: O salário base fixo é baixo e a remuneração depende sobretudo de ajudas de custo não garantidas, que cessam em baixa médica ou desemprego e reduzem os descontos para a Segurança Social.
+
+  - id: estagio_iefp
+    label: Estágio IEFP (bolsa abaixo do target)
+    when: A vaga é um Estágio Profissional IEFP com bolsa fixada pelo Estado (atualmente €820/mês para nível superior) e sem perspetiva clara de contratação no final do estágio.
+
+  - id: cliente_nao_revelado
+    label: Cliente final não revelado (consultora / outsourcing)
+    when: A vaga é publicada por uma consultora ou empresa de outsourcing que não revela o cliente final, e o candidato não aceita este modelo de colocação.
+
+  - id: salario_minimo_nacional
+    label: Salário ao nível do SMN (abaixo do target)
+    when: A remuneração anunciada está ao nível do Salário Mínimo Nacional ou muito próximo, abaixo do mínimo aceite pelo candidato.
+
+  - id: periodo_experiencia_excessivo
+    label: Período à experiência excessivo (acima do legal)
+    when: A vaga indica um período à experiência superior a 180 dias para contrato Sem Termo, excedendo o máximo legal do Código do Trabalho (art. 111.º CT).

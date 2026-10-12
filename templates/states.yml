@@ -16,19 +16,19 @@
 states:
   - id: evaluated
     label: Evaluated
-    aliases: [evaluada, condicional, hold, evaluar, verificar, değerlendirildi, degerlendirildi]
+    aliases: [evaluada, condicional, hold, evaluar, verificar, değerlendirildi, degerlendirildi, avaliada, avaliado, avaliação, analisada, analisado]
     description: Oferta evaluated with report, pending decision
     dashboard_group: evaluated
 
   - id: applied
     label: Candidatura Enviada
-    aliases: [aplicado, enviada, aplicada, sent, başvuruldu, basvuruldu]
+    aliases: [aplicado, enviada, aplicada, sent, başvuruldu, basvuruldu, submetida, submetido, candidatada, candidatado, "candidatura enviada", "candidatura submetida"]
     description: Application submitted
     dashboard_group: applied
 
   - id: responded
     label: Responded
-    aliases: [respondido, "yanıt verildi", yanıt_verildi, "yanit verildi", yanit_verildi]
+    aliases: [respondido, "yanıt verildi", yanıt_verildi, "yanit verildi", yanit_verildi, respondida, "em contacto", contactada, contactado, "resposta recebida", contacto]
     description: Company has responded (not yet interview)
     dashboard_group: responded
 
@@ -54,21 +54,21 @@ states:
 
   - id: discarded
     label: Discarded
-    aliases: [descartado, descartada, cerrada, cancelada, "iptal edildi", iptal_edildi, "ıptal edildi", ıptal_edildi]
+    aliases: [descartado, descartada, cerrada, cancelada, "iptal edildi", iptal_edildi, "ıptal edildi", ıptal_edildi, arquivada, arquivado, "não avança", "sem interesse", descontinuada, descontinuado]
     description: Discarded by candidate or offer closed
     dashboard_group: discarded
     terminal: true
 
   - id: skip
     label: SKIP
-    aliases: [no_aplicar, no aplicar, skip, monitor, geo blocker, geo_blocker, "uygun değil", uygun_değil, "uygun degil", uygun_degil]
+    aliases: [no_aplicar, no aplicar, skip, monitor, geo blocker, geo_blocker, "uygun değil", uygun_değil, "uygun degil", uygun_degil, "não aplicar", ignorar, "sem interesse", "não candidatar", excluir]
     description: Doesn't fit, don't apply
     dashboard_group: skip
     terminal: true
 
   - id: hired
     label: Hired
-    aliases: [contratado, contratada, hired, accepted, accept, "kabul edildi", kabul_edildi, "işe alındı", "ise alindi", "işe alindi"]
+    aliases: [contratado, contratada, hired, accepted, accept, "kabul edildi", kabul_edildi, "işe alındı", "ise alindi", "işe alindi", colocado, colocada, "emprego aceite", "oferta aceite", "contrato assinado"]
     description: Oferta accepted, job landed!
     dashboard_group: hired
     terminal: true

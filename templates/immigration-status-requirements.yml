@@ -160,6 +160,48 @@ entries:
       - "Littler case commentary on Haseeb v. Imperial Oil"
     as_of: "2026-07-18"
 
+  - jurisdiction: PT
+    jurisdiction_name: "Portugal"
+    prohibited_requirement_patterns:
+      - pattern: "apenas cidadãos portugueses"
+        guidance: >-
+          Dispara quando o anúncio restringe a candidatura exclusivamente a cidadãos de
+          nacionalidade portuguesa (ou cidadãos nacionais) no setor privado, sem
+          enquadramento legal explícito. Abrange também formulações como "obrigatório ter
+          cidadania portuguesa" ou "nacionalidade portuguesa obrigatória".
+      - pattern: "nacionalidade da UE/EEE apenas"
+        guidance: >-
+          Dispara quando o anúncio exige cidadania de um país da UE/EEE em detrimento
+          de cidadãos de países terceiros que já sejam titulares de autorização de
+          residência válida com direito ao exercício de atividade profissional em Portugal.
+    lawful_screening_contrast: >-
+      Perguntar a qualquer candidato: "Tem autorização legal para trabalhar em Portugal?" ou
+      "Necessita de visto ou patrocínio para trabalhar em Portugal?" é legítimo e legal ao abrigo
+      da legislação laboral portuguesa e europeia. Perguntas sobre autorização de trabalho
+      não devem disparar este sinal. O empregador pode igualmente optar licitamente por não
+      patrocinar vistos.
+    exceptions: >-
+      Ao abrigo do art. 15.º, n.º 2 da Constituição da República Portuguesa (CRP) e do art. 17.º
+      da Lei Geral do Trabalho em Funções Públicas (LTFP — Lei n.º 35/2014), a exigência de
+      nacionalidade portuguesa é legítima para o exercício de funções públicas que envolvam o
+      exercício de poderes de autoridade pública (ex.: magistraturas, Forças Armadas, forças
+      de segurança e missões diplomáticas). No setor privado, não existem exceções legais gerais.
+    legal_basis: >-
+      Código do Trabalho, art. 24.º (proibição de discriminação por nacionalidade);
+      Regulamento (UE) n.º 492/2011 relativo à livre circulação dos trabalhadores;
+      Constituição da República Portuguesa, art. 15.º (princípio da equiparação) e art. 59.º;
+      Lei n.º 23/2007 (regime jurídico de entrada, permanência e saída de estrangeiros).
+    enforcement_notes: >-
+      A Autoridade para as Condições do Trabalho (ACT) e a Comissão para a Igualdade no
+      Trabalho e no Emprego (CITE) fiscalizam ativamente práticas laborais discriminatórias.
+      A discriminação no acesso ao emprego constitui contraordenação muito grave.
+    sources:
+      - "Código do Trabalho — art. 24.º (proibição de discriminação no acesso ao emprego)"
+      - "Constituição da República Portuguesa — art. 15.º e 59.º"
+      - "Regulamento (UE) n.º 492/2011 do Parlamento Europeu e do Conselho"
+      - "ACT — Autoridade para as Condições do Trabalho: pareceres sobre não discriminação"
+    as_of: "2026-10-12"
+
 # Known candidate rows for contributors — NOT entries yet. Each needs its own
 # verified statute citation, as_of date, AND a lawful_screening_contrast
 # (mandatory — see the contribution rule) before being promoted to an entry:

@@ -93,3 +93,21 @@ jurisdictions:
       - "https://www.gov.uk/government/organisations/employment-agency-standards-inspectorate — Employment Agency Standards (EAS) Inspectorate (DBT)"
     as_of: "2026-09-03"
 
+  PT:
+    jurisdiction_name: "Portugal"
+    licensing_required_for: temporary_help_agency   # ETT — Empresa de Trabalho Temporário
+    effective: "2007-05-22"   # data de publicação da Lei n.º 19/2007 no Diário da República
+    registry:
+      url: "https://www.iefp.pt/empresas-de-trabalho-temporario"
+      what_it_shows: "Lista oficial do IEFP com todas as Empresas de Trabalho Temporário autorizadas — pesquisável por nome, NIF e situação da autorização (ativa, suspensa, revogada)."
+    legal_basis: "Lei n.º 19/2007, de 22 de Maio (regime jurídico do trabalho temporário) + Decreto-Lei n.º 260/2009, de 25 de Setembro (alterações e atualização do regime) + Código do Trabalho, art. 172.º-ss."
+    client_side_prohibition: "A empresa utilizadora que ceda trabalhadores recorrendo a ETT não autorizada incorre em contraordenação muito grave (art. 175.º CT). A lei proíbe explicitamente a utilização de ETT sem autorização válida do IEFP."
+    penalties: "Contraordenação muito grave: coima entre €2.040 e €9.690 para empresa utilizadora (CT art. 175.º). A ETT não autorizada incorre também em contraordenação muito grave (montantes análogos). O IEFP pode ainda revogar ou suspender a autorização em qualquer momento."
+    transitional_notes: "A autorização é emitida pelo IEFP e tem validade determinada — verificar sempre a situação atual no portal do IEFP, pois uma autorização passada pode ter sido suspensa ou revogada. Processos de renovação em curso não estão publicamente acessíveis fora do registo oficial."
+    sources:
+      - "https://dre.pt/dre/detalhe/lei/19-2007-639824 — Lei n.º 19/2007, de 22 de Maio (Diário da República)"
+      - "https://dre.pt/dre/detalhe/decreto-lei/260-2009-490905 — DL n.º 260/2009, de 25 de Setembro"
+      - "https://www.iefp.pt/empresas-de-trabalho-temporario — IEFP: registo e lista de ETT autorizadas"
+      - "Código do Trabalho — art. 172.º a 192.º (trabalho temporário) e art. 175.º (contraordenações)"
+    as_of: "2026-10-12"
+

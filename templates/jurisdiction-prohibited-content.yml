@@ -77,6 +77,67 @@ entries:
       - "Ogletree Deakins analysis of California Labor Code 432.3 salary history inquiry ban (AB 168)"
       - "Jackson Lewis guidance on California's salary history ban effective January 1, 2018"
 
+  - jurisdiction: PT
+    jurisdiction_name: "Portugal"
+    prohibited: >-
+      Requisitos ou preferências que constituam discriminação direta ou indireta
+      com base em critérios protegidos pelo Código do Trabalho em anúncios de
+      emprego publicamente divulgados. Inclui: restrições por faixa etária (ex:
+      "até 35 anos", "jovem"), estado civil, parentalidade ou gravidez, origem
+      étnica, religião ou orientação sexual.
+    matching: >-
+      Dispara quando o anúncio restringe explicitamente candidaturas por
+      critérios protegidos: limite etário numérico ("candidatos até 35 anos",
+      "jovens até 30 anos"), estado civil ("candidato solteiro"), disponibilidade
+      formulada como ausência de filhos ou encargos familiares ("disponibilidade
+      total sem compromissos familiares", "sem filhos a cargo"), indicadores
+      de gravidez ou maternidade proibidos.
+      NÃO dispara em: requisitos de experiência genérica expressos em anos
+      ("2-3 anos de experiência"), disponibilidade geográfica ou mobilidade,
+      competências técnicas, disponibilidade horária ou em regime de turno
+      quando ligada à função (ex: trabalho noturno em posto de segurança).
+      Julgamento de agente obrigatório — nunca keyword-matching ingénuo.
+    legal_basis: >-
+      Código do Trabalho, art. 23.º (conceito de discriminação) e art. 24.º
+      (proibição de discriminação — Lei n.º 7/2009 de 12 de Fevereiro e
+      subsequentes alterações); Lei n.º 93/2017 de 23 de Agosto (regime
+      jurídico da não discriminação no emprego)
+    effective: "2009-02-12"
+    sources:
+      - "Código do Trabalho — art. 23.º e 24.º (proibição de discriminação)"
+      - "Lei n.º 93/2017, de 23 de Agosto (Diário da República — regime jurídico da não discriminação)"
+      - "ACT — Autoridade para as Condições do Trabalho: guia de não discriminação no acesso ao emprego"
+      - "https://dre.pt/dre/detalhe/lei/7-2009-602073 — Código do Trabalho (versão consolidada)"
+
+  - jurisdiction: PT
+    jurisdiction_name: "Portugal — Historial Salarial"
+    prohibited: >-
+      Pedido do historial salarial do candidato (salário atual ou anterior)
+      como requisito ou condição de candidatura em anúncio publicamente divulgado.
+    matching: >-
+      Dispara quando o anúncio ou formulário de candidatura pede explicitamente
+      o salário atual ou anterior do candidato como dado obrigatório (ex: "indique
+      o seu salário atual", "salary history required", "IRS do último ano").
+      NÃO dispara em: pedido de expectativa salarial ou pretensão (lawful),
+      campos opcionais de pretensão salarial, ou perguntas sobre o pacote
+      desejado — apenas o historial é problemático.
+      Nota: em Portugal não existe lei específica que proíba explicitamente o
+      pedido de historial salarial (ao contrário da CA ou de NY), mas a
+      Comissão Nacional de Proteção de Dados (CNPD) considera este dado
+      sensível ao abrigo do RGPD quando usado para discriminar. Julgamento
+      de agente obrigatório.
+    legal_basis: >-
+      RGPD (Regulamento UE 2016/679), art. 5.º (princípio da minimização
+      dos dados) e art. 6.º (licitude do tratamento); Lei n.º 58/2019 de
+      8 de Agosto (execução do RGPD em Portugal); Código do Trabalho,
+      art. 17.º (reserva da vida privada do trabalhador)
+    effective: "2018-05-25"
+    sources:
+      - "RGPD — art. 5.º, 6.º e 9.º (princípios e licitude do tratamento)"
+      - "Lei n.º 58/2019, de 8 de Agosto (execução do RGPD em Portugal)"
+      - "Código do Trabalho — art. 17.º (reserva da intimidade da vida privada)"
+      - "https://www.cnpd.pt — CNPD: orientações sobre proteção de dados no contexto laboral"
+
 # Known candidate rows for contributors — NOT entries yet. Each needs its own
 # verified statute citation + effective date + matching-scope check before
 # being promoted to an entry (scopes vary a lot; verify individually):

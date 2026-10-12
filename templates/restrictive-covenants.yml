@@ -116,3 +116,22 @@ covenants:
       - "Torys LLP bulletin — Working for Workers Act non-compete prohibition"
       - "Bennett Jones bulletin — Ontario ESA non-compete amendments"
     as_of: "2026-07-18"
+
+  - jurisdiction: PT
+    jurisdiction_name: "Portugal"
+    covenant_type: non_compete
+    status: allowed_with_mandatory_compensation
+    exceptions:
+      - "Nenhum pacto de não concorrência é válido sem compensação pecuniária autónoma paga ao trabalhador durante o período de limitação da atividade (art. 136.º, n.º 2, al. c) do CT)."
+      - "Prazo legal máximo imperativo de 2 anos após a cessação do contrato; admissível até 3 anos apenas para trabalhadores com acesso a segredos de negócio ou funções de particular complexidade/confiança (art. 136.º, n.º 1 e 2 CT)."
+    effective: "2009-02-12"
+    legal_basis: >-
+      Código do Trabalho (Lei n.º 7/2009), art. 136.º (pacto de não concorrência).
+      A cláusula é nula se não constar de documento escrito, se o empregador não
+      demonstrar risco de prejuízo efetivo, se não for atribuída compensação pecuniária
+      ao trabalhador para o período de restrição, ou se exceder os limites temporais legais.
+    sources:
+      - "https://dre.pt/dre/detalhe/lei/7-2009-602073 — Código do Trabalho, art. 136.º"
+      - "Jurisprudência uniforme do Supremo Tribunal de Justiça (STJ) sobre nulidade de pactos de não concorrência sem compensação pecuniária efetiva"
+      - "ACT — Autoridade para as Condições do Trabalho: pareceres sobre validade de cláusulas de não concorrência"
+    as_of: "2026-10-12"

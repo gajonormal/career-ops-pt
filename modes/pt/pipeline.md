@@ -1,12 +1,12 @@
 # Modo: pipeline -- Inbox de URLs (Second Brain)
 
-Processo URLs de vagas acumuladas em `data/pipeline.md`. O candidato adiciono URLs quando quiser e depois executa `/career-ops pipeline` para processar todas de uma vez.
+Processa URLs de ofertas acumuladas em `data/pipeline.md`. O candidato adiciona URLs quando desejar e depois executa `/career-ops pipeline` para processar todas em lote.
 
 ## Workflow
 
-1. **Ler** `data/pipeline.md` → buscar itens `- [ ]` na secção "Pendentes"
-2. **Para cado URL pendente**:
-   a. Reservar o próximo `REPORT_NUM` sequencial de forma atômica executando `node reserve-report-num.mjs` (e liberar o sentinel executando `node reserve-report-num.mjs --release <num>` após a gravação do relatório)
+1. **Ler** `data/pipeline.md` → procurar itens `- [ ]` na secção "Pendentes" (ou "Pending")
+2. **Para cada URL pendente**:
+   a. Reservar o próximo `REPORT_NUM` sequencial de forma atómica executando `node reserve-report-num.mjs` (e libertar o sentinel executando `node reserve-report-num.mjs --release <num>` após a gravação do relatório)
    b. **Extrair JD** usando Playwright (browser_navigate + browser_snapshot) → WebFetch → WebSearch
    c. Se o URL não for acessível → marcar como `- [!]` com nota e continuar
    d. **Executar auto-pipeline completa**: Avaliação A-F → Report .md → PDF (se score >= 3.0) → Tracker

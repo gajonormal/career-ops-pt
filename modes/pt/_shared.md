@@ -67,6 +67,14 @@ A avaliação utiliza 6 blocos (A-F) com uma nota global de 1 a 5:
 - 3.5-3.9 → Razoável, mas não ideal; aplicar apenas se houver um motivo específico
 - Abaixo de 3.5 → Recomendado não aplicar (vê Ethical Use no AGENTS.md)
 
+### Ajustes de Pontuação e Red Flags para o Mercado Português:
+- **B2B com remuneração inferior a +35% do CST equivalente:** Score de Remuneração limitado a **3.0/5** (não compensa a ausência de 14 meses, férias pagas e encargos de Segurança Social e seguros).
+- **Ajudas de Custo > 30% do pacote remuneratório:** Alerta obrigatório no Bloco D/G + Score de Remuneração limitado a **3.0/5**.
+- **Estágio IEFP (bolsa fixada por lei) para função regular:** Score de Remuneração **1.5/5** (a menos que o candidato procure expressamente estágio financiado de primeiro emprego).
+- **Consultora / Outsourcing sem identificação do cliente final:** Confiança salarial forçada a **Low** e penalização de -0.5 no Score Global (máximo **3.5/5** até confirmação do cliente).
+- **Período experimental superior aos limites do Código do Trabalho (art. 112.º CT):** Red flag jurídica explícita no Bloco G + penalização de -0.5 em Sinais Culturais / Contratuais.
+- **Ausência de Seguro de Saúde em regime Sem Termo para empresa tech/multinacional:** Alerta e penalização de -0.5 na Remuneração.
+
 ## North Star -- Vagas-Alvo
 
 A skill trata TODAS as vagas-alvo com a mesma importância. Nenhuma é primária ou secundária — qualquer uma é uma vitória, desde que a remuneração e a perspetiva de crescimento sejam adequadas:

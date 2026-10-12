@@ -218,3 +218,37 @@ jurisdictions:
       - "European Commission — AI Act regulatory framework policy page (digital-strategy.ec.europa.eu)"
       - "Reporting on the May 2026 Digital Omnibus provisional agreement deferring stand-alone Annex III high-risk obligations to 2027-12-02"
     as_of: "2026-08-14"
+
+  PT:
+    jurisdiction_name: "Portugal (RGPD / CNPD)"
+    law_name: "RGPD art. 22.º (Regulamento UE 2016/679) + Lei n.º 58/2019 (execução do RGPD em Portugal)"
+    applies_to: >-
+      Decisões individuais exclusivamente automatizadas, incluindo a definição de
+      perfis (profiling) e triagem algorítmica de candidaturas, que produzam efeitos
+      na esfera jurídica do candidato ou que o afetem de forma significativamente similar.
+    effective: "2018-05-25"
+    requires: >-
+      O responsável pelo tratamento (empregador/recrutador) deve prestar informações
+      claras e transparentes sobre a existência de decisões automatizadas, a lógica
+      subjacente envolvida, e as consequências previstas de tal tratamento. É
+      obrigatório garantir o direito a obter intervenção humana, a manifestar o seu
+      ponto de vista e a contestar a decisão (art. 22.º, n.º 3 do RGPD).
+    disclosure_language_examples:
+      - "decisão automatizada"
+      - "triagem automática com base em IA"
+      - "algoritmo de seleção"
+      - "processamento automatizado de candidaturas"
+      - "direito a intervenção humana"
+    official_source:
+      url: "https://www.cnpd.pt"
+      what_it_shows: "Orientações e deliberações da CNPD (Comissão Nacional de Proteção de Dados) sobre tratamento de dados no contexto de recrutamento e emprego."
+    legal_basis: "Regulamento (UE) 2016/679 (RGPD), art. 13.º(2)(f), art. 14.º(2)(g) e art. 22.º; Lei n.º 58/2019, de 8 de Agosto; Código do Trabalho, art. 17.º"
+    enforcement_notes: >-
+      A CNPD é a autoridade nacional de controlo com competência sancionatória para
+      aplicação de coimas em Portugal. A violação dos direitos do titular dos dados
+      relativos a decisões automatizadas constitui contraordenação muito grave.
+    sources:
+      - "https://dre.pt/dre/detalhe/lei/58-2019-123815982 — Lei n.º 58/2019, de 8 de Agosto"
+      - "Regulamento (UE) 2016/679 do Parlamento Europeu e do Conselho (RGPD)"
+      - "https://www.cnpd.pt — Comissão Nacional de Proteção de Dados"
+    as_of: "2026-10-12"

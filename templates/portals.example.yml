@@ -831,6 +831,27 @@ search_queries:
     query: '"GTM Engineer" OR "RevOps Engineer" OR "Growth Engineer" automation Airtable OR Make OR Clay remote'
     enabled: true
 
+  # -- Portais de Portugal (Tech, Júnior & Estágios) --
+  - name: ITJobs.pt — Recém-Licenciado e Júnior
+    query: 'site:itjobs.pt ("Junior" OR "recém-licenciado" OR "estágio") ("Software" OR "Informática")'
+    enabled: true
+
+  - name: Landing.jobs — Tech Portugal & Remoto
+    query: 'site:landing.jobs ("Software Engineer" OR "Developer" OR "Junior" OR "Full Stack") ("Lisbon" OR "Porto" OR "Remote")'
+    enabled: true
+
+  - name: Teamlyzer — Emprego Tech Portugal
+    query: 'site:teamlyzer.com ("Software Engineer" OR "Developer" OR "Junior" OR "Full Stack")'
+    enabled: true
+
+  - name: Net-Empregos — Informática e Programação
+    query: 'site:net-empregos.com ("Programador" OR "Software Engineer" OR "Informática" OR "Junior")'
+    enabled: true
+
+  - name: Emprego.pt / IEFP — Estágios e Tecnologia
+    query: 'site:iefp.pt OR site:emprego.pt ("Informática" OR "Software" OR "Programação" OR "Estágio Profissional")'
+    enabled: true
+
   # -- Remote-friendly Europe boards --
 
   - name: Remotive — AI/DevRel/SA/FDE

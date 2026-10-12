@@ -393,6 +393,7 @@ Every jurisdiction splits work into two buckets under different names: an "emplo
 | Canada | "T4A", "independent contractor", "self-employed", "invoice for services" |
 | US | "1099", "independent contractor", "W-2 not provided" |
 | UK | "self-employed", "umbrella company", "outside IR35" / "inside IR35" |
+| Portugal | "recibos verdes", "prestação de serviços", "B2B", "faturação mensal", "trabalhador independente" |
 | Other jurisdictions | "labour contract" vs "employment contract" phrasing, "service agreement", "consulting agreement" (e.g., 劳务合同 vs 劳动合同 in China) |
 
 Plus a jurisdiction-agnostic structural check — **"contract position" alone is not enough to trigger this**, since plenty of legitimate fixed-term *employee* roles use that phrase. Only flag when the JD has explicit contractor-status wording (asks the candidate to "invoice," or to operate as a "consultant"/"freelancer," rather than being "hired"/"employed") **and** at least one corroborating omission (no benefits language, no vacation/PTO mention, no defined end date, no standard employment-standards phrasing, no mention of statutory deductions/withholding).
@@ -427,6 +428,8 @@ Some JDs are copy-pasted from a template built for a different country's posting
 |---|---|---|
 | US only | "401(k)", "W-2 employment" | "PTO" — used in Canada and other jurisdictions too, so it never triggers this signal on its own; count it only when it appears alongside "401(k)" or "W-2 employment" in the same posting |
 | Canada only | "RRSP", "T4" | "Employment Standards Act" spelled out — the bare acronym "ESA" is ambiguous (collides with other jurisdictions' usage) and must never be matched on its own |
+| Portugal only | "14 meses", "subsídio de alimentação", "subsídio de refeição", "ajudas de custo" | "Código do Trabalho", "isenção de horário" |
+| Brazil only | "CLT", "PJ", "FGTS", "vale refeição", "vale transporte" | "carteira assinada" |
 
 Only flag when the JD's stated location is in jurisdiction A, but the benefits/employment section uses a strong marker exclusive to jurisdiction B, or a corroborating-only marker that co-occurs with a strong marker from jurisdiction B. A corroborating-only marker appearing by itself (e.g. "PTO" with no "401(k)"/"W-2," or a bare "ESA" with no expanded "Employment Standards Act") must never trigger this signal on its own. Generic terms ("health benefits," "retirement plan") should never trigger this on their own.
 
@@ -573,6 +576,44 @@ Then append one optional negotiation talking point:
 > **Compensation conversation:** [Render in {language.output}: "Because this role is explicitly fixed-term, consider asking how the total package accounts for the finite term, benefits coverage, renewal uncertainty, and transition risk at the end of the term. Contract roles commonly carry different compensation structures from equivalent permanent roles; verify current benchmarks for this market and role before choosing an anchor." Never state or invent a percentage premium, market rate, entitlement, or legal conclusion.]
 
 This signal is corroborating information only. It never changes the 1–5 Global Score, the High Confidence / Proceed with Caution / Suspicious tier, or the application recommendation; it never blocks or discourages an application. If no explicit fixed-term language is present, report the check as clear and do not generate the negotiation talking point.
+
+**17. Deteção de Ajudas de Custo como Componente Remuneratório** (PT-específico, do texto do JD; acionado quando `location` é Portugal ou a vaga é portuguesa):
+
+Em Portugal, é prática comum de certas consultoras e empresas de outsourcing oferecerem pacotes salariais com remuneração base baixa complementada por "ajudas de custo", "deslocações", "km em viatura própria" ou cartões flexíveis não sujeitos a retenção de IRS nem taxa social única (TSU/Segurança Social).
+
+Se a descrição da oferta mencionar "ajudas de custo", "subsídio de transporte/deslocação fixo", "km", "pacote flexível" como parte da remuneração regular mensal (e não como reembolso pontual de despesas profissionais comprovadas):
+
+> ⚠️ **Sinal de Ajudas de Custo (Portugal):** A oferta inclui menção a "ajudas de custo" ou parcelas isentas no pacote remuneratório ("{frase identificada}"). Em Portugal, estas componentes não estão sujeitas a IRS nem a descontos para a Segurança Social, o que eleva artificialmente o valor líquido imediato, mas não contam para o cálculo dos 14 meses (subsídios de férias e Natal), baixas médicas, licenças de parentalidade, subsídio de desemprego, pensão de reforma futura e avaliação bancária de solvabilidade (crédito habitação). Recomenda-se apurar junto da empresa qual a fração estrita de **salário base garantido no contrato de trabalho**.
+
+**18. Consultora / Outsourcing sem Revelação de Cliente Final** (PT-específico, do texto do JD; acionado quando a vaga é em Portugal):
+
+Muitas ofertas publicadas no mercado português são da autoria de empresas de consultoria/recrutamento que colocam o profissional em clientes terceiros sem divulgar a entidade final ("o nosso cliente", "cliente de referência", "prestigiada empresa multinacional").
+
+Se a entidade recrutadora for uma consultora/empresa de serviços e o texto ocultar o nome do cliente final:
+- Classificar a empresa como `Agency / outsourcing / consulting vendor`.
+- Definir a Confiança de Remuneração como `Low` por omissão, a menos que existam dados públicos auditados para a própria consultora.
+- Incluir a nota:
+
+> ℹ️ **Intermediário / Cliente Final Não Revelado:** A oferta omite o nome do empregador final ou projeto de colocação ("{frase identificada}"). No mercado português de consultoria e outsourcing, o ambiente de trabalho diário, as tecnologias reais, a política de teletrabalho e a continuidade dependem integralmente do cliente onde o consultor for alocado. Recomenda-se questionar o recrutador logo na primeira interação sobre a identidade do cliente final, o setor e a duração prevista do projeto.
+
+**19. Estágio Profissional IEFP Disfarçado de Posição Júnior** (PT-específico, do texto do JD):
+
+Identificar quando uma oportunidade publicitada como posição "júnior" ou de entrada constitui formalmente um estágio profissional cofinanciado pelo Instituto do Emprego e Formação Profissional (IEFP — medida Estágios ATIVAR.PT).
+
+Se a oferta referir "Estágio Profissional", "medida de apoio ao emprego", "bolsa de estágio IEFP", "nível 6", "nível 7", "elegível para medida IEFP":
+
+> ℹ️ **Enquadramento como Estágio Profissional IEFP:** Esta oferta enquadra-se ou exige elegibilidade para a medida Estágios ATIVAR.PT do IEFP. As bolsas de estágio IEFP são tabeladas por lei com base no Indexante dos Apoios Sociais (IAS) e no nível de qualificação do QNQ (ex.: Nível 6 / Licenciatura ou Nível 7 / Mestrado), com valor fixo e não negociável pelo candidato, tendo tipicamente duração de 9 meses. Confirme se a empresa prevê a integração nos quadros com Contrato Sem Termo após a conclusão do estágio e qual a remuneração de partida planeada.
+
+**20. Limites Legais do Período Experimental** (PT-específico, do texto do JD):
+
+O Código do Trabalho português estabelece no art. 112.º limites imperativos máximos para o período experimental em Contratos Sem Termo:
+- Regra geral: 90 dias;
+- Trabalhadores que exerçam cargos de complexidade técnica, elevado grau de responsabilidade ou que estejam à procura de primeiro emprego / desempregados de longa duração: 180 dias;
+- Trabalhadores que exerçam cargos de direção ou quadros superiores: 240 dias.
+
+Se a oferta ou minuta contratual estipular um período à experiência que exceda estes limites (ex.: "período experimental de 6 meses" para uma função sem elevada complexidade técnica ou mais de 240 dias para qualquer cargo):
+
+> ⚠️ **Período Experimental Superior aos Limites Legais:** O período experimental indicado ({período indicado}) excede os limites máximos fixados pelo art. 112.º do Código do Trabalho para a tipologia da função. Pelo regime laboral português, prazos estipulados acima do limite legal imperativo são juridicamente nulos, prevalecendo os limites máximos da lei.
 
 ### Output format:
 
