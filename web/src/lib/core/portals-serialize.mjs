@@ -28,19 +28,24 @@ function block(key, items) {
  * @param {{positive:string[], negative:string[], allow:string[], block:string[], alwaysAllow:string[], blockHard:string[]}} f
  * @returns {string}
  */
-export function serializePortals(f) {
+export function serializePortals(f, policy = {}) {
   let out = "# Ephemeral Explorer filters — generated per-search, safe to delete.\n";
-  if (f.positive.length || f.negative.length) {
+  if (f.positive.length || f.negative.length || policy.title_filter?.allow_mixed_seniority === true) {
     out += "title_filter:\n";
     out += block("positive", f.positive);
     out += block("negative", f.negative);
+    if (policy.title_filter?.allow_mixed_seniority === true) out += '  allow_mixed_seniority: true\n';
   }
-  if (f.blockHard.length || f.allow.length || f.block.length || f.alwaysAllow.length) {
+  if (f.blockHard.length || f.allow.length || f.block.length || f.alwaysAllow.length || policy.location_filter?.match_any_location === true) {
     out += "location_filter:\n";
     out += block("block_hard", f.blockHard);
     out += block("always_allow", f.alwaysAllow);
     out += block("allow", f.allow);
     out += block("block", f.block);
+    if (policy.location_filter?.match_any_location === true) out += '  match_any_location: true\n';
+  }
+  if (policy.country_eligibility_filter && typeof policy.country_eligibility_filter === 'object') {
+    out += `country_eligibility_filter: ${JSON.stringify(policy.country_eligibility_filter)}\n`;
   }
   return out;
 }

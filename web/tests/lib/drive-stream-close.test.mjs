@@ -39,7 +39,7 @@ const SRC = join(
   "drive",
   "route.ts",
 );
-const src = readFileSync(SRC, "utf8");
+const src = readFileSync(SRC, "utf8").replace(/\r\n/g, "\n");
 
 /**
  * The `try { ... } finally { ... }` inside `start`, split into its two halves.

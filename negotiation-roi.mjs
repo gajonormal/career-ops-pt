@@ -5,7 +5,7 @@
  * `salary-gap.mjs` tells a candidate where an offer sits relative to market
  * (a comparison). This script gives them something to *say* instead: a draft
  * talking point anchored in a quantified, VERIFIED achievement from
- * `interview-prep/story-bank.md`, translated into an estimated euro value.
+ * `interview-prep/story-bank.md`, translated into an estimated dollar value.
  *
  * v1 safety gate (the whole point of this file — read before touching the
  * verification logic):
@@ -41,7 +41,7 @@
  *   Only the hour-family unit (hour/hours/hr/hrs/h) is recognized; other
  *   units (days, minutes, FTEs) are out of scope for v1. Percent-reduction
  *   claims are extracted and verified but never calculable in v1 — turning a
- *   percentage into a euro figure needs a baseline duration this script
+ *   percentage into a dollar figure needs a baseline duration this script
  *   does not infer.
  *
  * Read-only / draft-only: never writes to any file, never sends or submits
@@ -95,7 +95,7 @@ const FREQUENCY_TEXT_PATTERNS = [
   { re: /\bannually\b|\byearly\b|\bevery\s+year\b|\bonce\s+a\s+year\b/i, key: 'annually' },
 ];
 
-const WAGE_TEXT_RE = /€\s?(\d+(?:\.\d+)?)\s*(?:\/|per\s+)\s*(?:hr|hour)\b/i;
+const WAGE_TEXT_RE = /\$\s?(\d+(?:\.\d+)?)\s*(?:\/|per\s+)\s*(?:hr|hour)\b/i;
 
 // ── Numeric-claim extraction ─────────────────────────────────────────
 
@@ -170,7 +170,7 @@ function numberVariants(value, unitFamily) {
 }
 
 function escapeRegExp(s) {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, '\€&');
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
 // Boundary-aware match: a numeric variant like "8 hours" must NOT match
@@ -239,7 +239,7 @@ export function resolveFrequency(storyText, opts) {
  */
 export function resolveWage(storyText, opts) {
   const m = storyText.match(WAGE_TEXT_RE);
-  if (m) return { hourlyWage: parseFloat(m[1] || m[2]), source: `story text ("€${m[1] || m[2]}/h")` };
+  if (m) return { hourlyWage: parseFloat(m[1]), source: `story text ("$${m[1]}/hr")` };
   if (opts.wage != null) return { hourlyWage: opts.wage, source: 'CLI --wage' };
   return null;
 }
@@ -572,7 +572,7 @@ function selfTest() {
   assert(auditCalc.calculation.hoursSavedPerOccurrence === 15, '20h - 5h = 15h saved');
 
   // No wage at all -> every verified time-reduction claim is uncalculable for
-  // the missing-wage reason, never a guessed euro figure.
+  // the missing-wage reason, never a guessed dollar figure.
   const result3 = analyze(STORY_BANK_FIXTURE, CV_FIXTURE, {});
   assert(result3.calculable.length === 0, 'zero calculable claims with no wage basis anywhere');
   assert(result3.uncalculable.every(u => u.claimType !== 'time-reduction' || /wage/.test(u.reason)), 'every time-reduction claim blocked on missing wage, not silently defaulted');

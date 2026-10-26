@@ -42,7 +42,7 @@ export default async function Analytics({ searchParams }: { searchParams: Promis
 
   return (
     <div className="mx-auto max-w-5xl px-6 py-10">
-      <h1 className="font-display text-2xl tracking-tight text-landing">Analytics</h1>
+      <h1 className="font-display text-2xl tracking-tight text-landing">Estatísticas</h1>
       <p className="mt-1 text-sm text-muted">Across {total} tracked evaluation{total === 1 ? "" : "s"}.</p>
 
       <div className="mt-5 flex flex-wrap gap-1 border-b border-border">
@@ -125,7 +125,7 @@ async function ProgressView({ applications }: { applications: ReturnType<typeof 
 
       <PipelineSankey applications={applications} statusLog={statusLog} />
 
-      <Section title="Pipeline by stage">
+      <Section title="Candidaturas por fase">
         {stageCounts.map((s) => (
           <Bar
             key={s.key}
@@ -138,13 +138,13 @@ async function ProgressView({ applications }: { applications: ReturnType<typeof 
         ))}
       </Section>
 
-      <Section title="Score distribution">
+      <Section title="Distribuição das avaliações">
         {buckets.map((b) => (
           <Bar key={b.label} label={b.label} value={b.n} pct={(b.n / maxBucket) * 100} total={scores.length} />
         ))}
       </Section>
 
-      <Section title="Top companies" id="companies">
+      <Section title="Empresas em destaque" id="companies">
         {topCompanies.map(([name, n]) => (
           <Bar key={name} label={name} value={n} pct={(n / maxCompany) * 100} />
         ))}

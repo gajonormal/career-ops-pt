@@ -42,9 +42,9 @@ if (dispatchBlock) {
 
 // A bare expansion is one not wrapped by the `${arr[@]+...}` guard, i.e. not
 // immediately preceded by `+`.
-if (/(^|[^+])"€\{model_args\[@\]\}"/m.test(SRC)) {
+if (/(^|[^+])"\$\{model_args\[@\]\}"/m.test(SRC)) {
   fail('a bare "${model_args[@]}" expansion is present — bash 3.2 aborts with "unbound variable" when --model is not passed');
-} else if (/€\{model_args\[@\]\+"€\{model_args\[@\]\}"\}/.test(SRC)) {
+} else if (/\$\{model_args\[@\]\+"\$\{model_args\[@\]\}"\}/.test(SRC)) {
   pass('model_args is expanded with the ${arr[@]+"${arr[@]}"} idiom (safe on bash 3.2 under set -u)');
 } else {
   fail('model_args is not expanded at all — --model would be silently ignored for opencode');

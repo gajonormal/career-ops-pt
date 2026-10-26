@@ -51,7 +51,7 @@ func TestUpdateApplicationStatusWaitsForSharedLock(t *testing.T) {
 	}
 	done := make(chan error, 1)
 	go func() {
-		done <- UpdateApplicationStatus(tempDir, apps[0], "Entrevista")
+		done <- UpdateApplicationStatus(tempDir, apps[0], "Interview")
 	}()
 
 	select {
@@ -96,7 +96,7 @@ func TestUpdateApplicationStatusWaitsForSharedLock(t *testing.T) {
 }
 
 // Regression for #1180: a status word appearing as a substring of an earlier
-// cell (Company "Applied Materials" contains "Candidatura Enviada") must not be rewritten;
+// cell (Company "Applied Materials" contains "Applied") must not be rewritten;
 // only the Status column changes.
 func TestUpdateApplicationStatusOnlyRewritesStatusColumn(t *testing.T) {
 	tempDir := t.TempDir()
@@ -121,7 +121,7 @@ func TestUpdateApplicationStatusOnlyRewritesStatusColumn(t *testing.T) {
 		t.Fatalf("expected 1 parsed application, got %d", len(apps))
 	}
 
-	if err := UpdateApplicationStatus(tempDir, apps[0], "Entrevista"); err != nil {
+	if err := UpdateApplicationStatus(tempDir, apps[0], "Interview"); err != nil {
 		t.Fatalf("UpdateApplicationStatus: %v", err)
 	}
 
@@ -145,7 +145,7 @@ func TestUpdateApplicationStatusOnlyRewritesStatusColumn(t *testing.T) {
 	if reparsed[0].Company != "Applied Materials" {
 		t.Errorf("company = %q, want \"Applied Materials\"", reparsed[0].Company)
 	}
-	if reparsed[0].Status != "Entrevista" {
+	if reparsed[0].Status != "Interview" {
 		t.Errorf("status = %q, want \"Interview\"", reparsed[0].Status)
 	}
 }
@@ -281,7 +281,7 @@ func TestParseApplicationsMapsColumnsByHeader(t *testing.T) {
 	if a.Role != "VP Marketing" {
 		t.Errorf("Role = %q, want \"VP Marketing\"", a.Role)
 	}
-	if a.Status != "Candidatura Enviada" {
+	if a.Status != "Applied" {
 		t.Errorf("Status = %q, want \"Applied\"", a.Status)
 	}
 	if a.ScoreRaw != "4.5/5" {
@@ -367,7 +367,7 @@ func TestUpdateApplicationStatusInsertedColumn(t *testing.T) {
 	if len(apps) != 1 {
 		t.Fatalf("expected 1 application, got %d", len(apps))
 	}
-	if err := UpdateApplicationStatus(tempDir, apps[0], "Entrevista"); err != nil {
+	if err := UpdateApplicationStatus(tempDir, apps[0], "Interview"); err != nil {
 		t.Fatalf("UpdateApplicationStatus: %v", err)
 	}
 
@@ -379,8 +379,8 @@ func TestUpdateApplicationStatusInsertedColumn(t *testing.T) {
 	if !strings.Contains(got, "| Interview |") {
 		t.Errorf("Status cell not updated to Interview, file now:\n%s", got)
 	}
-	if strings.Count(got, "Entrevista") != 1 {
-		t.Errorf("write touched an unintended cell; %d occurrences of Interview:\n%s", strings.Count(got, "Entrevista"), got)
+	if strings.Count(got, "Interview") != 1 {
+		t.Errorf("write touched an unintended cell; %d occurrences of Interview:\n%s", strings.Count(got, "Interview"), got)
 	}
 	for _, cell := range []string{"| Acme |", "| VP Marketing |", "| Remote |", "| 4.5/5 |", "| ✅ |"} {
 		if !strings.Contains(got, cell) {
@@ -389,7 +389,7 @@ func TestUpdateApplicationStatusInsertedColumn(t *testing.T) {
 	}
 
 	reparsed := ParseApplications(tempDir)
-	if reparsed[0].Status != "Entrevista" {
+	if reparsed[0].Status != "Interview" {
 		t.Errorf("reparsed Status = %q, want \"Interview\"", reparsed[0].Status)
 	}
 	if reparsed[0].ScoreRaw != "4.5/5" {
@@ -452,7 +452,7 @@ func TestResolveTrackerColumnsDuplicateHeaderLastWins(t *testing.T) {
 |---|-------|---------|------|-------|--------|-----|--------|-------|
 | 1 | stray | Acme | Engineer | 4.0/5 | Applied | ✅ | — | real note |`, "\n")
 	cols := resolveTrackerColumns(dup)
-	// Verify that the last "Notas" column wins
+	// Verify that the last "Notes" column wins
 	if cols["notes"] != 8 {
 		t.Fatalf("notes index = %d, expected 8 (tracker-parse.mjs parity)", cols["notes"])
 	}
@@ -519,11 +519,11 @@ func TestNormalizeStatus(t *testing.T) {
 
 		// English status strings
 		{"Evaluated", "evaluated"},
-		{"Candidatura Enviada", "applied"},
+		{"Applied", "applied"},
 		{"Responded", "responded"},
-		{"Entrevista", "interview"},
-		{"Oferta", "offer"},
-		{"Rejeitado", "rejected"},
+		{"Interview", "interview"},
+		{"Offer", "offer"},
+		{"Rejected", "rejected"},
 		{"Discarded", "discarded"},
 		{"SKIP", "skip"},
 	}
@@ -574,7 +574,7 @@ func TestUpdateApplicationStatusWithStaleInMemoryStatus(t *testing.T) {
 	}
 
 	// apps[0].Status is still "Evaluated" (stale) — the update must still work.
-	if err := UpdateApplicationStatus(tempDir, apps[0], "Entrevista"); err != nil {
+	if err := UpdateApplicationStatus(tempDir, apps[0], "Interview"); err != nil {
 		t.Fatalf("UpdateApplicationStatus with stale status: %v", err)
 	}
 
@@ -621,7 +621,7 @@ func TestUpdateApplicationStatusRefusesUnrecognizableCell(t *testing.T) {
 		t.Fatalf("rewrite tracker: %v", err)
 	}
 
-	if err := UpdateApplicationStatus(tempDir, apps[0], "Entrevista"); err == nil {
+	if err := UpdateApplicationStatus(tempDir, apps[0], "Interview"); err == nil {
 		t.Fatal("expected an error when the status cell is unrecognizable, got nil")
 	}
 

@@ -125,6 +125,12 @@ var canonicalDiscardReasons = []string{
 	"geo_restriction",
 	"size_mismatch",
 	"company_culture",
+	"b2b_only",
+	"ajudas_custo_dominantes",
+	"estagio_iefp",
+	"cliente_nao_revelado",
+	"salario_minimo_nacional",
+	"periodo_experimental_excessivo",
 }
 
 type reportSummary struct {
@@ -230,12 +236,12 @@ type StatusPair struct {
 func getStatusPairs(currentNormalized string) []StatusPair {
 	base := []StatusPair{
 		{i18n.Current.StatusEvaluated, "Evaluated"},
-		{i18n.Current.StatusApplied, "Candidatura Enviada"},
+		{i18n.Current.StatusApplied, "Applied"},
 		{i18n.Current.StatusResponded, "Responded"},
-		{i18n.Current.StatusInterview, "Entrevista"},
-		{i18n.Current.StatusOffer, "Oferta"},
+		{i18n.Current.StatusInterview, "Interview"},
+		{i18n.Current.StatusOffer, "Offer"},
 		{i18n.Current.StatusHired, "Hired"},
-		{i18n.Current.StatusRejected, "Rejeitado"},
+		{i18n.Current.StatusRejected, "Rejected"},
 		{i18n.Current.StatusDiscarded, "Discarded"},
 		{i18n.Current.StatusSkip, "Skip"},
 	}

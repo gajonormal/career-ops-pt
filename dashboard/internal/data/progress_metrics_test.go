@@ -36,10 +36,10 @@ func TestComputeProgressMetricsCountsHiredInEveryStage(t *testing.T) {
 		want  int
 	}{
 		{"Tracked", 1},
-		{"Candidatura Enviada", 1},
+		{"Applied", 1},
 		{"Responded", 1},
-		{"Entrevista", 1},
-		{"Oferta", 1},
+		{"Interview", 1},
+		{"Offer", 1},
 	} {
 		if got := stageCount(pm, tc.label); got != tc.want {
 			t.Errorf("funnel stage %q = %d, want %d (a hire proves every earlier stage)", tc.label, got, tc.want)
@@ -55,7 +55,7 @@ func TestComputeProgressMetricsCountsHiredInEveryStage(t *testing.T) {
 // rather than the 0%% the missing tiers produced.
 func TestComputeProgressMetricsRatesIncludeHired(t *testing.T) {
 	// Rejection is a reply, but does not by itself prove an interview or offer.
-	pm := ComputeProgressMetrics(appsWithStatuses("Hired", "Rejeitado"))
+	pm := ComputeProgressMetrics(appsWithStatuses("Hired", "Rejected"))
 
 	if pm.ResponseRate != 100 {
 		t.Errorf("ResponseRate = %v, want 100", pm.ResponseRate)
@@ -71,13 +71,13 @@ func TestComputeProgressMetricsRatesIncludeHired(t *testing.T) {
 // The cumulative tiers must stay ordered: each stage is a superset of the next.
 func TestComputeProgressMetricsFunnelIsMonotonic(t *testing.T) {
 	pm := ComputeProgressMetrics(appsWithStatuses(
-		"Evaluated", "Candidatura Enviada", "Responded", "Entrevista", "Oferta", "Hired", "Rejeitado", "Discarded", "SKIP",
+		"Evaluated", "Applied", "Responded", "Interview", "Offer", "Hired", "Rejected", "Discarded", "SKIP",
 	))
 
-	applied := stageCount(pm, "Candidatura Enviada")
+	applied := stageCount(pm, "Applied")
 	responded := stageCount(pm, "Responded")
-	interview := stageCount(pm, "Entrevista")
-	offer := stageCount(pm, "Oferta")
+	interview := stageCount(pm, "Interview")
+	offer := stageCount(pm, "Offer")
 
 	if !(applied >= responded && responded >= interview && interview >= offer) {
 		t.Errorf("funnel not monotonic: applied=%d responded=%d interview=%d offer=%d",
@@ -113,7 +113,7 @@ func TestComputeProgressMetricsFunnelIsMonotonic(t *testing.T) {
 // divides by the scored rows only. Naming the count honestly is what stops the
 // two halves of that line from contradicting each other.
 func TestFunnelTopStageCountsUnscoredRowsAndIsNotNamedEvaluated(t *testing.T) {
-	apps := appsWithStatuses("Candidatura Enviada", "Candidatura Enviada")
+	apps := appsWithStatuses("Applied", "Applied")
 	apps[0].Score = 4.2 // one evaluated, one backfilled with no evaluation
 
 	pm := ComputeProgressMetrics(apps)

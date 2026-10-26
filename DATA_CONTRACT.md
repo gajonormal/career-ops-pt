@@ -4,6 +4,8 @@ This document defines which files belong to the **system** (auto-updatable) and 
 
 ## User Layer (preserved by updates)
 
+The opportunity review uses `data/opportunity-review.json` as a generated, replaceable snapshot. Explicit user decisions live separately in `data/opportunity-feedback.jsonl`, an append-only ledger (`url`, `decision`: `interested|not-interested|review`, `reason`, `recorded_at`). Never rewrite feedback from a scan, infer decisions, or convert these operational preferences into CV facts. `opportunity-feedback.mjs` serializes writers using the shared lock; no application state changes or external submissions occur.
+
 These files contain your personal data, customizations, and work product. Updates preserve user-owned files. The updater may create or replace only these system-owned `.gitkeep` scaffolds inside user-layer directories: `data/.gitkeep`, `data/offers/.gitkeep`, `data/parser-output/.gitkeep`, `jds/.gitkeep`, `output/.gitkeep`, and `reports/.gitkeep`. It never checks out or modifies any other user file in those directories.
 
 | File | Purpose |

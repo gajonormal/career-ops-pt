@@ -237,8 +237,6 @@ The Importance column does **not** affect the 1-5 global score — it is a prior
 
 ## Block D — Comp and Demand
 
-Aplica as Regras Salariais Portugal (PT-PT): 14 meses, Subsídio de Alimentação, Ajudas de Custo, Seguro de Saúde, B2B vs Sem Termo.
-
 Use the bounded research budget above for:
 - Current salaries for the role (Glassdoor, Levels.fyi, Blind)
 - Company's compensation reputation

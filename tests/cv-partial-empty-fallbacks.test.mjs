@@ -84,7 +84,7 @@ function build(label, templateArg) {
     fail(`${label}: build-cv-html.mjs exited 0 but wrote no output file`);
     return null;
   }
-  return readFileSync(output, 'utf-8');
+  return readFileSync(output, 'utf-8').replace(/\r\n/g, '\n');
 }
 
 // Assert the alignment property and the exact chosen variant for every row.

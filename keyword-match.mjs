@@ -66,7 +66,7 @@ export function countOccurrences(term, text) {
   const t = normalizeText(term);
   if (!t) return 0;
   const hay = normalizeText(text);
-  const escaped = t.replace(/[.*+?^${}()|[\]\\]/g, '\€&');
+  const escaped = t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const re = new RegExp(`(?<![a-z0-9])${escaped}(?![a-z0-9])`, 'g');
   const matches = hay.match(re);
   return matches ? matches.length : 0;

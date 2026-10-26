@@ -605,7 +605,7 @@ export function codeMask(src) {
     if (top.template) {
       if (c === '\\') { mask[i++] = false; if (i < src.length) mask[i++] = false; continue; }
       if (c === '`') { mask[i++] = false; stack.pop(); continue; }
-      if (c === '€' && n === '{') {
+      if (c === '$' && n === '{') {
         mask[i++] = false;
         mask[i++] = false;
         stack.push({ template: false, braces: 0 });

@@ -68,9 +68,9 @@ if (typeof strip !== 'function') {
     { name: 'unclosed block opener: raw source is scanned (loud, by design)', hit: true, src: `const fixture = \`\n/* header\n\`;\n${EXIT};\n` },
     // Template literals: comment-looking text inside one is text, and an
     // interpolation there is executable. Nothing may be stripped inside.
-    { name: 'interpolated call between /* and */ lines inside a template literal', hit: true, src: `const t = \`\n/* header\n€{${EXIT}}\n*/\n\`;\nx();\n` },
-    { name: 'interpolated call on a //-looking line inside a template literal', hit: true, src: `const t = \`\n// €{${EXIT}}\n\`;\nx();\n` },
-    { name: 'starred line inside a template literal is kept', hit: true, src: `const t = \`\n * €{${FINISH}}\n\`;\nx();\n` },
+    { name: 'interpolated call between /* and */ lines inside a template literal', hit: true, src: `const t = \`\n/* header\n\${${EXIT}}\n*/\n\`;\nx();\n` },
+    { name: 'interpolated call on a //-looking line inside a template literal', hit: true, src: `const t = \`\n// \${${EXIT}}\n\`;\nx();\n` },
+    { name: 'starred line inside a template literal is kept', hit: true, src: `const t = \`\n * \${${FINISH}}\n\`;\nx();\n` },
     { name: 'comment-only mention after a template literal closes', hit: false, src: `const t = \`\n/* text\n*/\n\`;\n// ${EXIT} is never called\nx();\n` },
     { name: 'backtick inside a quoted string does not open a template', hit: false, src: `const tick = '\`';\n// ${EXIT} is never called\nx();\n` },
     { name: 'backtick in a trailing // comment does not open a template', hit: false, src: `x(); // the \` char\n// ${FINISH} is never called\n` },

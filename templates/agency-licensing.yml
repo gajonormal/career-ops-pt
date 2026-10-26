@@ -93,3 +93,21 @@ jurisdictions:
       - "https://www.gov.uk/government/organisations/employment-agency-standards-inspectorate — Employment Agency Standards (EAS) Inspectorate (DBT)"
     as_of: "2026-09-03"
 
+  PT:
+    jurisdiction_name: "Portugal"
+    licensing_required_for: temporary_help_agency   # ETT — Empresa de Trabalho Temporário
+    effective: "2007-05-22"   # data de publicação da Lei n.º 19/2007 no Diário da República
+    registry:
+      url: "https://www.iefp.pt/empresas-trabalho-temporario"
+      what_it_shows: "Lista oficial do IEFP com todas as Empresas de Trabalho Temporário autorizadas — pesquisável por nome, NIF e situação da autorização (ativa, suspensa, revogada)."
+    legal_basis: "Decreto-Lei n.º 260/2009, de 25 de setembro, na redação atual: exercício/licenciamento de ETT e regime das agências privadas de colocação; Código do Trabalho, art. 172.º e seguintes. Distinguir atividades e obrigações."
+    client_side_prohibition: "Verificar a habilitação da ETT e o regime aplicável ao contrato de utilização; não presumir que toda a consultora ou agência de recrutamento atua como ETT."
+    penalties: "Consultar os artigos sancionatórios aplicáveis no diploma vigente; o valor depende da infração e das circunstâncias legais. Não inferir uma coima apenas do anúncio."
+    transitional_notes: "Consultar o registo para situação atual: licença, suspensão, caducidade, cessação ou revogação. Uma referência passada não confirma autorização atual."
+    sources:
+      - "https://dre.pt/dre/detalhe/lei/19-2007-639824 — Lei n.º 19/2007, de 22 de Maio (Diário da República)"
+      - "https://dre.pt/dre/detalhe/decreto-lei/260-2009-490905 — DL n.º 260/2009, de 25 de Setembro"
+      - "https://www.iefp.pt/empresas-trabalho-temporario — IEFP: regime e registo de ETT"
+      - "Código do Trabalho — art. 172.º a 192.º (trabalho temporário) e art. 175.º (contraordenações)"
+    as_of: "2026-10-17"
+

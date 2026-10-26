@@ -43,11 +43,11 @@ MAX_RETRIES=2
 MIN_SCORE=0
 RECOVERY_DIR="$PWD/recovery"
 update_state() {
-  [[ "€{TEST_STATE_FAILURE:-0}" == 0 ]] || return 1
+  [[ "\${TEST_STATE_FAILURE:-0}" == 0 ]] || return 1
   printf '%s\\n' "$@" > state
 }
 append_recovery_record() {
-  [[ "€{TEST_RECOVERY_FAILURE:-0}" == 0 ]] || return 1
+  [[ "\${TEST_RECOVERY_FAILURE:-0}" == 0 ]] || return 1
   printf '%s\\n' "$@" > recovery
 }
 sleep() { :; }

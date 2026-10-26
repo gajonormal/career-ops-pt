@@ -379,11 +379,11 @@ var En = Catalog{
 
 	// Status display names
 	StatusEvaluated: "Evaluated",
-	StatusApplied:   "Candidatura Enviada",
+	StatusApplied:   "Applied",
 	StatusResponded: "Responded",
-	StatusInterview: "Entrevista",
-	StatusOffer:     "Oferta",
-	StatusRejected:  "Rejeitado",
+	StatusInterview: "Interview",
+	StatusOffer:     "Offer",
+	StatusRejected:  "Rejected",
 	StatusDiscarded: "Discarded",
 	StatusSkip:      "SKIP",
 	StatusHired:     "Hired",
@@ -789,6 +789,8 @@ var Current = &En
 func SetLang(lang string) {
 	l := strings.ToLower(strings.TrimSpace(lang))
 	switch {
+	case l == "pt" || strings.HasPrefix(l, "pt-") || strings.HasPrefix(l, "pt_"):
+		Current = &Pt
 	case strings.HasPrefix(l, "tr"):
 		Current = &Tr
 	case strings.HasPrefix(l, "es"):
@@ -810,6 +812,9 @@ func ToggleLang() {
 // GetLang returns the active language code ("tr" if Current == &Tr, "es" if
 // Current == &Es, else "en").
 func GetLang() string {
+	if Current == &Pt {
+		return "pt"
+	}
 	if Current == &Tr {
 		return "tr"
 	}

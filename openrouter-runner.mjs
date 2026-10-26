@@ -34,6 +34,7 @@ import { DEFAULT_USER_AGENT } from './user-agent.mjs';
 import { buildTitleFilter } from './title-keywords.mjs';
 import { appendToPipeline, appendToScanHistory } from './scan.mjs';
 import { localToday } from './lib/local-today.mjs';
+import { loadMarketContext, loadMarketMode } from './lib/market-context.mjs';
 import { getCareerOpsRoot } from './path-resolver.mjs';
 import { isMainModule } from './lib/is-main-module.mjs';
 
@@ -375,12 +376,14 @@ async function callOpenRouter(systemPrompt, userMessage) {
 // ---------------------------------------------------------------------------
 // Context loading
 // ---------------------------------------------------------------------------
-function loadContext() {
+export function loadContext() {
+  const market = loadMarketContext(__dirname, readFile('config/profile.yml') ?? '');
   return {
+    market,
     cv:          readFile('cv.md')               ?? 'CV not found.',
     profile:     readFile('config/profile.yml')  ?? '',
-    shared:      readFile('modes/_shared.md')    ?? '',
-    profileMode: readFile('modes/_profile.md')   ?? '',
+    shared:      market.sharedContent,
+    profileMode: [readFile('modes/_profile.md'), readFile('modes/_custom.md')].filter(Boolean).join('\n\n'),
   };
 }
 
@@ -523,7 +526,7 @@ function readPipeline() {
 
 function markPipelineDone(url) {
   let content = readFile('data/pipeline.md') ?? '';
-  const escaped = url.replace(/[.*+?^${}()|[\]\\]/g, '\€&');
+  const escaped = url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   content = content.replace(
     new RegExp(`^(- \\[ \\] ${escaped}.*)$`, 'm'),
     (ln) => ln.replace('- [ ]', '- [x]')
@@ -652,7 +655,7 @@ async function cmdScan() {
 async function cmdEvaluate(input, ctx) {
   tracker.recordZeroToken('scan');
   tracker.recordZeroToken('pdf payload');
-  const modeContent = readFile('modes/oferta.md') ?? readFile('modes/auto-pipeline.md') ?? '';
+  const modeContent = ctx.market?.ofertaContent ?? loadMarketContext(__dirname, ctx.profile).ofertaContent;
 
   let jdText = input;
 
@@ -799,7 +802,7 @@ async function cmdApply(ref, ctx) {
   tracker.recordZeroToken('scan');
   tracker.recordZeroToken('evaluation');
   tracker.recordZeroToken('pdf payload');
-  const modeContent = readFile('modes/apply.md') ?? '';
+  const modeContent = loadMarketMode(__dirname, ctx.profile, 'apply');
 
   let reportContent;
   if (fileExists(ref)) {

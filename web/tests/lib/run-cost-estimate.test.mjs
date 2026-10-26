@@ -45,7 +45,7 @@ test("returns no estimate without valid local history", () => {
   assert.deepEqual(estimateRunCost([job(Number.NaN), job(-5)], "evaluate", 4), {});
 });
 
-test("formats token and optional euro estimates for pre-run copy", () => {
+test("formats token and optional dollar estimates for pre-run copy", () => {
   assert.equal(formatTokenCount(950), "950");
   assert.equal(formatTokenCount(12_400), "12k");
   assert.equal(formatTokenCount(1_250_000), "1.3M");

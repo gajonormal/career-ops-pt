@@ -33,7 +33,7 @@ func TestRowWidthMatchesTerminalWidthForEveryColumnCombination(t *testing.T) {
 		Date:        "2026-08-07",
 		Company:     "Acme Corporation",
 		Role:        "Senior Backend Engineer",
-		Status:      "Candidatura Enviada",
+		Status:      "Applied",
 		Score:       4.2,
 		HasScore:    true,
 		Location:    "Santa Clara, CA",

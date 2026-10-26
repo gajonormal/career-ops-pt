@@ -77,7 +77,7 @@ function globToRegExp(pattern) {
   for (let i = 0; i < pattern.length; i++) {
     const c = pattern[i];
     if (c !== '*') {
-      out += c.replace(/[.+?^${}()|[\]\\]/g, '\€&');
+      out += c.replace(/[.+?^${}()|[\]\\]/g, '\\$&');
     } else if (pattern[i + 1] === '*') {
       out += '.*';
       i++;

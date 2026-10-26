@@ -32,7 +32,7 @@ try {
     'Fallback',
   );
   if (full && full.title === 'Senior Java Dev' && full.url === 'https://landing.jobs/at/inscale/senior-java-dev'
-      && full.company === 'Inscale' && full.location === 'Lisbon, PT'
+      && full.company === 'Inscale' && full.location === 'Lisbon, Portugal'
       && full.postedAt === Date.parse('2025-02-26T09:38:38.127Z')) {
     pass('normalizeLandingJob maps title/url, derives company from slug, builds location, parses published_at');
   } else {
@@ -41,7 +41,7 @@ try {
 
   // remote:true appends "Remote".
   const remoteJob = normalizeLandingJob({ title: 'R', url: 'https://landing.jobs/at/acme/r', locations: [{ city: 'Berlin', country_code: 'DE' }], remote: true });
-  if (remoteJob?.location === 'Berlin, DE, Remote') pass('normalizeLandingJob appends "Remote" when remote is true');
+  if (remoteJob?.location === 'Berlin, Germany, Remote') pass('normalizeLandingJob appends "Remote" when remote is true');
   else fail(`normalizeLandingJob remote location = ${JSON.stringify(remoteJob?.location)}`);
 
   // company fallback: url is landing.jobs but not /at/<slug>/ → entry name, then "Landing.jobs".
@@ -77,7 +77,7 @@ try {
     fail(`normalizeLandingJob drops = ${JSON.stringify(drops)}`);
   }
 
-  // fetch(): single call to the feed URL, normalized, with the SSRF guard.
+  // fetch(): short first page, normalized, with the SSRF guard.
   const sample = [
     { title: 'Role A', url: 'https://landing.jobs/at/acme/role-a', locations: [{ city: 'Porto', country_code: 'PT' }], remote: false, published_at: '2025-02-26T09:38:38.127Z' },
     { title: '', url: 'https://landing.jobs/at/acme/bad' }, // dropped: empty title
@@ -89,7 +89,7 @@ try {
     { fetchJson: async (url, opts) => { capturedUrl = url; capturedOpts = opts; return sample; } },
   );
 
-  if (capturedUrl === 'https://landing.jobs/api/v1/jobs') pass('landingjobs.fetch() requests the v1 feed URL');
+  if (capturedUrl === 'https://landing.jobs/api/v1/jobs?limit=50&offset=0') pass('landingjobs.fetch() requests the paginated v1 feed URL');
   else fail(`landingjobs.fetch() requested ${JSON.stringify(capturedUrl)}`);
 
   if (capturedOpts && capturedOpts.redirect === 'error') pass('landingjobs.fetch() passes redirect:"error" (SSRF guard)');

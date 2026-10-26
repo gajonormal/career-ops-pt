@@ -105,7 +105,7 @@ for (const { name, displayName } of NAMED) {
   if (stripped.includes('{{EXPERIENCE}}')) pass(`${name}: stripping leaves {{EXPERIENCE}} intact`);
   else fail(`${name}: stripping swallowed the experience section`);
 
-  if (stripped.trimEnd().endsWith('</body>\n</html>')) pass(`${name}: closing skeleton survives an all-empty strip`);
+  if (/<\/body>\r?\n<\/html>\s*$/.test(stripped)) pass(`${name}: closing skeleton survives an all-empty strip`);
   else fail(`${name}: closing skeleton was swallowed — check the <!-- END --> sentinel`);
 
   if (stripEmptySections(html, {

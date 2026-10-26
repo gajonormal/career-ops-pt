@@ -99,8 +99,8 @@ try {
       // Coursework is emitted inside a \resumeItem, so it is a bullet in the
       // output even though the payload key is not `bullets`.
       ['coursework renders bold as \\textbf', '\\textbf{Distributed Systems}'],
-      // Escaping runs FIRST, so a bold span keeps its € \& \% intact.
-      ['LaTeX specials inside a bold span stay escaped', '\\textbf{\€2M budget \\& 99.9\\% uptime}'],
+      // Escaping runs FIRST, so a bold span keeps its \$ \& \% intact.
+      ['LaTeX specials inside a bold span stay escaped', '\\textbf{\\$2M budget \\& 99.9\\% uptime}'],
       // ...and nothing the candidate typed can become a real control sequence.
       ['a literal \\textbf in payload text stays inert', '\\textbackslash{}textbf\\{this\\}'],
       // Single asterisks are not emphasis.

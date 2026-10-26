@@ -11,7 +11,7 @@ export const RATES = {
   'gpt-4o-mini': { input: 0.150 / 1000000, output: 0.600 / 1000000 },
   'gpt-4o': { input: 2.50 / 1000000, output: 10.00 / 1000000 },
 
-  // Gemini models (Developer API paid tier, EUR per token; free tier is $0)
+  // Gemini models (Developer API paid tier, USD per token; free tier is $0)
   'gemini-3.6-flash': { input: 1.50 / 1000000, output: 7.50 / 1000000, cachedInput: 0.15 / 1000000 },
   'gemini-3.5-flash': { input: 1.50 / 1000000, output: 9.00 / 1000000, cachedInput: 0.15 / 1000000 },
   'gemini-2.5-flash': { input: 0.075 / 1000000, output: 0.300 / 1000000, cachedInput: 0.0375 / 1000000 },

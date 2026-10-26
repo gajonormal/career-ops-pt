@@ -12,14 +12,14 @@ func TestStatusLabel(t *testing.T) {
 		tr   string
 		es   string
 	}{
-		{"interview", "Entrevista", "Mülakat", "Entrevista"},
-		{"offer", "Oferta", "Teklif", "Oferta"},
+		{"interview", "Interview", "Mülakat", "Entrevista"},
+		{"offer", "Offer", "Teklif", "Oferta"},
 		{"hired", "Hired", "İşe Alındı", "Contratada"},
 		{"responded", "Responded", "Yanıt Verildi", "Respondida"},
-		{"applied", "Candidatura Enviada", "Başvuruldu", "Aplicada"},
+		{"applied", "Applied", "Başvuruldu", "Aplicada"},
 		{"evaluated", "Evaluated", "Değerlendirildi", "Evaluada"},
 		{"skip", "SKIP", "Uygun Değil", "OMITIR"},
-		{"rejected", "Rejeitado", "Reddedildi", "Rechazada"},
+		{"rejected", "Rejected", "Reddedildi", "Rechazada"},
 		{"discarded", "Discarded", "İptal Edildi", "Descartada"},
 		{"unknown", "unknown", "unknown", "unknown"},
 	}

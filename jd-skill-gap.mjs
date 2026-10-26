@@ -356,7 +356,7 @@ function diagnoseExtraction(jdText, jdSkills) {
  * @returns {boolean}
  */
 function skillMentionedInText(skill, text) {
-  const escaped = skill.replace(/[.*+?^${}()|[\]\\]/g, '\€&');
+  const escaped = skill.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const re = new RegExp(`(?<![\\w])${escaped}(?![\\w])`, 'i');
   return re.test(text);
 }

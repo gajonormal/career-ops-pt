@@ -16,12 +16,12 @@ export function QuickEvaluate() {
   function run() {
     const u = url.trim();
     if (!/^https?:\/\//i.test(u)) {
-      setHint("Paste a full job-posting URL (https://…).");
+      setHint("Cola o URL completo da oferta (https://…).");
       return;
     }
-    startJob({ title: "Evaluate · pasted URL", subtitle: u, kind: "evaluate", input: u, page: "/" });
+    startJob({ title: "Avaliar · URL introduzido", subtitle: u, kind: "evaluate", input: u, page: "/" });
     setUrl("");
-    setHint("Evaluating — watch it in the Workers tray.");
+    setHint("A avaliar — acompanha o progresso na lista de tarefas.");
   }
 
   return (
@@ -37,19 +37,19 @@ export function QuickEvaluate() {
           onKeyDown={(e) => {
             if (e.key === "Enter") run();
           }}
-          placeholder="Paste a job URL to evaluate…"
+          placeholder="Cola o URL de uma oferta para avaliar…"
           className="min-w-0 flex-1 bg-transparent py-1.5 text-sm outline-none placeholder:text-faint"
         />
         <button
           onClick={run}
           className="shrink-0 rounded-full bg-brand px-4 py-1.5 text-sm font-medium text-brand-foreground transition-colors hover:bg-brand-200"
         >
-          Evaluate
+          Avaliar
         </button>
       </div>
       <div className="mt-2 flex items-center gap-2">
         <CostBadge kind="spend" size="xs" />
-        <span className="text-xs text-faint">Evaluation runs on your own AI — your key, your machine.</span>
+        <span className="text-xs text-faint">A avaliação usa o modelo de IA configurado por ti.</span>
       </div>
       {hint && <p className="mt-1 text-xs text-faint">{hint}</p>}
     </div>

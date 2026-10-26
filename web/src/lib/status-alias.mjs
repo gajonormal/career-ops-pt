@@ -18,74 +18,108 @@
 
 /** @type {Record<string, string>} */
 export const STATUS_ALIAS = {
-  // Evaluated — states.yml `evaluated`
-  evaluada: "EVALUATED",
-  condicional: "EVALUATED",
-  hold: "EVALUATED",
-  evaluar: "EVALUATED",
-  verificar: "EVALUATED",
+  // Canonical aliases, including Portuguese. Parity checked against states.yml.
+  "evaluada": "EVALUATED",
+  "condicional": "EVALUATED",
+  "hold": "EVALUATED",
+  "evaluar": "EVALUATED",
+  "verificar": "EVALUATED",
   "değerlendirildi": "EVALUATED",
-  degerlendirildi: "EVALUATED",
-  evaluado: "EVALUATED", // web-only: not in states.yml
-  // Applied — states.yml `applied`
-  aplicado: "APPLIED",
-  enviada: "APPLIED",
-  aplicada: "APPLIED",
-  sent: "APPLIED",
+  "degerlendirildi": "EVALUATED",
+  "avaliada": "EVALUATED",
+  "avaliado": "EVALUATED",
+  "avaliação": "EVALUATED",
+  "analisada": "EVALUATED",
+  "analisado": "EVALUATED",
+  "aplicado": "APPLIED",
+  "enviada": "APPLIED",
+  "aplicada": "APPLIED",
+  "sent": "APPLIED",
   "başvuruldu": "APPLIED",
-  basvuruldu: "APPLIED",
-  // Responded — states.yml `responded`
-  respondido: "RESPONDED",
+  "basvuruldu": "APPLIED",
+  "submetida": "APPLIED",
+  "submetido": "APPLIED",
+  "candidatada": "APPLIED",
+  "candidatado": "APPLIED",
+  "candidatura enviada": "APPLIED",
+  "candidatura submetida": "APPLIED",
+  "respondido": "RESPONDED",
   "yanıt verildi": "RESPONDED",
   "yanıt_verildi": "RESPONDED",
   "yanit verildi": "RESPONDED",
-  yanit_verildi: "RESPONDED",
-  respondida: "RESPONDED", // web-only: not in states.yml
-  contestada: "RESPONDED", // web-only: not in states.yml
-  // Interview — states.yml `interview`
-  entrevista: "INTERVIEW",
+  "yanit_verildi": "RESPONDED",
+  "respondida": "RESPONDED",
+  "em contacto": "RESPONDED",
+  "contactada": "RESPONDED",
+  "contactado": "RESPONDED",
+  "resposta recebida": "RESPONDED",
+  "contacto": "RESPONDED",
+  "entrevista": "INTERVIEW",
   "mülakat": "INTERVIEW",
-  mulakat: "INTERVIEW",
-  // Offer — states.yml `offer`
-  oferta: "OFFER",
-  teklif: "OFFER",
-  // Rejected — states.yml `rejected`
-  rechazado: "REJECTED",
-  rechazada: "REJECTED",
-  reddedildi: "REJECTED",
-  // Discarded — states.yml `discarded`
-  descartado: "DISCARDED",
-  descartada: "DISCARDED",
-  cerrada: "DISCARDED",
-  cancelada: "DISCARDED",
+  "mulakat": "INTERVIEW",
+  "oferta": "OFFER",
+  "teklif": "OFFER",
+  "rechazado": "REJECTED",
+  "rechazada": "REJECTED",
+  "reddedildi": "REJECTED",
+  "rejeitado": "REJECTED",
+  "rejeitada": "REJECTED",
+  "descartado": "DISCARDED",
+  "descartada": "DISCARDED",
+  "cerrada": "DISCARDED",
+  "cancelada": "DISCARDED",
   "iptal edildi": "DISCARDED",
-  iptal_edildi: "DISCARDED",
+  "iptal_edildi": "DISCARDED",
   "ıptal edildi": "DISCARDED",
   "ıptal_edildi": "DISCARDED",
-  duplicado: "DISCARDED", // web-only: not in states.yml
-  repost: "DISCARDED", // web-only: not in states.yml
-  // SKIP — states.yml `skip`
-  no_aplicar: "SKIP",
+  "arquivada": "DISCARDED",
+  "arquivado": "DISCARDED",
+  "não avança": "DISCARDED",
+  "sem interesse": "DISCARDED",
+  "descontinuada": "DISCARDED",
+  "descontinuado": "DISCARDED",
+  "no_aplicar": "SKIP",
   "no aplicar": "SKIP",
-  skip: "SKIP",
-  monitor: "SKIP",
+  "skip": "SKIP",
+  "monitor": "SKIP",
   "geo blocker": "SKIP",
-  geo_blocker: "SKIP",
+  "geo_blocker": "SKIP",
   "uygun değil": "SKIP",
   "uygun_değil": "SKIP",
   "uygun degil": "SKIP",
-  uygun_degil: "SKIP",
-  // Hired — states.yml `hired`
-  contratado: "HIRED",
-  contratada: "HIRED",
-  hired: "HIRED",
-  accepted: "HIRED",
-  accept: "HIRED",
+  "uygun_degil": "SKIP",
+  "não aplicar": "SKIP",
+  "ignorar": "SKIP",
+  "não candidatar": "SKIP",
+  "excluir": "SKIP",
+  "contratado": "HIRED",
+  "contratada": "HIRED",
+  "hired": "HIRED",
+  "accepted": "HIRED",
+  "accept": "HIRED",
   "kabul edildi": "HIRED",
-  kabul_edildi: "HIRED",
+  "kabul_edildi": "HIRED",
   "işe alındı": "HIRED",
   "ise alindi": "HIRED",
   "işe alindi": "HIRED",
+  "colocado": "HIRED",
+  "colocada": "HIRED",
+  "emprego aceite": "HIRED",
+  "oferta aceite": "HIRED",
+  "contrato assinado": "HIRED",
+  // Evaluated — states.yml `evaluated`
+  evaluado: "EVALUATED", // web-only: not in states.yml
+  // Applied — states.yml `applied`
+  // Responded — states.yml `responded`
+  contestada: "RESPONDED", // web-only: not in states.yml
+  // Interview — states.yml `interview`
+  // Offer — states.yml `offer`
+  // Rejected — states.yml `rejected`
+  // Discarded — states.yml `discarded`
+  duplicado: "DISCARDED", // web-only: not in states.yml
+  repost: "DISCARDED", // web-only: not in states.yml
+  // SKIP — states.yml `skip`
+  // Hired — states.yml `hired`
 };
 
 /**

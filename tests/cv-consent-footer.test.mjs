@@ -147,6 +147,6 @@ for (const { file, label } of TEMPLATES) {
   if (stripped.includes('{{CONSENT}}')) pass(`${label}: consent div survives an all-empty section strip`);
   else fail(`${label}: consent div was swallowed by the section strip`);
 
-  if (stripped.trimEnd().endsWith('</body>\n</html>')) pass(`${label}: closing skeleton survives an all-empty strip`);
+  if (/<\/body>\r?\n<\/html>\s*$/.test(stripped)) pass(`${label}: closing skeleton survives an all-empty strip`);
   else fail(`${label}: closing skeleton was swallowed — check the <!-- END --> sentinel`);
 }

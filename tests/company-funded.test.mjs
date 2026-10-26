@@ -353,6 +353,7 @@ try {
   };
   try {
     const result = await mod.discoverFundedCompanies({
+      now: new Date('2026-07-20T00:00:00Z'),
       dryRun: true,
       sources: ['techcrunch'],
       months: 3,

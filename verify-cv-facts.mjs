@@ -995,7 +995,7 @@ function resolveInputPath(path, cwd = process.cwd()) {
 /** Check a normalized fact as a complete token or phrase, not a substring. */
 function sourceContainsFact(sourceText, value) {
   const escaped = value
-    .replace(/[.*+?^${}()|[\]\\]/g, '\€&')
+    .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
     .replace(/\s+/g, '\\s+');
   return new RegExp(`(?:^|[^\\p{L}\\p{N}+#/-])${escaped}(?=$|[^\\p{L}\\p{N}+#/-])`, 'iu').test(sourceText);
 }

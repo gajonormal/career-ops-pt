@@ -77,6 +77,75 @@ entries:
       - "Ogletree Deakins analysis of California Labor Code 432.3 salary history inquiry ban (AB 168)"
       - "Jackson Lewis guidance on California's salary history ban effective January 1, 2018"
 
+  - jurisdiction: PT
+    jurisdiction_name: "Portugal"
+    prohibited: >-
+      Requisitos ou preferências que constituam discriminação direta ou indireta
+      com base em critérios protegidos pelo Código do Trabalho em anúncios de
+      emprego publicamente divulgados. Inclui: restrições por faixa etária (ex:
+      "até 35 anos", "jovem"), estado civil, parentalidade ou gravidez, origem
+      étnica, religião ou orientação sexual.
+    matching: >-
+      Dispara quando o anúncio restringe explicitamente candidaturas por
+      critérios protegidos: limite etário numérico ("candidatos até 35 anos",
+      "jovens até 30 anos"), estado civil ("candidato solteiro"), disponibilidade
+      formulada como ausência de filhos ou encargos familiares ("disponibilidade
+      total sem compromissos familiares", "sem filhos a cargo"), indicadores
+      de gravidez ou maternidade proibidos.
+      NÃO dispara em: requisitos de experiência genérica expressos em anos
+      ("2-3 anos de experiência"), disponibilidade geográfica ou mobilidade,
+      competências técnicas, disponibilidade horária ou em regime de turno
+      quando ligada à função (ex: trabalho noturno em posto de segurança).
+      Julgamento de agente obrigatório — nunca keyword-matching ingénuo.
+      Verificar as exceções e diferenças de tratamento justificadas dos
+      arts. 25.º, n.os 2 e 3, e 27.º CT, incluindo política de emprego e
+      formação profissional. A palavra "jovem" isolada ou a referência a
+      uma medida de estágio com critérios legais não prova discriminação ilícita.
+    legal_basis: >-
+      Código do Trabalho, art. 23.º (conceito de discriminação) e art. 24.º
+      (proibição de discriminação — Lei n.º 7/2009 de 12 de Fevereiro e
+      subsequentes alterações), arts. 25.º e 27.º (exceções/ação positiva).
+      A Lei n.º 93/2017 respeita à origem racial/étnica, cor, nacionalidade,
+      ascendência e território de origem e ressalva no art. 2.º a legislação laboral;
+      não constitui um regime geral de todos os fatores de discriminação no emprego.
+    effective: "2009-02-12"
+    sources:
+      - "Código do Trabalho — art. 23.º e 24.º (proibição de discriminação)"
+      - "https://diariodarepublica.pt/dr/detalhe/lei/93-2017-108038372 — fatores específicos; art. 2.º ressalva legislação laboral"
+      - "ACT — Autoridade para as Condições do Trabalho: guia de não discriminação no acesso ao emprego"
+      - "https://dre.pt/dre/detalhe/lei/7-2009-602073 — Código do Trabalho (versão consolidada)"
+
+  - jurisdiction: PT
+    jurisdiction_name: "Portugal — Historial Salarial"
+    prohibited: >-
+      Pedido do historial salarial do candidato (salário atual ou anterior)
+      como requisito ou condição de candidatura em anúncio publicamente divulgado.
+    matching: >-
+      Dispara quando o anúncio ou formulário de candidatura pede explicitamente
+      o salário atual ou anterior do candidato como dado obrigatório (ex: "indique
+      o seu salário atual", "salary history required", "IRS do último ano").
+      NÃO dispara em: pedido de expectativa salarial ou pretensão (lawful),
+      campos opcionais de pretensão salarial, ou perguntas sobre o pacote
+      desejado — apenas o historial é problemático.
+      Verificar a legislação nacional vigente que transpõe a Diretiva (UE)
+      2023/970, em particular o art. 5.º, n.º 2 (historial salarial). O prazo
+      de transposição não prova, por si só, a entrada em vigor de uma norma
+      nacional. Sem norma nacional confirmada, registar um pedido a esclarecer
+      e analisar necessidade/minimização; não afirmar automaticamente proibição
+      nacional nem classificar salário como categoria especial do art. 9.º RGPD.
+    legal_basis: >-
+      RGPD (Regulamento UE 2016/679), art. 5.º (princípio da minimização
+      dos dados) e art. 6.º (licitude do tratamento); Lei n.º 58/2019 de
+      8 de Agosto (execução do RGPD em Portugal); Código do Trabalho,
+      art. 17.º (reserva da vida privada do trabalhador)
+    effective: "2018-05-25"
+    sources:
+      - "RGPD — art. 5.º, 6.º e 9.º (princípios e licitude do tratamento)"
+      - "Lei n.º 58/2019, de 8 de Agosto (execução do RGPD em Portugal)"
+      - "Código do Trabalho — art. 17.º (reserva da intimidade da vida privada)"
+      - "https://www.cnpd.pt — CNPD: orientações sobre proteção de dados no contexto laboral"
+      - "https://eur-lex.europa.eu/eli/dir/2023/970/oj — art. 5.º, n.º 2; confirmar transposição nacional"
+
 # Known candidate rows for contributors — NOT entries yet. Each needs its own
 # verified statute citation + effective date + matching-scope check before
 # being promoted to an entry (scopes vary a lot; verify individually):

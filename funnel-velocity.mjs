@@ -247,8 +247,17 @@ export function computeVelocity(timelines, todayStr) {
 
 // --- Benchmarks ---
 export function loadBenchmarks(explicitPath) {
+  let marketDefault = 'benchmarks.yml';
+  if (!explicitPath && !existsSync(join(DATA_ROOT, 'config/benchmarks.yml'))) {
+    const profilePath = join(DATA_ROOT, 'config/profile.yml');
+    if (existsSync(profilePath)) {
+      const profile = yaml.load(readFileSync(profilePath, 'utf8'));
+      const declared = profile?.language?.modes_dir;
+      if ((Array.isArray(declared) ? declared[0] : declared) === 'modes/pt') marketDefault = 'benchmarks.pt.yml';
+    }
+  }
   const path = explicitPath
-    || (existsSync(join(DATA_ROOT, 'config/benchmarks.yml')) ? join(DATA_ROOT, 'config/benchmarks.yml') : join(CODE_ROOT, 'templates/benchmarks.yml'));
+    || (existsSync(join(DATA_ROOT, 'config/benchmarks.yml')) ? join(DATA_ROOT, 'config/benchmarks.yml') : join(CODE_ROOT, 'templates', marketDefault));
   let doc;
   try {
     doc = yaml.load(readFileSync(path, 'utf-8'));

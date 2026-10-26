@@ -106,7 +106,7 @@ try {
   // space glued to it. scan.mjs's salary_filter compares currency strings, so a
   // symbol would never match a user's `currency: EUR`.
   if (normalizeCurrency('€') === 'EUR' && normalizeCurrency(' €') === 'EUR'
-      && normalizeCurrency('£') === 'GBP' && normalizeCurrency('US$') === 'EUR'
+      && normalizeCurrency('£') === 'GBP' && normalizeCurrency('US$') === 'USD'
       && normalizeCurrency('MXN$') === 'MXN' && normalizeCurrency('EUR') === 'EUR') {
     pass('normalizeCurrency maps the observed symbols (spacing variants included) to ISO codes');
   } else {

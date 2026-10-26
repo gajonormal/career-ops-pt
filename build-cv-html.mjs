@@ -53,15 +53,22 @@ const PHOTO_STYLES = new Set(['rounded', 'circle', 'square']);
 const IMAGE_DATA_URL_RE = /^data:image\/(?:png|jpeg|webp|gif);base64,[a-z0-9+/=\s]+$/i;
 
 const DEFAULT_SECTION_TITLES = {
-  summary: 'Resumo Profissional',
-  competencies: 'Competências Principais',
-  experience: 'Experiência Profissional',
-  projects: 'Projetos',
-  education: 'Educação',
-  certifications: 'Certificações',
-  awards: 'Prémios e Distinções',
-  interests: 'Interesses',
-  skills: 'Competências',
+  summary: 'Professional Summary',
+  competencies: 'Core Competencies',
+  experience: 'Work Experience',
+  projects: 'Projects',
+  education: 'Education',
+  certifications: 'Certifications',
+  awards: 'Awards & Honors',
+  interests: 'Interests',
+  skills: 'Skills',
+};
+
+const PT_SECTION_TITLES = {
+  summary: 'Resumo Profissional', competencies: 'Competências Principais',
+  experience: 'Experiência Profissional', projects: 'Projetos',
+  education: 'Formação Académica', certifications: 'Certificações',
+  awards: 'Prémios e Distinções', interests: 'Interesses', skills: 'Competências',
 };
 
 // Escape user text for HTML text/attribute context. Covers the five characters
@@ -660,7 +667,8 @@ function buildTitle(candidate) {
 }
 
 function renderReport(payload, partials) {
-  const sectionTitles = { ...DEFAULT_SECTION_TITLES, ...(payload.sections || {}) };
+  const defaults = /^pt(?:[-_]|$)/i.test(payload.lang || '') ? PT_SECTION_TITLES : DEFAULT_SECTION_TITLES;
+  const sectionTitles = { ...defaults, ...(payload.sections || {}) };
   const candidate = payload.candidate || {};
   // The sheet this body has to fit is chosen by generate-pdf.mjs, so both read
   // the same resolver rather than each keeping a fallback of their own.
@@ -713,7 +721,7 @@ function renderHtml(template, payload, templatePath) {
   // (CodeRabbit, #3763). With a title, the indentation is reused verbatim so
   // output is unchanged from the token-only replace this replaces.
   const titleBlock = buildTitle(candidate);
-  html = html.replace(/\n([ \t]*)\{\{TITLE_BLOCK\}\}/g, (_, indent) => (titleBlock ? `\n${indent}${titleBlock}` : ''));
+  html = html.replace(/(\r?\n)([ \t]*)\{\{TITLE_BLOCK\}\}/g, (_, newline, indent) => (titleBlock ? `${newline}${indent}${titleBlock}` : ''));
 
   // Drop the optional sections (projects, education) that have no entries, so
   // an absent one leaves no bare header behind. See cv-sections-core.mjs.

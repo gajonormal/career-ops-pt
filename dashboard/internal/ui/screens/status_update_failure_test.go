@@ -42,7 +42,7 @@ func TestStatusUpdateFailureShowsSanitizedError(t *testing.T) {
 	msg := StatusUpdateFailedMsg{Err: "tracker locked\nretry later\x1b[2J"}
 	pipeline, _ := newFlashTestModel(t).Update(msg)
 	viewer := ViewerModel{
-		app:   model.CareerApplication{Status: "Candidatura Enviada"},
+		app:   model.CareerApplication{Status: "Applied"},
 		width: 120, height: 40, theme: theme.NewTheme("catppuccin-mocha"),
 	}
 	viewer, _ = viewer.Update(msg)

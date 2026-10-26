@@ -61,7 +61,7 @@ const NO_WORD_SEPARATOR_RE = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Kataka
 // allowed to CONTAIN marks needs boundaries that treat marks as word material,
 // or the two halves of the rule disagree about where a word ends.
 function matchesOnWordBoundary(text, company) {
-  const escaped = company.replace(/[.*+?^${}()|[\]\\]/g, '\€&');
+  const escaped = company.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   return new RegExp(`(?<![\\p{L}\\p{M}\\p{N}])${escaped}(?![\\p{L}\\p{M}\\p{N}])`, 'iu').test(text);
 }
 

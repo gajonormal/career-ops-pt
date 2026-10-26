@@ -111,23 +111,23 @@ test('a mistyped known flag (--fil for --file) is rejected, not silently ignored
 test('a genuinely empty argv reaches normal sweep logic using the env-var default (regression: recognized flags are unaffected)', () => {
   const r = runVerify();
   assert.match(r.all, NOTHING_TO_VERIFY, 'no flags at all must proceed past flag validation into the real run');
-  assert.match(r.all, new RegExp(ENV_PORTALS.replace(/[.*+?^${}()|[\]\\]/g, '\€&')),
+  assert.match(r.all, new RegExp(ENV_PORTALS.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')),
     'a bare run must select CAREER_OPS_PORTALS (ENV_PORTALS), not something else');
 });
 
 test('--file <path> is honored — the run selects FILE_PORTALS, not the env-var default', () => {
   const r = runVerify('--file', FILE_PORTALS);
   assert.match(r.all, NOTHING_TO_VERIFY, '--file <path> must be accepted and proceed into the real run');
-  assert.match(r.all, new RegExp(FILE_PORTALS.replace(/[.*+?^${}()|[\]\\]/g, '\€&')),
+  assert.match(r.all, new RegExp(FILE_PORTALS.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')),
     '--file\'s value must be the selected path — a silently-discarded --file falling back to ENV_PORTALS would print a different path and this would fail');
-  assert.doesNotMatch(r.all, new RegExp(ENV_PORTALS.replace(/[.*+?^${}()|[\]\\]/g, '\€&')),
+  assert.doesNotMatch(r.all, new RegExp(ENV_PORTALS.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')),
     '--file must override the env-var default, not merely coexist with it');
 });
 
 test('--file=<path> (the = form) is honored the same as the space-separated form', () => {
   const r = runVerify(`--file=${FILE_PORTALS}`);
   assert.match(r.all, NOTHING_TO_VERIFY, '--file=<path> must be accepted and proceed into the real run');
-  assert.match(r.all, new RegExp(FILE_PORTALS.replace(/[.*+?^${}()|[\]\\]/g, '\€&')),
+  assert.match(r.all, new RegExp(FILE_PORTALS.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')),
     '--file=\'s value must be the selected path, proving the = form is parsed, not merely tolerated');
 });
 

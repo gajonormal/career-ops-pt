@@ -1,0 +1,7 @@
+# Portugal: não há taxas de conversão verificadas nesta distribuição.
+# Não atribuir números a Teamlyzer/Hays sem publicação, página e metodologia.
+# Selecionado automaticamente para modes/pt; config/benchmarks.yml e
+# --benchmarks preservam a precedência. Valores verificados podem ser adicionados
+# com denominator, source (URL/página), year, caveat e intervalo reproduzível.
+# O prazo operacional de acompanhamento não constitui um benchmark de mercado.
+benchmarks: {}

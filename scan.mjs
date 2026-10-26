@@ -75,6 +75,7 @@ import { withPortalHealthLock } from './portal-health-lock.mjs';
 import { localToday } from './lib/local-today.mjs';
 import { printScanSummaryHeader } from './lib/scan-summary-marker.mjs';
 import { isMainModule } from './lib/is-main-module.mjs';
+import { hasUsWorkRequirement } from './lib/us-work-eligibility.mjs';
 import { SCAN_HISTORY_COLUMNS, parseScanHistoryLine } from './lib/scan-history-columns.mjs';
 import { promoteKnownFragmentIdentity } from './url-key.mjs';
 import { getCareerOpsRoot } from './path-resolver.mjs';
@@ -410,7 +411,7 @@ function normalizeKeywordList(value) {
 const LOCATION_WORD_CP = /^[\p{L}\p{M}\p{N}]$/u;
 
 function compileLocationKeyword(keyword) {
-  const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\€&');
+  const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const codePoints = [...keyword];
   const startsWord = LOCATION_WORD_CP.test(codePoints[0] ?? '');
   const endsWord = LOCATION_WORD_CP.test(codePoints.at(-1) ?? '');
@@ -487,7 +488,7 @@ const USPS_STATES = Object.freeze([
 // Indiana/Oregon/Maine. State *names* still use compileLocationKeyword.
 // Unicode letters and marks are part of the token: "Montréal" is not "AL".
 function compileUsStateAbbrev(abbr) {
-  const escaped = abbr.replace(/[.*+?^${}()|[\]\\]/g, '\€&');
+  const escaped = abbr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const re = new RegExp(`(?:,\\s*${escaped}(?![\\p{L}\\p{M}\\p{N}])|(?:^|[^\\p{L}\\p{M}\\p{N}])${escaped}[^\\p{L}\\p{M}\\p{N}]*$)`, 'u');
   return (lower) => re.test(lower);
 }
@@ -599,7 +600,7 @@ export function buildLocationFilter(locationFilter) {
   const strict = locationFilter.strict === true
     && (allow.length > 0 || block.length > 0 || blockHard.length > 0);
 
-  return (location, url, title) => {
+  const matchLocation = (location, url, title) => {
     const lower = typeof location === 'string' ? location.trim().toLowerCase() : '';
     const hint = locationHintFromUrl(url);
     // Nothing to judge on either field → pass (don't penalize missing data),
@@ -634,6 +635,17 @@ export function buildLocationFilter(locationFilter) {
     // never rescue a blocked location — "Program Manager - Remote" in Bengaluru
     // stays rejected. This widens `allow`, never `block`.
     return titleSignalsRemote(title);
+  };
+  // Opt-in: providers delimit alternative offices using |, ; or newlines.
+  // Evaluate each office independently: a US alternative must not erase Lisbon.
+  // Commas remain inside an office ("Porto Alegre, Brazil" is one place).
+  if (locationFilter.match_any_location !== true) return matchLocation;
+  return (location, url, title) => {
+    const alternatives = typeof location === 'string'
+      ? location.split(/\s*[|;\n]\s*|\s+\/\s+/).map(s => s.trim()).filter(Boolean) : [];
+    if (alternatives.length < 2) return matchLocation(location, url, title);
+    const hasBlockedOffice = alternatives.some(place => blockHard.some(matches => matches(place.toLowerCase())));
+    return alternatives.some(place => !(hasBlockedOffice && /^(?:remote|remoto|anywhere|global|worldwide)$/i.test(place)) && matchLocation(place, '', title));
   };
 }
 
@@ -914,6 +926,7 @@ export function buildCountryEligibilityFilter(countryEligibilityFilter, candidat
 
   return (description) => {
     if (typeof description !== 'string' || description.trim() === '') return true;
+    if (countryEligibilityFilter.exclude_us_requirements === true && hasUsWorkRequirement(description)) return false;
     const lower = description.toLowerCase();
 
     if (exclusionary.length === 0) return true;
@@ -1033,7 +1046,7 @@ export function buildVisaFilter(visaFilter) {
 //   - min/max are annual compensation filters (use annualized values)
 //   - max: 0 means "no upper limit"
 //   - If no salary data exists on a job, it passes (conservative behavior)
-//   - If both currencies are known and mismatch (e.g., EUR filter, EUR job), it fails
+//   - If both currencies are known and mismatch (e.g., USD filter, EUR job), it fails
 //   - Partial ranges (min only or max only) work correctly via overlap logic
 // Uses null-safe checks (!= null, ??) to preserve 0 values correctly.
 
@@ -1234,7 +1247,7 @@ export function companyMatch(jobCompany, windowCompany) {
   // operands are already normalizeTextKey output — letters, marks, digits and
   // spaces only — so the escape is defensive, not load-bearing.
   const bounded = (name) => new RegExp(
-    `(?<![\\p{L}\\p{M}\\p{N}])${name.replace(/[.*+?^${}()|[\]\\]/g, '\€&')}(?![\\p{L}\\p{M}\\p{N}])`,
+    `(?<![\\p{L}\\p{M}\\p{N}])${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?![\\p{L}\\p{M}\\p{N}])`,
     'u',
   );
   return bounded(c2WithSpaces).test(c1WithSpaces) || bounded(c1WithSpaces).test(c2WithSpaces);
@@ -2809,7 +2822,7 @@ export function sanitizeTsvField(value) {
 
 // Format an offer's parsed compensation (the annualized {min,max,currency} that
 // providers like Ashby attach as `offer.salary`) into a compact, sanitized cell
-// such as `120000-160000 EUR`. Returns '' when there is no usable salary data.
+// such as `120000-160000 USD`. Returns '' when there is no usable salary data.
 // Non-positive bounds are dropped (a 0 min/max is meaningless comp data, not "$0").
 export function formatCompensation(salary) {
   if (!salary || typeof salary !== 'object') return '';
@@ -3572,7 +3585,7 @@ function guardStatusFor(code) {
 const KNOWN_FLAGS = [
   '--dry-run', '--verify', '--headed-fallback', '--throttle', '--rediscover-404',
   '--include-blacklisted', '--company', '--posted-after', '--posted-before',
-  '--since', '--quiet', '--json', '--help', '-h',
+  '--since', '--quiet', '--json', '--review', '--help', '-h',
 ];
 
 // Flags whose space-separated value is the NEXT argv token (the `--flag=value`
@@ -3595,6 +3608,7 @@ const USAGE = `Usage:
   node scan.mjs --posted-after 2026-07-01    # absolute lower bound on posting date
   node scan.mjs --posted-before 2026-08-01   # absolute upper bound on posting date
   node scan.mjs --json                       # emit one machine-readable receipt on stdout
+  node scan.mjs --review                     # save a PT opportunity review for the web dashboard
   node scan.mjs --quiet                      # suppress the manifesto footer
   node scan.mjs --help                       # print this usage block and exit`;
 
@@ -3899,6 +3913,8 @@ async function main() {
   const locationFilteredOffers = [];
   const ageFilteredOffers = [];
   let totalFound = 0;
+  let postingsWithoutLocation = 0;
+  let postingsWithoutDescription = 0;
   let totalFilteredTitle = 0;
   let totalFilteredTier = 0;
   // #3438: rejections by a declared non-title field, kept apart from
@@ -4000,6 +4016,8 @@ async function main() {
         throw new Error(`${provider.id}: fetch() did not return an array`);
       }
       totalFound += jobs.length;
+      postingsWithoutLocation += jobs.filter(job => typeof job?.location !== 'string' || !job.location.trim()).length;
+      postingsWithoutDescription += jobs.filter(job => typeof job?.description !== 'string' || !job.description.trim()).length;
       if (!company._isBoard && jobs.length === 0) {
         if (emptyTargetStatus(observation) === 'empty') emptyTargets.push(company.name);
         else unverifiedZeroTargets.push(company.name);
@@ -4414,6 +4432,24 @@ async function main() {
     }
   }
 
+  const pendingSearchQueries = (Array.isArray(config.search_queries) ? config.search_queries : [])
+    .filter(query => query && query.enabled !== false);
+  const coverage = {
+    status: agentHandoff.length || pendingSearchQueries.length || errors.length ? 'partial' : 'provider-scan-complete',
+    scope: 'providers-only',
+    providers_attempted: targets.length,
+    providers_failed: errors.length,
+    company_handoffs_pending: agentHandoff.length,
+    search_queries_pending: pendingSearchQueries.length,
+    browser_executed: false,
+    websearch_executed: false,
+    postings_without_location: postingsWithoutLocation,
+    postings_without_description: postingsWithoutDescription,
+  };
+  console.log(`\nCobertura: ${coverage.status}; ${targets.length} fontes automáticas consultadas, ${errors.length} erros, ${agentHandoff.length} empresas e ${pendingSearchQueries.length} pesquisas assistidas pendentes.`);
+  console.log('País de contratação, modalidade e autorização de trabalho não publicados continuam por confirmar na avaliação da JD.');
+  console.log(`Metadados em falta antes dos filtros: ${postingsWithoutLocation} ofertas sem localização; ${postingsWithoutDescription} sem descrição para verificar elegibilidade.`);
+
   const unreachableTargets = errors.filter((e) => e.kind === 'slug_gone');
   const networkTargets = errors.filter((e) => e.kind === 'network');
   const otherErrors = errors.filter((e) => e.kind !== 'slug_gone' && e.kind !== 'network');
@@ -4509,6 +4545,16 @@ async function main() {
     }
   }
 
+  if (args.includes('--review') && !dryRun && loadCandidateCountry().toLowerCase() === 'portugal') {
+    const { reviewOpportunities } = await import('./review-opportunities.mjs');
+    const profile = yaml.load(readFileSync(PROFILE_PATH, 'utf8'));
+    const snapshot = reviewOpportunities(verifiedOffers, config, profile);
+    const reviewPath = path.join(DATA_ROOT, 'data/opportunity-review.json');
+    mkdirSync(path.dirname(reviewPath), { recursive: true });
+    await withPipelineLock(reviewPath, () => atomicWriteFile(reviewPath, JSON.stringify(snapshot, null, 2) + '\n'));
+    console.log('Revisão de oportunidades guardada para consulta na interface.');
+  }
+
   // Persist this run's counters (#1604) — guarded exactly like the other
   // writes; a --dry-run must leave no trace.
   if (!dryRun) {
@@ -4557,6 +4603,9 @@ async function main() {
       added_urls: verifiedOffers.map(offer => offer.url),
       errors: errors.map(({ company, error }) => ({ company, error })),
       unverified_zero: unverifiedZeroTargets,
+      coverage,
+      agent_handoff: agentHandoff,
+      pending_search_queries: pendingSearchQueries,
       dry_run: dryRun,
     }, errors.length > 0 ? 2 : 0);
   }

@@ -13,7 +13,7 @@ test("the literal bootstrap script stays pinned to the shared theme contract", a
   const script = layoutSource.match(/const THEME_SCRIPT = `([^`]*)`;/)?.[1];
 
   assert.ok(script, "layout must define a literal THEME_SCRIPT");
-  assert.doesNotMatch(script, /€\{/);
+  assert.doesNotMatch(script, /\$\{/);
   assert.match(script, new RegExp(`localStorage\\.getItem\\('${THEME_STORAGE_KEY}'\\)`));
   assert.match(script, /t==='light'\|\|t==='dark'\?t:null/);
   assert.ok(script.includes(`d?'${THEME_COLORS.dark}':'${THEME_COLORS.light}'`));

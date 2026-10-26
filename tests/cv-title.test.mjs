@@ -44,7 +44,7 @@ function render(inputPayload, template = BASE_TEMPLATE) {
   const output = join(dir, 'output.html');
   writeFileSync(input, JSON.stringify(inputPayload));
   execFileSync(process.execPath, ['build-cv-html.mjs', input, output, template], { cwd: ROOT, encoding: 'utf8' });
-  return readFileSync(output, 'utf8');
+  return readFileSync(output, 'utf8').replace(/\r\n/g, '\n');
 }
 
 test('a candidate.title renders a .header-title element right after the name', () => {
@@ -77,6 +77,16 @@ test('title text is HTML-escaped (no markup injection through the headline)', ()
   const html = render(payload('Dev <script>alert(1)</script> & "Lead"'));
   assert.doesNotMatch(html, /<script>alert\(1\)<\/script>/);
   assert.match(html, /Dev &lt;script&gt;alert\(1\)&lt;\/script&gt; &amp; &quot;Lead&quot;/);
+});
+
+test('Portuguese titles follow payload.lang and explicit section titles still win', () => {
+  const pt = { ...payload(), lang: 'pt-PT' };
+  const html = render(pt);
+  for (const title of ['Resumo Profissional', 'Experiência Profissional', 'Formação Académica', 'Competências']) {
+    assert.ok(html.includes(title), `missing PT title: ${title}`);
+  }
+  assert.ok(render({ ...pt, sections: { summary: 'Apresentação' } }).includes('Apresentação'));
+  assert.ok(render({ ...pt, lang: 'en' }).includes('Professional Summary'));
 });
 
 test('every built-in template carries the {{TITLE_BLOCK}} slot and resolves it', () => {

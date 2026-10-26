@@ -719,7 +719,7 @@ try {
       // longer complete span so NEW containing OLD (including "; ") is not
       // expanded again on retry, and OLD containing NEW is still replaced.
       const alternatives = [note, replacedNote].sort((a, b) => b.length - a.length)
-        .map(text => text.replace(/[.*+?^${}()|[\]\\]/g, '\€&'));
+        .map(text => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
       const wholeNotes = new RegExp(`(^|; )(${alternatives.join('|')})(?=; |$)`, 'g');
       let found = false;
       const updated = existing.replace(wholeNotes, (_match, prefix, entry) => {

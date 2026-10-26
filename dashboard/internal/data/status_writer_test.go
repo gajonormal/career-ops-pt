@@ -44,8 +44,8 @@ func TestDashboardStatusLifecycleMatchesCLIAndWeb(t *testing.T) {
 					t.Fatalf("%v: %s", err, out)
 				}
 			}
-			update("Candidatura Enviada", "sent application")
-			update("Candidatura Enviada", "sent application")
+			update("Applied", "sent application")
+			update("Applied", "sent application")
 			followups, err := os.ReadFile(filepath.Join(filepath.Dir(tracker), "follow-ups.md"))
 			if err != nil {
 				t.Fatal(err)
@@ -53,7 +53,7 @@ func TestDashboardStatusLifecycleMatchesCLIAndWeb(t *testing.T) {
 			if count := strings.Count(string(followups), "next #42 "); count != 1 {
 				t.Fatalf("want one pin, got %d: %s", count, followups)
 			}
-			update("Rejeitado", "")
+			update("Rejected", "")
 			ledger, err := os.ReadFile(filepath.Join(filepath.Dir(tracker), "status-log.tsv"))
 			if err != nil {
 				t.Fatal(err)
@@ -73,7 +73,7 @@ func TestDashboardStatusLifecycleMatchesCLIAndWeb(t *testing.T) {
 				}
 			}
 			apps := ParseApplications(root)
-			if len(apps) != 1 || apps[0].Status != "Rejeitado" || apps[0].Notes != "original; sent application" {
+			if len(apps) != 1 || apps[0].Status != "Rejected" || apps[0].Notes != "original; sent application" {
 				t.Fatalf("unexpected application: %+v", apps)
 			}
 			if entries, err := os.ReadDir(decoy); err != nil || len(entries) != 0 {
@@ -92,12 +92,12 @@ func TestDashboardStatusReportsLifecycleFailure(t *testing.T) {
 			if err := os.Mkdir(filepath.Join(filepath.Dir(tracker), sidecar), 0o755); err != nil {
 				t.Fatal(err)
 			}
-			err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7"}, "Candidatura Enviada")
+			err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7"}, "Applied")
 			if err == nil || !strings.Contains(err.Error(), "status saved, but") {
 				t.Fatalf("missing partial success warning: %v", err)
 			}
 			apps := ParseApplications(root)
-			if len(apps) != 1 || apps[0].Status != "Candidatura Enviada" {
+			if len(apps) != 1 || apps[0].Status != "Applied" {
 				t.Fatalf("saved status must stay visible: %+v", apps)
 			}
 		})
@@ -112,7 +112,7 @@ func TestDashboardStatusRepairsMissingAppliedLedger(t *testing.T) {
 	if err := os.Mkdir(logPath, 0o755); err != nil {
 		t.Fatal(err)
 	}
-	if err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7"}, "Candidatura Enviada"); err == nil {
+	if err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7"}, "Applied"); err == nil {
 		t.Fatal("initial partial save must report the missing ledger")
 	}
 	if err := os.Remove(logPath); err != nil {
@@ -121,7 +121,7 @@ func TestDashboardStatusRepairsMissingAppliedLedger(t *testing.T) {
 	if err := os.WriteFile(logPath, []byte("42\t2026-09-01\t-\tEvaluated\timport\t\n"), 0o644); err != nil {
 		t.Fatal(err)
 	}
-	if err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7", Status: "Candidatura Enviada"}, "Candidatura Enviada"); err != nil {
+	if err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7", Status: "Applied"}, "Applied"); err != nil {
 		t.Fatalf("same-status retry should repair the ledger: %v", err)
 	}
 	ledger, err := os.ReadFile(logPath)
@@ -131,7 +131,7 @@ func TestDashboardStatusRepairsMissingAppliedLedger(t *testing.T) {
 	if got := strings.Count(string(ledger), "\t-\tApplied\tcorrection\t"); got != 1 {
 		t.Fatalf("want one Applied correction, got %d: %s", got, ledger)
 	}
-	if err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7", Status: "Candidatura Enviada"}, "Candidatura Enviada"); err != nil {
+	if err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7", Status: "Applied"}, "Applied"); err != nil {
 		t.Fatal(err)
 	}
 	ledgerAgain, err := os.ReadFile(logPath)
@@ -151,10 +151,10 @@ func TestDashboardStatusPropagatesAppliedLedgerRepairFailure(t *testing.T) {
 	if err := os.Mkdir(logPath, 0o755); err != nil {
 		t.Fatal(err)
 	}
-	if err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7"}, "Candidatura Enviada"); err == nil {
+	if err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7"}, "Applied"); err == nil {
 		t.Fatal("initial partial save must report the missing ledger")
 	}
-	err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7", Status: "Candidatura Enviada"}, "Candidatura Enviada")
+	err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7", Status: "Applied"}, "Applied")
 	if err == nil || !strings.Contains(err.Error(), "status-log repair failed") {
 		t.Fatalf("same-status retry must propagate ledger inspection failure: %v", err)
 	}
@@ -168,13 +168,13 @@ func TestDashboardStatusRepairsMissingAppliedFollowup(t *testing.T) {
 	if err := os.Mkdir(followupsPath, 0o755); err != nil {
 		t.Fatal(err)
 	}
-	if err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7"}, "Candidatura Enviada"); err == nil {
+	if err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7"}, "Applied"); err == nil {
 		t.Fatal("initial partial save must report the missing follow-up")
 	}
 	if err := os.Remove(followupsPath); err != nil {
 		t.Fatal(err)
 	}
-	if err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7", Status: "Candidatura Enviada"}, "Candidatura Enviada"); err != nil {
+	if err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7", Status: "Applied"}, "Applied"); err != nil {
 		t.Fatalf("same-status retry should repair the follow-up: %v", err)
 	}
 	followups, err := os.ReadFile(followupsPath)
@@ -198,7 +198,7 @@ func TestDashboardStatusReportsBusyTracker(t *testing.T) {
 		t.Fatal(err)
 	}
 	defer lock.release()
-	err = UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7"}, "Entrevista")
+	err = UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7"}, "Interview")
 	if err == nil || !strings.Contains(strings.ToLower(err.Error()), "lock") {
 		t.Fatalf("missing lock failure: %v", err)
 	}
@@ -210,7 +210,7 @@ func TestDashboardStatusRequiresNode(t *testing.T) {
 	before := statusTargetHeader + statusTargetRow
 	root, tracker := writeTracker(t, before)
 	t.Setenv("PATH", t.TempDir())
-	if err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7"}, "Entrevista"); err == nil {
+	if err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7"}, "Interview"); err == nil {
 		t.Fatal("missing node must fail")
 	}
 	assertStatusTargetBytes(t, tracker, before)
@@ -234,7 +234,7 @@ func TestDashboardStatusRejectsInvalidWriterResults(t *testing.T) {
 					t.Error(err)
 				}
 			})
-			if err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7"}, "Entrevista"); err == nil {
+			if err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7"}, "Interview"); err == nil {
 				t.Fatal("invalid writer result must not report success")
 			}
 		})
@@ -246,11 +246,11 @@ func TestDashboardStatusPreservesFlagLikeNotes(t *testing.T) {
 		t.Run(note, func(t *testing.T) {
 			t.Setenv("CAREER_OPS_TRACKER", "")
 			root, _ := writeTracker(t, statusTargetHeader+statusTargetRow)
-			if err := UpdateApplicationStatusAndNotes(root, model.CareerApplication{ReportNumber: "7"}, "Entrevista", note); err != nil {
+			if err := UpdateApplicationStatusAndNotes(root, model.CareerApplication{ReportNumber: "7"}, "Interview", note); err != nil {
 				t.Fatal(err)
 			}
 			apps := ParseApplications(root)
-			if len(apps) != 1 || apps[0].Status != "Entrevista" || apps[0].Notes != "original; "+note {
+			if len(apps) != 1 || apps[0].Status != "Interview" || apps[0].Notes != "original; "+note {
 				t.Fatalf("note became a CLI flag: %+v", apps)
 			}
 		})
@@ -277,7 +277,7 @@ func TestDashboardStatusDoesNotExecuteDataOnlyScripts(t *testing.T) {
 					t.Error(err)
 				}
 			})
-			err = UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7"}, "Entrevista")
+			err = UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7"}, "Interview")
 			if err == nil || !strings.Contains(err.Error(), "need set-status.mjs in the career-ops checkout") {
 				t.Fatalf("data-only script must not run: %v", err)
 			}
@@ -292,7 +292,7 @@ func TestDashboardStatusRoutineAppliedSaveDoesNotRepair(t *testing.T) {
 	if err := os.WriteFile(logPath, []byte("42\t2026-08-01\t-\tEvaluated\timport\t\n"), 0o644); err != nil {
 		t.Fatal(err)
 	}
-	if err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7", Status: "Candidatura Enviada"}, "Candidatura Enviada"); err != nil {
+	if err := UpdateApplicationStatus(root, model.CareerApplication{ReportNumber: "7", Status: "Applied"}, "Applied"); err != nil {
 		t.Fatal(err)
 	}
 	ledger, err := os.ReadFile(logPath)

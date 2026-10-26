@@ -68,6 +68,7 @@ import { getCareerOpsRoot } from './path-resolver.mjs';
 import { KNOWN_ATS_VENDORS } from './ats-vendor.mjs';
 import { loadHistoryAtsSeeds } from './history-ats-seeds.mjs';
 import { loadProviders } from './providers/_registry.mjs';
+import { buildCountryEligibilityFilter, loadCandidateCountry } from './scan.mjs';
 
 // ── Config ──────────────────────────────────────────────────────────
 
@@ -523,13 +524,14 @@ export function resolveTitleFilterConfig(config) {
 // pure, exported helper keeps the content_filter.by_title_keyword wiring
 // (#1846) unit-testable without mocking providers or duplicating the rule
 // order in two places for the caller that doesn't need per-stage counts.
-export function passesFilters(job, { titleFilter, locationFilter, contentFilter, titleFilterConfig, companySlug }) {
+export function passesFilters(job, { titleFilter, locationFilter, contentFilter, countryEligibilityFilter, titleFilterConfig, companySlug }) {
   if (!titleFilter(job.title, companySlug)) return false;
   // job.url is passed so the location filter can fall back to the URL's own
   // location segment when the provider reports a rolled-up "N Locations" string;
   // job.title so a title-stated remote role survives a city-only location.
   if (!locationFilter(job.location, job.url, job.title)) return false;
   if (contentFilter && !contentFilter(job.description, matchedTitleKeywords(job.title, titleFilterConfig))) return false;
+  if (countryEligibilityFilter && !countryEligibilityFilter(job.description)) return false;
   return true;
 }
 
@@ -693,6 +695,7 @@ export async function runSeedScan(seedId, opts, ctx, seenUrls, label) {
         contentFilter: opts.contentFilter,
         companySlug: entry.name,
         titleFilterConfig: opts.titleFilterConfig,
+        countryEligibilityFilter: opts.countryEligibilityFilter,
       })) continue;
       // provider is always one of SEED_PROVIDERS (greenhouse/lever/ashby) here —
       // none currently define dedupKey, so this is the same normalizeUrlForDedup
@@ -951,6 +954,7 @@ async function main() {
   // Same content_filter (incl. by_title_keyword scoping) scan.mjs applies —
   // see #1846. Built once here from the same portals.yml config.
   const contentFilter = buildContentFilter(config?.content_filter);
+  const countryEligibilityFilter = buildCountryEligibilityFilter(config?.country_eligibility_filter, loadCandidateCountry());
   if (!fullTitleFilterConfig?.positive?.length) {
     const key = config?.title_filter_full ? 'title_filter_full' : 'title_filter';
     console.error(`⚠️  portals.yml has no ${key}.positive — every fresh posting on every board will match. Consider adding keywords.`);
@@ -959,6 +963,7 @@ async function main() {
   opts.titleFilter = titleFilter;
   opts.locationFilter = locationFilter;
   opts.contentFilter = contentFilter;
+  opts.countryEligibilityFilter = countryEligibilityFilter;
   // Raw title_filter config, needed by matchedTitleKeywords() to scope
   // content_filter.by_title_keyword the same way scan.mjs does.
   opts.titleFilterConfig = fullTitleFilterConfig;
@@ -1159,6 +1164,7 @@ async function main() {
       // job.title so a title-stated remote role survives a city-only location.
       if (!locationFilter(job.location, job.url, job.title)) continue;
       if (!contentFilter(job.description, matchedTitleKeywords(job.title, fullTitleFilterConfig))) { droppedContent++; continue; }
+      if (!countryEligibilityFilter(job.description)) { droppedContent++; continue; }
       const dedupToken = dedupTokenFor(job, provider);
       if (seenUrls.has(dedupToken)) continue;
       seenUrls.add(dedupToken); // intra-scan dedup

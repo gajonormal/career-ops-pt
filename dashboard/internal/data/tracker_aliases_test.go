@@ -33,12 +33,12 @@ func TestLocalizedTrackerHeaders(t *testing.T) {
 		{"pl/oferta", "Data", "Firma", "Rola"},
 		{"pt/oferta", "Data", "Empresa", "Vaga"},
 		{"da/oferta", "Dato", "Virksomhed", "Rolle"},
-		{"id/lowongan", "Tanggal", "Perusahaan", "Cargo"},
+		{"id/lowongan", "Tanggal", "Perusahaan", "Role"},
 	}
 	for _, market := range markets {
 		t.Run(market.mode, func(t *testing.T) {
-			base := []string{"#", market.date, market.company, market.role, "Pontuação", "Estado", "PDF", "Report"}
-			baseValues := []string{"41", "2026-01-02", "Acme", "Engineer", "4.2/5", "Candidatura Enviada", "✅", "[41](reports/041.md)"}
+			base := []string{"#", market.date, market.company, market.role, "Score", "Status", "PDF", "Report"}
+			baseValues := []string{"41", "2026-01-02", "Acme", "Engineer", "4.2/5", "Applied", "✅", "[41](reports/041.md)"}
 			pipe := func(cells []string) string { return "| " + strings.Join(cells, " | ") + " |" }
 			mode, err := os.ReadFile(filepath.Join("..", "..", "..", "modes", market.mode+".md"))
 			if err != nil {
@@ -52,10 +52,10 @@ func TestLocalizedTrackerHeaders(t *testing.T) {
 				headers, cells []string
 			}{
 				{"shipped", base, baseValues},
-				{"inserted", []string{"#", market.date, market.company, "Location", "Via", market.role, "Pontuação", "Estado", "PDF", "Report", "Notas"},
-					[]string{"41", "2026-01-02", "Acme", "Berlin", "Example Agency", "Engineer", "4.2/5", "Candidatura Enviada", "✅", "[41](reports/041.md)", "keep this note"}},
-				{"reordered", []string{market.company, "Estado", "#", market.date, "Location", "Via", market.role, "Pontuação", "PDF", "Report", "Notas"},
-					[]string{"Acme", "Candidatura Enviada", "41", "2026-01-02", "Berlin", "Example Agency", "Engineer", "4.2/5", "✅", "[41](reports/041.md)", "keep this note"}},
+				{"inserted", []string{"#", market.date, market.company, "Location", "Via", market.role, "Score", "Status", "PDF", "Report", "Notes"},
+					[]string{"41", "2026-01-02", "Acme", "Berlin", "Example Agency", "Engineer", "4.2/5", "Applied", "✅", "[41](reports/041.md)", "keep this note"}},
+				{"reordered", []string{market.company, "Status", "#", market.date, "Location", "Via", market.role, "Score", "PDF", "Report", "Notes"},
+					[]string{"Acme", "Applied", "41", "2026-01-02", "Berlin", "Example Agency", "Engineer", "4.2/5", "✅", "[41](reports/041.md)", "keep this note"}},
 			}
 			for _, layout := range layouts {
 				t.Run(layout.name, func(t *testing.T) {
@@ -71,7 +71,7 @@ func TestLocalizedTrackerHeaders(t *testing.T) {
 						t.Fatalf("expected exactly one application, got %d (header must not become a row)", len(apps))
 					}
 					a := apps[0]
-					if a.Number != 41 || a.Date != "2026-01-02" || a.Company != "Acme" || a.Role != "Engineer" || a.ScoreRaw != "4.2/5" || a.Status != "Candidatura Enviada" || !a.HasPDF || a.ReportNumber != "41" {
+					if a.Number != 41 || a.Date != "2026-01-02" || a.Company != "Acme" || a.Role != "Engineer" || a.ScoreRaw != "4.2/5" || a.Status != "Applied" || !a.HasPDF || a.ReportNumber != "41" {
 						t.Fatalf("misaligned parsed application: %+v", a)
 					}
 					if layout.name == "shipped" {
@@ -80,7 +80,7 @@ func TestLocalizedTrackerHeaders(t *testing.T) {
 					if a.Notes != "keep this note" || layout.cells[cols["location"]] != "Berlin" || layout.cells[cols["via"]] != "Example Agency" {
 						t.Fatal("optional columns must map without shifting other values")
 					}
-					if err := UpdateApplicationStatusAndNotes(dir, a, "Entrevista", "scheduled"); err != nil {
+					if err := UpdateApplicationStatusAndNotes(dir, a, "Interview", "scheduled"); err != nil {
 						t.Fatal(err)
 					}
 					updated, err := os.ReadFile(trackerPath)
@@ -88,14 +88,14 @@ func TestLocalizedTrackerHeaders(t *testing.T) {
 						t.Fatal(err)
 					}
 					want := append([]string(nil), layout.cells...)
-					want[cols["status"]] = "Entrevista"
+					want[cols["status"]] = "Interview"
 					want[cols["notes"]] = "keep this note; scheduled"
 					gotLines := strings.Split(string(updated), "\n")
 					if gotLines[0] != header || !reflect.DeepEqual(splitTrackerRow(gotLines[2]), want) {
 						t.Fatalf("writer changed cells outside Status/Notes:\n%s", updated)
 					}
 					changed := ParseApplications(dir)
-					if len(changed) != 1 || changed[0].Status != "Entrevista" || changed[0].Notes != "keep this note; scheduled" {
+					if len(changed) != 1 || changed[0].Status != "Interview" || changed[0].Notes != "keep this note; scheduled" {
 						t.Fatalf("writer output did not roundtrip: %+v", changed)
 					}
 				})
@@ -111,14 +111,14 @@ func TestTrackerAliasHeaderControls(t *testing.T) {
 		row := "| 41 | 2026-01-02 | Firma | Rolle | 4.2/5 | Applied | ✅ | [41](reports/041.md) | Status |"
 		dir, _ := writeTracker(t, header+"\n"+row+"\n")
 		apps := ParseApplications(dir)
-		if len(apps) != 1 || apps[0].Company != "Firma" || apps[0].Role != "Rolle" || apps[0].Notes != "Estado" || !apps[0].HasPDF {
+		if len(apps) != 1 || apps[0].Company != "Firma" || apps[0].Role != "Rolle" || apps[0].Notes != "Status" || !apps[0].HasPDF {
 			t.Errorf("header %q yielded %+v", header, apps)
 		}
 		if detectTrackerColumns([]string{row}) != nil {
 			t.Error("individual aliases in data must not satisfy the full schema")
 		}
 		legacy, _ := writeTracker(t, row+"\n")
-		if got := ParseApplications(legacy); len(got) != 1 || got[0].Company != "Firma" || got[0].Status != "Candidatura Enviada" {
+		if got := ParseApplications(legacy); len(got) != 1 || got[0].Company != "Firma" || got[0].Status != "Applied" {
 			t.Errorf("headerless compatibility lost: %+v", got)
 		}
 	}

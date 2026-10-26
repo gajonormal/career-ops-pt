@@ -23,10 +23,10 @@ func TestSortCycleIncludesNewColumns(t *testing.T) {
 
 func TestSortByPayLocationAndLastContact(t *testing.T) {
 	apps := []model.CareerApplication{
-		{Company: "LowPay", Status: "Candidatura Enviada", PayMax: 150_000, WorkMode: "Full", Location: "Austin, TX", LastContact: "2026-06-01"},
-		{Company: "NoPay", Status: "Candidatura Enviada", PayMax: 0, WorkMode: "", LastContact: ""},
-		{Company: "HighPay", Status: "Candidatura Enviada", PayMax: 250_000, WorkMode: "Hybrid", Location: "Charlotte, NC", LastContact: "2026-06-05"},
-		{Company: "MidPay", Status: "Candidatura Enviada", PayMax: 200_000, WorkMode: "Remote", LastContact: "2026-06-03"},
+		{Company: "LowPay", Status: "Applied", PayMax: 150_000, WorkMode: "Full", Location: "Austin, TX", LastContact: "2026-06-01"},
+		{Company: "NoPay", Status: "Applied", PayMax: 0, WorkMode: "", LastContact: ""},
+		{Company: "HighPay", Status: "Applied", PayMax: 250_000, WorkMode: "Hybrid", Location: "Charlotte, NC", LastContact: "2026-06-05"},
+		{Company: "MidPay", Status: "Applied", PayMax: 200_000, WorkMode: "Remote", LastContact: "2026-06-03"},
 	}
 
 	pm := NewPipelineModel(theme.NewTheme("catppuccin-mocha"), apps, model.PipelineMetrics{Total: len(apps)}, "..", 120, 40)
@@ -61,9 +61,9 @@ func TestSortByPayLocationAndLastContact(t *testing.T) {
 // transition when there is one, else the tracker date.
 func TestSortByDateUsesStatusDate(t *testing.T) {
 	apps := []model.CareerApplication{
-		{Company: "OldEvalRecentChange", Status: "Entrevista", Date: "2026-05-01", StatusDate: "2026-06-20"},
+		{Company: "OldEvalRecentChange", Status: "Interview", Date: "2026-05-01", StatusDate: "2026-06-20"},
 		{Company: "NewEvalNoChange", Status: "Evaluated", Date: "2026-06-10"},
-		{Company: "MidEvalMidChange", Status: "Candidatura Enviada", Date: "2026-05-15", StatusDate: "2026-06-15"},
+		{Company: "MidEvalMidChange", Status: "Applied", Date: "2026-05-15", StatusDate: "2026-06-15"},
 		{Company: "NoDates", Status: "Evaluated"},
 	}
 
@@ -82,10 +82,10 @@ func TestSortByDateUsesStatusDate(t *testing.T) {
 
 func TestSortByPosted(t *testing.T) {
 	apps := []model.CareerApplication{
-		{Company: "Old", Status: "Candidatura Enviada", PostedOn: "2026-05-01"},
-		{Company: "NoDate", Status: "Candidatura Enviada", PostedOn: ""},
-		{Company: "Fresh", Status: "Candidatura Enviada", PostedOn: "2026-08-20"},
-		{Company: "Mid", Status: "Candidatura Enviada", PostedOn: "2026-07-10"},
+		{Company: "Old", Status: "Applied", PostedOn: "2026-05-01"},
+		{Company: "NoDate", Status: "Applied", PostedOn: ""},
+		{Company: "Fresh", Status: "Applied", PostedOn: "2026-08-20"},
+		{Company: "Mid", Status: "Applied", PostedOn: "2026-07-10"},
 	}
 
 	pm := NewPipelineModel(theme.NewTheme("catppuccin-mocha"), apps, model.PipelineMetrics{Total: len(apps)}, "..", 120, 40)

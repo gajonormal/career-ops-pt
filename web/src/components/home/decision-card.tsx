@@ -9,6 +9,7 @@ import { CompanyLogo } from "@/components/company-logo";
 import { scoreNum, scoreTone } from "@/lib/format";
 import { companyPresentation } from "@/lib/company-presentation.mjs";
 import type { Application } from "@/lib/career-ops";
+import { saveStatus } from "@/lib/pipeline-status.mjs";
 
 // Awaiting-decision row: a scored role with no terminal status. Primary action
 // opens the report (PDF + Apply live there). Skip / Applied still write status.
@@ -16,18 +17,20 @@ export function DecisionCard({ app }: { app: Application }) {
   const router = useRouter();
   const [busy, setBusy] = useState<"" | "Applied" | "Discarded">("");
   const [done, setDone] = useState<string | null>(null);
+  const [error, setError] = useState("");
   const score = scoreNum(app.score);
   const tone = scoreTone(app.score);
   const company = companyPresentation(app);
 
   const setStatus = async (status: "Applied" | "Discarded") => {
     setBusy(status);
+    setError("");
     try {
-      await fetch("/api/status", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ n: app.n, status }) });
+      await saveStatus(app.n, app.status, status);
       setDone(status);
       router.refresh();
     } catch {
-      /* ignore */
+      setError("Não foi possível guardar o estado. Tenta novamente.");
     } finally {
       setBusy("");
     }
@@ -61,7 +64,7 @@ export function DecisionCard({ app }: { app: Application }) {
           href={`/pipeline/${app.n}`}
           className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-md bg-brand-soft px-2.5 py-1.5 text-xs font-medium text-brand-text transition hover:bg-brand/15 max-sm:min-h-[44px]"
         >
-          <FileText className="size-3.5" /> Review
+          <FileText className="size-3.5" /> Rever
         </Link>
         <button
           type="button"
@@ -69,19 +72,20 @@ export function DecisionCard({ app }: { app: Application }) {
           onClick={() => setStatus("Discarded")}
           className="inline-flex items-center justify-center gap-1.5 rounded-md border border-border px-2.5 py-1.5 text-xs font-medium text-muted transition hover:text-foreground disabled:opacity-60 max-sm:min-h-[44px] max-sm:px-4"
         >
-          {busy === "Discarded" ? <Loader2 className="size-3.5 animate-spin" /> : <X className="size-3.5" />} Skip
+          {busy === "Discarded" ? <Loader2 className="size-3.5 animate-spin" /> : <X className="size-3.5" />} Descartar
         </button>
         <button
           type="button"
           disabled={!!busy}
           onClick={() => setStatus("Applied")}
-          title="Record Applied without opening the apply flow"
+          title="Registar uma candidatura já enviada"
           className="inline-flex shrink-0 items-center justify-center gap-1 rounded-md px-2 py-1.5 text-xs font-medium text-faint transition hover:text-foreground disabled:opacity-60 max-sm:min-h-[44px]"
         >
           {busy === "Applied" ? <Loader2 className="size-3.5 animate-spin" /> : <Check className="size-3.5" />}
-          Applied
+          Enviada
         </button>
       </div>
+      {error && <p role="alert" className="text-xs text-red-600">{error}</p>}
     </div>
   );
 }

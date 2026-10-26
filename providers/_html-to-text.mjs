@@ -35,10 +35,12 @@ function stripMarkup(content) {
  * Exported for tests.
  *
  * @param {unknown} content
+ * @param {{maxLength?: number}} [options] Infinity preserves the full body for eligibility checks.
  * @returns {string}
  */
-export function htmlToText(content) {
+export function htmlToText(content, { maxLength = DESCRIPTION_CAP } = {}) {
   if (typeof content !== 'string' || !content) return '';
+  if (maxLength !== Infinity && (!Number.isInteger(maxLength) || maxLength < 0)) throw new Error('htmlToText: maxLength deve ser um inteiro positivo ou Infinity.');
   // Strip literal markup before decoding: quote entities inside a quoted
   // attribute are data, and decoding them first would turn them into false
   // delimiters. Each decode is followed by a strip so double-encoded active
@@ -51,5 +53,5 @@ export function htmlToText(content) {
     .replace(/<(?=\/?[a-z!?])/gi, '')
     .replace(/\s+/g, ' ')
     .trim()
-    .slice(0, DESCRIPTION_CAP);
+    .slice(0, maxLength);
 }

@@ -16,6 +16,7 @@ import { companyPresentation, companySearchText } from "@/lib/company-presentati
 import { PipelineTableRowsSkeleton } from "@/components/page-loading-skeletons";
 import { startRouteProgress } from "@/components/route-progress";
 import { sortRows } from "@/lib/core/pipeline-sort.mjs";
+import { statusLabel } from "@/lib/status-label.mjs";
 
 // INBOX (the triage queue) is the default tab; the rest filter the tracker.
 const TABS = [
@@ -35,6 +36,7 @@ type Tab = (typeof TABS)[number];
 
 const SORT_KEYS = ["tracker", "company", "role", "score", "status", "date"] as const;
 type SortKey = (typeof SORT_KEYS)[number];
+const SORT_LABELS: Record<SortKey, string> = { tracker: "Número", company: "Empresa", role: "Função", score: "Pontuação", status: "Estado", date: "Data" };
 
 export function PipelineView({
   applications,
@@ -144,10 +146,10 @@ export function PipelineView({
     <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8 max-sm:pb-24">
       <div className="flex items-end justify-between gap-4">
         <div>
-          <h1 className="font-display text-2xl tracking-tight text-landing">Pipeline</h1>
+          <h1 className="font-display text-2xl tracking-tight text-landing">Candidaturas</h1>
           <p className="mt-1 text-sm text-muted">
-            <span className="tabular-nums">{pendingInbox.length}</span> in inbox ·{" "}
-            <span className="tabular-nums">{visibleApplications.length}</span> tracked
+            <span className="tabular-nums">{pendingInbox.length}</span> por avaliar ·{" "}
+            <span className="tabular-nums">{visibleApplications.length}</span> registadas
           </p>
         </div>
         {/* the tracker has its own search; the inbox brings its own facet filters */}
@@ -157,7 +159,8 @@ export function PipelineView({
             <input
               value={q}
               onChange={(e) => setQ(e.target.value)}
-              placeholder="Search company or role…"
+              placeholder="Pesquisar empresa ou função…"
+              aria-label="Pesquisar empresa ou função"
               className="w-full rounded-md border border-border bg-surface/60 py-2 pl-9 pr-3 text-sm outline-none transition-colors placeholder:text-faint focus:border-brand/50 focus-visible:ring-2 focus-visible:ring-brand/40"
             />
           </div>
@@ -187,7 +190,7 @@ export function PipelineView({
                   : "border-transparent text-muted hover:text-foreground",
               )}
             >
-              {t} <span className="text-faint tabular-nums">{count}</span>
+              {statusLabel(t, { plural: true })} <span className="text-faint tabular-nums">{count}</span>
             </button>
           );
         })}
@@ -197,14 +200,14 @@ export function PipelineView({
 
       {visibleTab !== "INBOX" && minFilter != null && (
         <div className="mt-3 flex items-center gap-2">
-          <span className="text-xs text-faint">Filtered:</span>
+          <span className="text-xs text-faint">Filtro:</span>
           <button
             type="button"
             onClick={() => setParams({ min: null })}
             className="inline-flex items-center gap-1.5 rounded-full border border-brand/40 bg-brand-soft px-2.5 py-1 text-xs font-medium text-brand transition-colors hover:bg-brand/15"
-            title="Clear score filter"
+            title="Limpar filtro de pontuação"
           >
-            score ≥ {minFilter.toFixed(1)}
+            pontuação ≥ {minFilter.toLocaleString("pt-PT", { minimumFractionDigits: 1 })}
             <X className="size-3" />
           </button>
         </div>
@@ -241,7 +244,7 @@ export function PipelineView({
                       className="inline-flex cursor-pointer select-none items-center gap-1 uppercase tracking-wide hover:text-foreground"
                       onClick={() => setParams({ sort: k, dir: sort.key === k ? sort.dir * -1 : -1 })}
                     >
-                      {k}
+                      {SORT_LABELS[k]}
                       <ChevronsUpDown aria-hidden="true" className="size-3" />
                     </button>
                   </th>
@@ -286,7 +289,7 @@ export function PipelineView({
                         if (tab !== "ALL" && !canonStatus(status).includes(tab) && (restoreFocus || focusedRow?.dataset.applicationKey === key)) {
                           activeTab.current?.focus();
                         }
-                        setAnnouncement(`Application #${r.n} status saved as ${status}.`);
+                        setAnnouncement(`Estado da candidatura #${r.n} guardado: ${statusLabel(status)}.`);
                         startTransition(() => {
                           showSavedStatus({ key, status });
                           router.refresh();
@@ -308,8 +311,8 @@ export function PipelineView({
         </div>
       ) : (
         <div className="mt-4 rounded-2xl border border-dashed border-border bg-surface/30 px-6 py-12 text-center">
-          <p className="font-display text-lg">No matches</p>
-          <p className="mx-auto mt-1 max-w-sm text-sm text-muted">Try a different tab or clear the search.</p>
+          <p className="font-display text-lg">Sem resultados</p>
+          <p className="mx-auto mt-1 max-w-sm text-sm text-muted">Seleciona outro separador ou limpa a pesquisa.</p>
         </div>
       )}
     </div>
@@ -322,8 +325,8 @@ function InboxEmpty({ count, filtered }: { count: number; filtered: boolean }) {
   if (filtered) {
     return (
       <div className="mt-4 rounded-2xl border border-dashed border-border bg-surface/30 px-6 py-12 text-center">
-        <p className="font-display text-lg">No matches</p>
-        <p className="mx-auto mt-1 max-w-sm text-sm text-muted">Clear the search to see the full inbox.</p>
+        <p className="font-display text-lg">Sem resultados</p>
+        <p className="mx-auto mt-1 max-w-sm text-sm text-muted">Limpa a pesquisa para veres todas as ofertas por avaliar.</p>
       </div>
     );
   }
@@ -333,25 +336,25 @@ function InboxEmpty({ count, filtered }: { count: number; filtered: boolean }) {
         <span className="size-2.5 rounded-full bg-foreground/15" aria-hidden="true" />
         <span className="size-2.5 rounded-full bg-foreground/15" aria-hidden="true" />
         <span className="size-2.5 rounded-full bg-foreground/15" aria-hidden="true" />
-        <span className="ml-3 font-mono text-xs tracking-wide text-muted">career-ops · inbox</span>
+        <span className="ml-3 font-mono text-xs tracking-wide text-muted">career-ops · por avaliar</span>
       </div>
       <div className="px-6 py-10 text-center">
         <p className="font-display text-lg">
-          Your <span className="text-brand">inbox</span> is empty.
+          Não tens ofertas <span className="text-brand">por avaliar</span>.
         </p>
         {count > 0 ? (
-          <p className="mx-auto mt-2 max-w-sm text-sm text-muted">Nothing pending right now.</p>
+          <p className="mx-auto mt-2 max-w-sm text-sm text-muted">Sem ofertas pendentes neste momento.</p>
         ) : (
           <>
-            <p className="mx-auto mt-2 max-w-sm text-sm text-muted">Find roles that match your CV — free, no tokens spent.</p>
+            <p className="mx-auto mt-2 max-w-sm text-sm text-muted">Pesquisa oportunidades com os teus filtros, sem consumo de modelos de IA.</p>
             <Link
               href="/explore?run=1"
               className="mt-5 inline-flex items-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-medium text-brand-foreground shadow-sm transition-all duration-200 hover:bg-brand-200 hover:-translate-y-0.5 hover:shadow-md"
             >
-              <Compass className="size-4" /> Run your first free scan <ArrowRight className="size-4" />
+              <Compass className="size-4" /> Pesquisar oportunidades <ArrowRight className="size-4" />
             </Link>
             <p className="mx-auto mt-4 max-w-sm text-xs text-muted">
-              Prefer the terminal? Run <code className="rounded bg-surface-hover px-1 py-0.5 font-mono">career-ops scan</code>, or add job URLs to{" "}
+              No terminal, executa <code className="rounded bg-surface-hover px-1 py-0.5 font-mono">node scan.mjs</code>, ou adiciona endereços de ofertas a{" "}
               <code className="rounded bg-surface-hover px-1 py-0.5 font-mono">data/pipeline.md</code>.
             </p>
           </>

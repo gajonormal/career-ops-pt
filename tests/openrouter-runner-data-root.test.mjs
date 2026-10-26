@@ -295,6 +295,8 @@ for (const dir of cleanup) rmSync(dir, { recursive: true, force: true, maxRetrie
   const ALLOWED = [
     { pattern: /path\.join\(__dirname, '\.env'\)/, why: '.env is process configuration, read beside the script' },
     { pattern: /^const __dirname = /m, why: 'the declaration itself' },
+    { pattern: /loadMarketContext\(__dirname, (?:readFile\('config\/profile.yml'\) \?\? ''|ctx.profile)\)/, why: 'market modes are system files in the code root; the profile text is read through the data root' },
+    { pattern: /loadMarketMode\(__dirname, ctx.profile, 'apply'\)/, why: 'apply instructions are system files, never candidate data' },
   ];
 
   // Every line mentioning __dirname, minus comments and the allowed uses.

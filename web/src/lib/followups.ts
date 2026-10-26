@@ -96,12 +96,12 @@ export function followupStatusTone(status: string): "good" | "info" | "muted" {
   return "muted";
 }
 
-/** "today" / "tomorrow" / "in N days" / "N days ago" from a daysUntil delta. */
+/** Portuguese display label from a daysUntil delta. */
 export function relativeDays(daysUntil: number): string {
-  if (daysUntil === 0) return "today";
-  if (daysUntil === 1) return "tomorrow";
-  if (daysUntil > 1) return `in ${daysUntil} days`;
-  return daysUntil === -1 ? "1 day ago" : `${-daysUntil} days ago`;
+  if (daysUntil === 0) return "hoje";
+  if (daysUntil === 1) return "amanhã";
+  if (daysUntil > 1) return `daqui a ${daysUntil} dias`;
+  return daysUntil === -1 ? "há 1 dia" : `há ${-daysUntil} dias`;
 }
 
 /** 7/14-day escalation for "days since" cells: amber bold ≥7, red bold ≥14. */

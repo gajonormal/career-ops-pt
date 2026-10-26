@@ -113,7 +113,7 @@ if (phantom.length === 0) pass('every template in the matrix exists on disk');
 else fail(`TEMPLATES names templates that are not on disk: ${phantom.join(', ')}`);
 
 for (const { file, format, after, hasCertifications, hasCompetencies, hasInterests } of TEMPLATES) {
-  const template = readFileSync(join(ROOT, file), 'utf-8');
+  const template = readFileSync(join(ROOT, file), 'utf-8').replace(/\r\n/g, '\n');
   const name = file.split('/').pop();
   const closingSkeleton = format === 'html' ? '</body>\n</html>' : '\\end{document}';
 
@@ -557,6 +557,6 @@ for (const marker of ['<!-- CORE COMPETENCIES -->', '<!-- WORK EXPERIENCE -->', 
 check('stripEmptyRenderedSections: the populated sections keep their bodies',
   ['Rust</span>', 'Engineer', 'BSc, 2015', 'AWS SA', 'Languages: Rust, Go'].every((t) => strippedRendered.includes(t)), true);
 check('stripEmptyRenderedSections: the closing document skeleton survives',
-  strippedRendered.includes('</body>\n</html>'), true);
+  /<\/body>\r?\n<\/html>/.test(strippedRendered), true);
 check('stripEmptyRenderedSections: a CV with nothing empty comes out byte-identical',
   stripEmptyRenderedSections(strippedRendered), strippedRendered);

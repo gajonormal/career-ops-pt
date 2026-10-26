@@ -180,8 +180,24 @@ Levels are additive — they are executed in order, and results are merged and d
 ## Workflow
 
 1. **Read Configuration**: `portals.yml`
+   Read candidate country, work-authorization restrictions and nearby-location
+   preferences from `config/profile.yml`; these are user facts, never inferred
+   from the employer's headquarters. Distinguish office location from countries
+   from which the role may actually be performed. Apply the same restrictions
+   to browser/WebSearch discoveries as to providers. If the profile excludes
+   US residence/work authorization, an explicit requirement is a rejection;
+   a US headquarters alone is not. Unrelated mentions of Portugal elsewhere in
+   the JD do not cancel that requirement. Missing eligibility stays unknown.
 2. **Read History**: `data/scan-history.tsv` → already seen URLs
 3. **Read Dedup Sources**: `data/applications.md` + `data/pipeline.md`
+
+3.1. **Coverage receipt**: `node scan.mjs --json` reports `coverage`,
+   `agent_handoff` and `pending_search_queries`. It covers providers only;
+   do not present it as a completed assisted scan. Execute the pending levels
+   below when available. In the final summary, report sources actually queried
+   by provider/browser/WebSearch, failures, unresolved handoffs and unknown
+   eligibility. Do not claim full coverage when a source or level was skipped.
+   Recheck nearby Portuguese towns even when a posting omits the country.
 
 3.5. **Level 0 — Local Parser** (`scan.mjs`, zero-token):
    Initialize `local_parser_ok = []`.

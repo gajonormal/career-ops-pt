@@ -30,6 +30,7 @@
 import { readFileSync, existsSync, writeFileSync, mkdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { loadMarketContext } from './lib/market-context.mjs';
 import { getCareerOpsRoot } from './path-resolver.mjs';
 import { localToday } from './lib/local-today.mjs';
 import { TSV_ADDITION_HEADER } from './tracker-parse.mjs';
@@ -246,11 +247,10 @@ function readFile(path, label) {
 // ---------------------------------------------------------------------------
 console.log('\n📂  Loading context files...');
 
-const sharedContext = readFile(PATHS.shared,     'modes/_shared.md');
-const ofertaLogic   = readFile(PATHS.oferta,     'modes/oferta.md');
 const cvContent     = readFile(PATHS.cv,         'cv.md');
 const profileYml    = readFile(PATHS.profileYml, 'config/profile.yml');
 const languageInstruction = outputLanguageInstruction(parseOutputLanguage(profileYml));
+const { sharedContent: sharedContext, ofertaContent: ofertaLogic } = loadMarketContext(ROOT, profileYml);
 
 // ---------------------------------------------------------------------------
 // Build system prompt with token budget management
@@ -260,6 +260,7 @@ const { contextBody, budgetReport } = buildBudgetedPrompt({
   ofertaContent: ofertaLogic,
   cvContent,
   profileYml,
+  profileContent: [readFile(join(DATA_ROOT, 'modes/_profile.md'), 'modes/_profile.md'), readFile(join(DATA_ROOT, 'modes/_custom.md'), 'modes/_custom.md')].filter(Boolean).join('\n\n'),
   jdText,
   noCompress,
   modelName,

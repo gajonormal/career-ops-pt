@@ -21,7 +21,7 @@ func newStatusTestModel(t *testing.T) (appModel, model.CareerApplication) {
 	t.Setenv("CAREER_OPS_TRACKER", filepath.Join(root, "tracker.md"))
 	t.Setenv("CAREER_OPS_TRACKER_LOCK", "")
 	app := model.CareerApplication{
-		Number: 7, ReportNumber: "7", Company: "Example Co", Role: "Engineer", Status: "Candidatura Enviada",
+		Number: 7, ReportNumber: "7", Company: "Example Co", Role: "Engineer", Status: "Applied",
 	}
 	theme := theme.NewTheme("catppuccin-mocha")
 	return appModel{
@@ -64,7 +64,7 @@ func TestPipelineStatusWriteFailureIsVisible(t *testing.T) {
 }
 
 func TestViewerStatusWriteFailurePreservesStatus(t *testing.T) {
-	for _, status := range []string{"Entrevista", "Hired"} {
+	for _, status := range []string{"Interview", "Hired"} {
 		t.Run(status, func(t *testing.T) {
 			m, app := newStatusTestModel(t)
 			m.state = viewReport

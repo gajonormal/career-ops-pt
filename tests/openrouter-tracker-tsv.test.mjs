@@ -144,7 +144,7 @@ try {
   // tracker-parse.mjs's TSV_ADDITION_HEADER rather than in a string here.
   const src = readFileSync(join(ROOT, 'openrouter-runner.mjs'), 'utf-8');
   const importsHeader = /import\s*\{[^}]*\bTSV_ADDITION_HEADER\b[^}]*\}\s*from\s*'\.\/tracker-parse\.mjs'/.test(src);
-  const writesHeader = /writeFile\(\s*tsvFile\s*,\s*`€\{TSV_ADDITION_HEADER\}/.test(src);
+  const writesHeader = /writeFile\(\s*tsvFile\s*,\s*`\$\{TSV_ADDITION_HEADER\}/.test(src);
   if (importsHeader && writesHeader) {
     pass('openrouter-runner.mjs writes the shared header row above the data line');
   } else {

@@ -37,7 +37,7 @@ export const WORD_PREFIX = 'word:';
 export const STEM_PREFIX = 'stem:';
 
 function escapeForRegExp(s) {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, '\€&');
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
 // One definition of "inside a word", used by BOTH branches below. Anything else
@@ -241,7 +241,13 @@ export function buildTitleFilter(titleFilter) {
     // non-string. Consolidating on scan.mjs's version would have carried that
     // throw onto a path that never had it, where it aborts jobs.filter and
     // drops a whole company's results for one malformed title.
-    const lower = foldAccents(String(title ?? '').toLowerCase());
+    let lower = foldAccents(String(title ?? '').toLowerCase());
+    // Only an explicit range/list of levels removes the senior veto. A senior
+    // role mentoring juniors must still be rejected. Other vetoes still apply.
+    if (titleFilter?.allow_mixed_seniority === true) {
+      lower = lower.replace(/\b(junior|jr\.?|graduate|entry[ -]level)\s*(?:\/|\||-|to|a|e|or|and)\s*(?:mid\s*[/|-]\s*)?senior\b/g, '$1')
+        .replace(/\bsenior\s*(?:\/|\||-|to|a|e|or|and)\s*(junior|jr\.?|graduate|entry[ -]level)\b/g, '$1');
+    }
     // An empty positive list is "no positive constraint", not "match nothing":
     // a negative-only title_filter is a legitimate config that rejects a few
     // roles and keeps the rest.

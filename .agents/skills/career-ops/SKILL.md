@@ -74,6 +74,7 @@ Determine the mode from `$mode`:
 | `inbox` | `agent-inbox` |
 | `pipeline` | `pipeline` |
 | `apply` | `apply` |
+| `aplicar` | `apply` (Portuguese compatibility alias) |
 | `scan` | `scan` |
 | `discover` | `discover` |
 | `triage` | `triage` |
@@ -186,6 +187,8 @@ After determining the mode, load the necessary files before executing:
 If `modes/_custom.md` exists, read it after `modes/_profile.md` and before the selected mode file. It contains user house rules and procedural preferences. It may override workflow/style defaults, but it never adds factual claims about the candidate.
 
 Resolve `language.modes_dir` before applying the path shorthand below. With no setting, use `modes`. With a scalar directory, preserve the existing behavior: use that directory's `_shared.md` and localized mode file when it provides one. With a list, load every declared directory's `_shared.md` exactly once (including the baseline `modes/_shared.md` when `modes` appears), but use only the FIRST entry's evaluation-mode file for Blocks A-F; later entries contribute context, never a competing evaluation file. User-layer `_profile.md` and `_custom.md` remain under `modes/`.
+
+Portuguese market supplements (`modes/pt/`) extend the canonical files: load `modes/_shared.md` before `modes/pt/_shared.md`, and `modes/{mode}.md` before its PT supplement, once each. `oferta` therefore includes the full canonical A–H, Machine Summary, risk/evidence and JD archive contracts. A base-mode reference inside auto-pipeline never resets the selected market: retain the PT supplement. Resolve standalone interview modes through the selected market with the same fallback. CLI evaluators share this resolution in `lib/market-context.mjs`.
 
 ### Modes that require `_shared.md` + their mode file
 

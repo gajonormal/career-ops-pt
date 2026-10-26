@@ -181,7 +181,7 @@ function sliceGroups(body) {
 
   const marks = order
     .map(([key, heading]) => {
-      const re = new RegExp(`^${heading.replace(/[.*+?^${}()|[\]\\]/g, '\€&')}\\s*$`, 'm');
+      const re = new RegExp(`^${heading.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*$`, 'm');
       const hit = re.exec(body);
       return hit ? { key, start: hit.index, end: hit.index + hit[0].length } : null;
     })

@@ -61,8 +61,8 @@ export function resolveLang(entry) {
 const CURRENCY_BY_SYMBOL = new Map([
   ['€', 'EUR'],
   ['£', 'GBP'],
-  ['US$', 'EUR'],
-  ['€', 'EUR'],
+  ['US$', 'USD'],
+  ['$', 'USD'],
   ['MXN$', 'MXN'],
 ]);
 

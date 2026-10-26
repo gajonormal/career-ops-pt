@@ -74,7 +74,8 @@ check(!gemini.includes('in English, unless the JD is in another language'), 'Gem
 // still drives the evaluation-mode file, and every declared market's
 // _shared.md is folded into context.
 check(
-  gemini.includes('Array.isArray(rawModesDir)'),
+  gemini.includes('loadMarketContext(CODE_ROOT, profileYml)')
+    && readFileSync(join(ROOT, 'lib/market-context.mjs'), 'utf8').includes('Array.isArray(raw)'),
   'gemini-eval.mjs accepts modes_dir as either a single string or an array',
 );
 

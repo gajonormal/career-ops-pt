@@ -279,3 +279,77 @@ protected_grounds:
       - "Antidiskriminierungsstelle des Bundes (ADS) — Zugang zum Arbeitsleben — Bewerbungsgespräch (antidiskriminierungsstelle.de)"
       - "Antidiskriminierungsstelle des Bundes (ADS) — Pflichten von Arbeitgebern — Fragen im Bewerbungsgespräch (antidiskriminierungsstelle.de)"
     as_of: "2026-07-30"
+
+  - jurisdiction: PT
+    jurisdiction_name: "Portugal"
+    grounds:
+      - topic: "sexo, maternidade e gravidez"
+        example_question_patterns:
+          - "Está grávida? / Tenciona engravidar em breve?"
+          - "Tem filhos? / Quem fica com as crianças se ficarem doentes?"
+          - "Planeia constituir família nos próximos tempos?"
+        legitimate_contexts:
+          - "Perguntas sobre gravidez, maternidade ou planeamento familiar são estritamente proibidas (art. 24.º CT e orientações da CITE), mesmo para substituição temporária de licença de parentalidade."
+      - topic: "estado civil e situação familiar"
+        example_question_patterns:
+          - "É casado/a ou solteiro/a?"
+          - "O que faz o seu cônjuge / parceiro?"
+          - "Tem dependentes a cargo?"
+        legitimate_contexts:
+          - "Dados de dependentes e estado civil são recolhidos administrativamente APÓS a contratação para efeitos de retenção na fonte de IRS e Segurança Social (art. 17.º CT)."
+      - topic: "idade"
+        example_question_patterns:
+          - "Quantos anos tem?"
+          - "Em que ano concluiu o ensino secundário / nasceu?"
+        legitimate_contexts:
+          - "Verificar a idade mínima legal de admissão ao trabalho (16 anos com escolaridade obrigatória concluída) é legítimo. Fixar limites máximos de idade só é admissível se decorrer diretamente de requisito profissional genuíno ou disposição legal expressa."
+      - topic: "origem étnica, raça, nacionalidade e território de origem"
+        example_question_patterns:
+          - "De onde é originário? / Onde nasceu?"
+          - "Qual é a sua nacionalidade de origem?"
+          - "Tem sotaque — veio de que país?"
+        legitimate_contexts:
+          - "Perguntar se o candidato tem autorização legal de residência/trabalho em Portugal é legítimo; indagar sobre origens étnicas ou nacionalidade de nascimento é proibido."
+      - topic: "religião e convicções políticas ou ideológicas"
+        example_question_patterns:
+          - "Qual é a sua religião? / É praticante?"
+          - "Tem disponibilidade aos sábados / domingos por motivos religiosos?"
+          - "É filiado em algum partido ou associação?"
+        legitimate_contexts:
+          - "Organizações com orientação religiosa ou confessional podem exigir adesão de boa-fé quando constituir requisito profissional essencial e determinante (art. 25.º CT)."
+      - topic: "filiação sindical"
+        example_question_patterns:
+          - "É sindicalizado? / Pertence a algum sindicato?"
+          - "Costuma participar em greves?"
+        legitimate_contexts:
+          - "A filiação sindical é expressamente protegida pela Constituição (art. 55.º CRP) e pelo Código do Trabalho; perguntas sobre esta matéria são estritamente ilícitas."
+      - topic: "deficiência e estado de saúde"
+        example_question_patterns:
+          - "Tem alguma deficiência ou doença crónica?"
+          - "Quantos dias de baixa médica teve no último ano?"
+          - "Toma alguma medicação regular?"
+        legitimate_contexts:
+          - "Distinguir perguntas do recrutador sobre diagnóstico da avaliação de aptidão pelo médico do trabalho. O art. 19.º CT limita testes/exames e prevê fundamentação nos casos admitidos; o médico só comunica aptidão, não diagnóstico. Nos termos do art. 108.º, n.º 3, al. a), da Lei n.º 102/2009, o exame de admissão é anterior ao início da prestação de trabalho ou, se a urgência o justificar, nos 15 dias seguintes. Não classificar o exame legal de admissão como ilícito por ocorrer antes do início do trabalho."
+      - topic: "orientação sexual e identidade de género"
+        example_question_patterns:
+          - "Qual é a sua orientação sexual?"
+          - "Vive com um parceiro do mesmo sexo?"
+      - topic: "reserva da intimidade da vida privada (património, dívidas, estilo de vida)"
+        example_question_patterns:
+          - "Tem dívidas ou empréstimos pessoais?"
+          - "Com quem reside atualmente?"
+        legitimate_contexts:
+          - "O art. 17.º do Código do Trabalho consagra expressamente o direito à reserva da intimidade da vida privada no recrutamento e na vigência do contrato."
+    legal_basis: >-
+      Código do Trabalho (Lei n.º 7/2009), art. 16.º (liberdade de expressão e opinião),
+      art. 17.º (reserva da intimidade da vida privada), art. 19.º (testes e exames médicos),
+      art. 24.º (princípio da não discriminação com elenco exemplificativo de motivos protegidos),
+      art. 25.º (discriminação positiva e requisitos profissionais genuínos);
+      Constituição da República Portuguesa, art. 13.º (princípio da igualdade),
+      art. 26.º (direitos de personalidade) e art. 59.º (direitos dos trabalhadores).
+      Diretivas Comunitárias 2000/78/CE e 2006/54/CE transpostas para o ordenamento nacional.
+    sources:
+      - "Código do Trabalho consolidado (Diário da República) — art. 16.º a 25.º"
+      - "CITE — Comissão para a Igualdade no Trabalho e no Emprego (cite.gov.pt): Guias e pareceres sobre igualdade no recrutamento"
+      - "ACT — Autoridade para as Condições do Trabalho: Guia sobre discriminação e privacidade no recrutamento"
+    as_of: "2026-10-17"

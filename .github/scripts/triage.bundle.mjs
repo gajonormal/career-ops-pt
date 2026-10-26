@@ -135,7 +135,7 @@ function globToRegex(glob) {
       if (glob[i + 1] === '*') { i++; if (glob[i + 1] === '/') { i++; re += '(?:.*/)?'; } else re += '.*'; }
       else re += '[^/]*';
     } else if (c === '?') re += '[^/]';
-    else re += c.replace(/[.+^${}()|[\]\\]/g, '\€&');
+    else re += c.replace(/[.+^${}()|[\]\\]/g, '\\$&');
   }
   return new RegExp(`^${re}$`);
 }
@@ -166,7 +166,7 @@ function codeownerRegex(pattern) {
     const c = p[i];
     if (c === '*') { if (p[i + 1] === '*') { i++; re += '.*'; } else re += '[^/]*'; }
     else if (c === '?') re += '[^/]';
-    else re += c.replace(/[.+^${}()|[\]\\]/g, '\€&');
+    else re += c.replace(/[.+^${}()|[\]\\]/g, '\\$&');
   }
   const prefix = anchored ? '^' : '^(?:.*/)?';
   const suffix = dir ? '(?:/.*)?$' : '(?:/.*)?$';

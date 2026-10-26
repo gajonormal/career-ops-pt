@@ -162,7 +162,7 @@ async function loadProviderIds() {
   return ids;
 }
 
-const TITLE_FILTER_FIELDS = ['positive', 'negative', 'seniority_boost'];
+const TITLE_FILTER_FIELDS = ['positive', 'negative', 'seniority_boost', 'allow_mixed_seniority'];
 // #3438. field_filters blocks are compiled by buildTitleFilter(), which reads
 // positive and negative and nothing else — seniority_boost is a title-level
 // concept with no consumer here. A block containing only seniority_boost would
@@ -187,6 +187,7 @@ export async function validatePortalsConfig(config, { providerIds = new Set() } 
       validateKeywordList(config.title_filter.positive, 'title_filter.positive', errors);
       validateKeywordList(config.title_filter.negative, 'title_filter.negative', errors);
       validateKeywordList(config.title_filter.seniority_boost, 'title_filter.seniority_boost', errors);
+      if (config.title_filter.allow_mixed_seniority !== undefined && typeof config.title_filter.allow_mixed_seniority !== 'boolean') add(errors, 'title_filter.allow_mixed_seniority', 'must be a boolean');
     }
   }
 
@@ -277,6 +278,7 @@ export async function validatePortalsConfig(config, { providerIds = new Set() } 
       if (config.location_filter.strict !== undefined && typeof config.location_filter.strict !== 'boolean') {
         add(errors, 'location_filter.strict', 'must be a boolean when set');
       }
+      if (config.location_filter.match_any_location !== undefined && typeof config.location_filter.match_any_location !== 'boolean') add(errors, 'location_filter.match_any_location', 'must be a boolean');
     }
   }
 

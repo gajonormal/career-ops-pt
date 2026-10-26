@@ -121,6 +121,9 @@ test('--json emits exactly one clean successful receipt', () => {
       added_urls: [],
       errors: [],
       unverified_zero: [],
+      coverage: { status: 'provider-scan-complete', scope: 'providers-only', providers_attempted: 0, providers_failed: 0, company_handoffs_pending: 0, search_queries_pending: 0, browser_executed: false, websearch_executed: false, postings_without_location: 0, postings_without_description: 0 },
+      agent_handoff: [],
+      pending_search_queries: [],
       dry_run: true,
     });
     assert.match(result.stderr, /Portal Scan/);
@@ -150,6 +153,22 @@ test('--json returns exit 2 and structured errors for a partial failure', () => 
   } finally {
     rmSync(root, { recursive: true, force: true });
   }
+});
+
+test('provider-only scan reports pending assisted coverage without claiming it ran', () => {
+  const root = workspace('tracked_companies:\n  - name: Example\n    careers_url: https://example.com/careers\n    scan_method: websearch\nsearch_queries:\n  - name: Portuguese jobs\n    query: junior software Portugal\n    enabled: true\n');
+  try {
+    const result=runJson(root);
+    assert.equal(result.status,0,result.stderr);
+    const receipt=JSON.parse(result.stdout);
+    assert.equal(receipt.coverage.status,'partial');
+    assert.equal(receipt.coverage.company_handoffs_pending,1);
+    assert.equal(receipt.coverage.search_queries_pending,1);
+    assert.equal(receipt.coverage.browser_executed,false);
+    assert.equal(receipt.coverage.websearch_executed,false);
+    assert.equal(receipt.agent_handoff[0].company,'Example');
+    assert.equal(receipt.pending_search_queries[0].name,'Portuguese jobs');
+  } finally { rmSync(root,{recursive:true,force:true}); }
 });
 
 test('a receipt larger than the pipe buffer drains completely', () => {
